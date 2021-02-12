@@ -193,6 +193,9 @@ func checkObject(obj *unstructured.Unstructured) error {
 	if err != nil {
 		return err
 	}
+	if v1alpha1.IsOfficialType(rd.Spec.Resource.Group) {
+		return nil
+	}
 	if rd.Spec.Validation != nil {
 		validator, err := resourcevalidator.New(rd.Spec.Resource.Scope == v1alpha1.NamespaceScoped, schema.GroupVersionKind{
 			Group:   rd.Spec.Resource.Group,

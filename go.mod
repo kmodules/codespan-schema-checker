@@ -7,7 +7,7 @@ require (
 	github.com/yuin/goldmark v1.3.2
 	k8s.io/apimachinery v0.18.9
 	kmodules.xyz/client-go v0.0.0-20210121025702-edd3540a5f47
-	kmodules.xyz/resource-metadata v0.4.8
+	kmodules.xyz/resource-metadata v0.4.9-0.20210212081818-4b538ce7c138
 	kmodules.xyz/resource-validator v0.0.0-20210212060326-c13b0473f9b7
 )
 
