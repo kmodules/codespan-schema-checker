@@ -71,8 +71,8 @@ var (
 
 func main() {
 	var rootCmd = &cobra.Command{
-		Use:   "build input_dir out_dir",
-		Short: "Build yamls",
+		Use:   "codespan-schema-checker",
+		Short: "Check schema of Kubernetes resources inside markdown code blocks",
 		RunE: func(cmd *cobra.Command, args []string) error {
 			info, err := os.Stat(filename)
 			if os.IsNotExist(err) {
