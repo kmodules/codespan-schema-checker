@@ -19,18 +19,21 @@ package main
 import (
 	"bytes"
 	"context"
+	"encoding/json"
 	"flag"
 	"fmt"
 	"io/ioutil"
 	"os"
 	"path/filepath"
 
+	"kmodules.xyz/client-go/logs"
 	p "kmodules.xyz/client-go/tools/parser"
 	"kmodules.xyz/resource-metadata/apis/meta/v1alpha1"
 	"kmodules.xyz/resource-metadata/hub"
 	resourcevalidator "kmodules.xyz/resource-validator"
 
 	hp "github.com/gohugoio/hugo/parser/pageparser"
+	"github.com/spf13/cobra"
 	"github.com/yuin/goldmark"
 	"github.com/yuin/goldmark/ast"
 	gast "github.com/yuin/goldmark/ast"
@@ -42,7 +45,11 @@ import (
 	"k8s.io/apimachinery/pkg/apis/meta/v1/unstructured"
 	"k8s.io/apimachinery/pkg/runtime"
 	"k8s.io/apimachinery/pkg/runtime/schema"
+	utilruntime "k8s.io/apimachinery/pkg/util/runtime"
 	"k8s.io/apimachinery/pkg/util/yaml"
+	"k8s.io/cli-runtime/pkg/genericclioptions"
+	cliflag "k8s.io/component-base/cli/flag"
+	cmdutil "k8s.io/kubectl/pkg/cmd/util"
 )
 
 var (
@@ -59,30 +66,51 @@ var (
 			html.WithXHTML(),
 		),
 	)
+	f cmdutil.Factory
 )
 
-func init() {
-	flag.StringVar(&filename, "f", "/personal/AppsCode/websites/kubedb/content/docs/v2021.01.26/guides/mongodb/quickstart/quickstart.md", "Path to directory where markdown files reside")
-}
-
 func main() {
-	flag.Parse()
+	var rootCmd = &cobra.Command{
+		Use:   "build input_dir out_dir",
+		Short: "Build yamls",
+		RunE: func(cmd *cobra.Command, args []string) error {
+			info, err := os.Stat(filename)
+			if os.IsNotExist(err) {
+				return err
+			}
+			if info.IsDir() {
+				err = filepath.Walk(filename, check)
+				if err != nil {
+					return err
+				}
+			} else {
+				err = check(filename, info, nil)
+				if err != nil {
+					return err
+				}
+			}
 
-	info, err := os.Stat(filename)
-	if os.IsNotExist(err) {
-		panic(err)
+			return nil
+		},
 	}
-	if info.IsDir() {
-		err = filepath.Walk(filename, check)
-		if err != nil {
-			panic(err)
-		}
-	} else {
-		err = check(filename, info, nil)
-		if err != nil {
-			panic(err)
-		}
-	}
+	flags := rootCmd.Flags()
+	// Normalize all flags that are coming from other packages or pre-configurations
+	// a.k.a. change all "_" to "-". e.g. glog package
+	flags.SetNormalizeFunc(cliflag.WordSepNormalizeFunc)
+
+	kubeConfigFlags := genericclioptions.NewConfigFlags(true)
+	kubeConfigFlags.AddFlags(flags)
+	matchVersionKubeConfigFlags := cmdutil.NewMatchVersionFlags(kubeConfigFlags)
+	matchVersionKubeConfigFlags.AddFlags(flags)
+	f = cmdutil.NewFactory(matchVersionKubeConfigFlags)
+
+	flags.AddGoFlagSet(flag.CommandLine)
+
+	flags.StringVar(&filename, "content", "/personal/AppsCode/websites/kubedb/content/docs/v2021.01.26/guides/mongodb/quickstart/quickstart.md", "Path to directory where markdown files reside")
+
+	logs.ParseFlags()
+
+	utilruntime.Must(rootCmd.Execute())
 }
 
 // CodeExtractor is a renderer.NodeRenderer implementation that
@@ -158,6 +186,8 @@ func check(path string, info os.FileInfo, err error) error {
 	}
 	ext := filepath.Ext(info.Name())
 	if ext == ".yaml" || ext == ".yml" || ext == ".json" {
+		fmt.Println("_____________________________________________________________________________________________")
+		fmt.Println(path)
 		content, err := ioutil.ReadFile(path)
 		if err != nil {
 			return err
@@ -166,7 +196,9 @@ func check(path string, info os.FileInfo, err error) error {
 		if err != nil && !runtime.IsMissingKind(err) && !IsYAMLSyntaxError(err) {
 			return err
 		}
-	} else if ext == ".md" {
+	} else if ext == ".md" && filepath.Base(path) != "_index.md" {
+		fmt.Println("_____________________________________________________________________________________________")
+		fmt.Println(path)
 		content, err := ioutil.ReadFile(path)
 		if err != nil {
 			return err
@@ -196,6 +228,16 @@ func checkObject(obj *unstructured.Unstructured) error {
 	if v1alpha1.IsOfficialType(rd.Spec.Resource.Group) {
 		return nil
 	}
+
+	data, err := json.Marshal(obj)
+	if err != nil {
+		return err
+	}
+	err = resourcevalidator.ValidateSchema(f, data)
+	if err != nil {
+		return err
+	}
+
 	if rd.Spec.Validation != nil {
 		validator, err := resourcevalidator.New(rd.Spec.Resource.Scope == v1alpha1.NamespaceScoped, schema.GroupVersionKind{
 			Group:   rd.Spec.Resource.Group,
@@ -208,7 +250,7 @@ func checkObject(obj *unstructured.Unstructured) error {
 		errList := validator.Validate(context.TODO(), obj)
 		if len(errList) > 0 {
 			// err
-			fmt.Fprintf(os.Stderr, errList.ToAggregate().Error())
+			fmt.Fprintln(os.Stderr, errList.ToAggregate().Error())
 		}
 	}
 	return nil

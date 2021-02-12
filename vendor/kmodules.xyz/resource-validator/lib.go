@@ -4,8 +4,12 @@ import (
 	"context"
 	"fmt"
 
+	structuralschema "k8s.io/apiextensions-apiserver/pkg/apiserver/schema"
+
+	structuraldefaulting "k8s.io/apiextensions-apiserver/pkg/apiserver/schema/defaulting"
 	"k8s.io/apimachinery/pkg/apis/meta/v1/unstructured"
 	"k8s.io/apimachinery/pkg/runtime"
+	utilruntime "k8s.io/apimachinery/pkg/util/runtime"
 	"k8s.io/apimachinery/pkg/util/validation/field"
 
 	apiextensionsinternal "k8s.io/apiextensions-apiserver/pkg/apis/apiextensions"
@@ -16,8 +20,6 @@ import (
 
 type Validator interface {
 	Validate(ctx context.Context, obj runtime.Object) field.ErrorList
-	ValidateUpdate(ctx context.Context, obj, old runtime.Object) field.ErrorList
-	ValidateStatusUpdate(ctx context.Context, obj, old runtime.Object) field.ErrorList
 	ValidateTypeMeta(ctx context.Context, obj *unstructured.Unstructured) field.ErrorList
 }
 
@@ -33,9 +35,27 @@ func New(namespaceScoped bool, kind schema.GroupVersionKind, validationSchema *a
 	if err != nil {
 		return nil, err
 	}
+
+	s, err := structuralschema.NewStructural(internalValidationSchema.OpenAPIV3Schema)
+	if err != nil {
+		// This should never happen. If it does, it is a programming error.
+		utilruntime.HandleError(fmt.Errorf("failed to convert schema to structural: %v", err))
+		return nil, fmt.Errorf("the server could not properly serve the CR schema") // validation should avoid this
+	}
+
+	// we don't own s completely, e.g. defaults are not deep-copied. So better make a copy here.
+	s = s.DeepCopy()
+
+	if err := structuraldefaulting.PruneDefaults(s); err != nil {
+		// This should never happen. If it does, it is a programming error.
+		utilruntime.HandleError(fmt.Errorf("failed to prune defaults: %v", err))
+		return nil, fmt.Errorf("the server could not properly serve the CR schema") // validation should avoid this
+	}
+
 	return &customResourceValidator{
-		namespaceScoped: namespaceScoped,
-		kind:            kind,
-		schemaValidator: schemaValidator,
+		namespaceScoped:   namespaceScoped,
+		kind:              kind,
+		schemaValidator:   schemaValidator,
+		structuralSchemas: s,
 	}, nil
 }
