@@ -154,14 +154,6 @@ func (r *CodeExtractor) extractCode(_ util.BufWriter, source []byte, n gast.Node
 	return ast.WalkContinue, nil
 }
 
-func (r *CodeExtractor) writeLines(w util.BufWriter, source []byte, n ast.Node) {
-	l := n.Lines().Len()
-	for i := 0; i < l; i++ {
-		line := n.Lines().At(i)
-		r.Writer.RawWrite(w, line.Value(source))
-	}
-}
-
 type codeExtractor struct {
 }
 
