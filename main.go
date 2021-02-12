@@ -18,8 +18,19 @@ package main
 
 import (
 	"bytes"
+	"context"
+	"flag"
 	"fmt"
+	"io/ioutil"
+	"os"
+	"path/filepath"
 
+	p "kmodules.xyz/client-go/tools/parser"
+	"kmodules.xyz/resource-metadata/apis/meta/v1alpha1"
+	"kmodules.xyz/resource-metadata/hub"
+	resourcevalidator "kmodules.xyz/resource-validator"
+
+	hp "github.com/gohugoio/hugo/parser/pageparser"
 	"github.com/yuin/goldmark"
 	"github.com/yuin/goldmark/ast"
 	gast "github.com/yuin/goldmark/ast"
@@ -28,10 +39,16 @@ import (
 	"github.com/yuin/goldmark/renderer"
 	"github.com/yuin/goldmark/renderer/html"
 	"github.com/yuin/goldmark/util"
+	"k8s.io/apimachinery/pkg/apis/meta/v1/unstructured"
+	"k8s.io/apimachinery/pkg/runtime"
+	"k8s.io/apimachinery/pkg/runtime/schema"
+	"k8s.io/apimachinery/pkg/util/yaml"
 )
 
-func main() {
-	md := goldmark.New(
+var (
+	filename string
+	reg      = hub.NewRegistryOfKnownResources()
+	md       = goldmark.New(
 		goldmark.WithExtensions(extension.GFM),
 		goldmark.WithExtensions(Strikethrough),
 		goldmark.WithParserOptions(
@@ -42,12 +59,30 @@ func main() {
 			html.WithXHTML(),
 		),
 	)
+)
 
-	var buf bytes.Buffer
-	if err := md.Convert([]byte(sample), &buf); err != nil {
+func init() {
+	flag.StringVar(&filename, "f", "/personal/AppsCode/websites/kubedb/content/docs/v2021.01.26/guides/mongodb/quickstart/quickstart.md", "Path to directory where markdown files reside")
+}
+
+func main() {
+	flag.Parse()
+
+	info, err := os.Stat(filename)
+	if os.IsNotExist(err) {
 		panic(err)
 	}
-	fmt.Println(buf.String())
+	if info.IsDir() {
+		err = filepath.Walk(filename, check)
+		if err != nil {
+			panic(err)
+		}
+	} else {
+		err = check(filename, info, nil)
+		if err != nil {
+			panic(err)
+		}
+	}
 }
 
 // CodeExtractor is a renderer.NodeRenderer implementation that
@@ -73,12 +108,20 @@ func (r *CodeExtractor) RegisterFuncs(reg renderer.NodeRendererFuncRegisterer) {
 	reg.Register(ast.KindFencedCodeBlock, r.extractCode)
 }
 
-func (r *CodeExtractor) extractCode(w util.BufWriter, source []byte, n gast.Node, entering bool) (gast.WalkStatus, error) {
+func (r *CodeExtractor) extractCode(_ util.BufWriter, source []byte, n gast.Node, entering bool) (gast.WalkStatus, error) {
 	if entering {
-		_, _ = w.WriteString("<pre><code>")
-		r.writeLines(w, source, n)
-	} else {
-		_, _ = w.WriteString("</code></pre>\n")
+		var buf bytes.Buffer
+		l := n.Lines().Len()
+		for i := 0; i < l; i++ {
+			line := n.Lines().At(i)
+			buf.Write(line.Value(source))
+		}
+		err := p.ProcessResources(buf.Bytes(), checkObject)
+		if err != nil && !runtime.IsMissingKind(err) && !IsYAMLSyntaxError(err) {
+			_, _ = fmt.Fprintln(os.Stderr, err)
+			// fmt.Println(err)
+			// return err
+		}
 	}
 	return ast.WalkContinue, nil
 }
@@ -87,8 +130,6 @@ func (r *CodeExtractor) writeLines(w util.BufWriter, source []byte, n ast.Node) 
 	l := n.Lines().Len()
 	for i := 0; i < l; i++ {
 		line := n.Lines().At(i)
-		fmt.Println(line.Start, line.Stop, line.Padding)
-
 		r.Writer.RawWrite(w, line.Value(source))
 	}
 }
@@ -106,4 +147,74 @@ func (e *codeExtractor) Extend(m goldmark.Markdown) {
 	m.Renderer().AddOptions(renderer.WithNodeRenderers(
 		util.Prioritized(NewCodeExtractor(), 10),
 	))
+}
+
+func check(path string, info os.FileInfo, err error) error {
+	if err != nil {
+		return err
+	}
+	if info.IsDir() {
+		return nil
+	}
+	ext := filepath.Ext(info.Name())
+	if ext == ".yaml" || ext == ".yml" || ext == ".json" {
+		content, err := ioutil.ReadFile(path)
+		if err != nil {
+			return err
+		}
+		err = p.ProcessResources(content, checkObject)
+		if err != nil && !runtime.IsMissingKind(err) && !IsYAMLSyntaxError(err) {
+			return err
+		}
+	} else if ext == ".md" {
+		content, err := ioutil.ReadFile(path)
+		if err != nil {
+			return err
+		}
+		buf := bytes.NewBuffer(content)
+		page, err := hp.ParseFrontMatterAndContent(buf)
+		if err != nil {
+			return err
+		}
+		err = md.Convert(page.Content, ioutil.Discard)
+		if err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+func checkObject(obj *unstructured.Unstructured) error {
+	gvr, err := reg.GVR(obj.GetObjectKind().GroupVersionKind())
+	if err != nil {
+		return err
+	}
+	rd, err := reg.LoadByGVR(gvr)
+	if err != nil {
+		return err
+	}
+	if rd.Spec.Validation != nil {
+		validator, err := resourcevalidator.New(rd.Spec.Resource.Scope == v1alpha1.NamespaceScoped, schema.GroupVersionKind{
+			Group:   rd.Spec.Resource.Group,
+			Version: rd.Spec.Resource.Version,
+			Kind:    rd.Spec.Resource.Kind,
+		}, rd.Spec.Validation)
+		if err != nil {
+			return err
+		}
+		errList := validator.Validate(context.TODO(), obj)
+		if len(errList) > 0 {
+			// err
+			fmt.Fprintf(os.Stderr, errList.ToAggregate().Error())
+		}
+	}
+	return nil
+}
+
+func IsYAMLSyntaxError(err error) bool {
+	if err == nil {
+		return false
+	}
+	_, ok := err.(yaml.YAMLSyntaxError)
+	return ok
 }
