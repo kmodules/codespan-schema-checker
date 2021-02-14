@@ -137,13 +137,13 @@ func (r *CodeExtractor) RegisterFuncs(reg renderer.NodeRendererFuncRegisterer) {
 
 func (r *CodeExtractor) extractCode(_ util.BufWriter, source []byte, n gast.Node, entering bool) (gast.WalkStatus, error) {
 	if entering {
-
 		var buf bytes.Buffer
 		l := n.Lines().Len()
 		for i := 0; i < l; i++ {
 			line := n.Lines().At(i)
 			buf.Write(line.Value(source))
 		}
+
 		err := p.ProcessResources(buf.Bytes(), checkObject)
 		if err != nil && !runtime.IsMissingKind(err) && !p.IsYAMLSyntaxError(err) {
 			// err
@@ -212,7 +212,8 @@ func checkObject(obj *unstructured.Unstructured) error {
 	}
 	rd, err := reg.LoadByGVR(gvr)
 	if err != nil {
-		return err
+		logger.Log(err)
+		return nil
 	}
 	if v1alpha1.IsOfficialType(rd.Spec.Resource.Group) {
 		return nil
