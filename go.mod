@@ -12,7 +12,7 @@ require (
 	k8s.io/component-base v0.18.9
 	k8s.io/kubectl v0.18.9
 	kmodules.xyz/client-go v0.0.0-20210213000708-f480974ce46d
-	kmodules.xyz/resource-metadata v0.4.9-0.20210212081818-4b538ce7c138
+	kmodules.xyz/resource-metadata v0.4.9
 	kmodules.xyz/resource-validator v0.0.0-20210212162753-ee21f1952114
 )
 
