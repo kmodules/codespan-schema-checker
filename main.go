@@ -224,7 +224,8 @@ func checkObject(obj *unstructured.Unstructured) error {
 	}
 	err = resourcevalidator.ValidateSchema(f, data)
 	if err != nil {
-		return err
+		logger.Log(err)
+		return nil
 	}
 
 	if rd.Spec.Validation != nil {
@@ -238,8 +239,8 @@ func checkObject(obj *unstructured.Unstructured) error {
 		}
 		errList := validator.Validate(context.TODO(), obj)
 		if len(errList) > 0 {
-			// err
 			logger.Log(errList.ToAggregate())
+			return nil
 		}
 	}
 	return nil
