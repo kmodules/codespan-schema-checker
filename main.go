@@ -21,7 +21,6 @@ import (
 	"context"
 	"encoding/json"
 	"flag"
-	"fmt"
 	"io/ioutil"
 	"os"
 	"path/filepath"
@@ -46,7 +45,6 @@ import (
 	"k8s.io/apimachinery/pkg/runtime"
 	"k8s.io/apimachinery/pkg/runtime/schema"
 	utilruntime "k8s.io/apimachinery/pkg/util/runtime"
-	"k8s.io/apimachinery/pkg/util/yaml"
 	"k8s.io/cli-runtime/pkg/genericclioptions"
 	cliflag "k8s.io/component-base/cli/flag"
 	cmdutil "k8s.io/kubectl/pkg/cmd/util"
@@ -66,7 +64,8 @@ var (
 			html.WithXHTML(),
 		),
 	)
-	f cmdutil.Factory
+	logger = NewLogger(os.Stderr)
+	f      cmdutil.Factory
 )
 
 func main() {
@@ -106,7 +105,7 @@ func main() {
 
 	flags.AddGoFlagSet(flag.CommandLine)
 
-	flags.StringVar(&filename, "content", "/personal/AppsCode/websites/kubedb/content/docs/v2021.01.26/guides/mongodb/quickstart/quickstart.md", "Path to directory where markdown files reside")
+	flags.StringVar(&filename, "content", filename, "Path to directory where markdown files reside")
 
 	logs.ParseFlags()
 
@@ -138,6 +137,7 @@ func (r *CodeExtractor) RegisterFuncs(reg renderer.NodeRendererFuncRegisterer) {
 
 func (r *CodeExtractor) extractCode(_ util.BufWriter, source []byte, n gast.Node, entering bool) (gast.WalkStatus, error) {
 	if entering {
+
 		var buf bytes.Buffer
 		l := n.Lines().Len()
 		for i := 0; i < l; i++ {
@@ -145,10 +145,9 @@ func (r *CodeExtractor) extractCode(_ util.BufWriter, source []byte, n gast.Node
 			buf.Write(line.Value(source))
 		}
 		err := p.ProcessResources(buf.Bytes(), checkObject)
-		if err != nil && !runtime.IsMissingKind(err) && !IsYAMLSyntaxError(err) {
-			_, _ = fmt.Fprintln(os.Stderr, err)
-			// fmt.Println(err)
-			// return err
+		if err != nil && !runtime.IsMissingKind(err) && !p.IsYAMLSyntaxError(err) {
+			// err
+			logger.Log(err)
 		}
 	}
 	return ast.WalkContinue, nil
@@ -178,19 +177,17 @@ func check(path string, info os.FileInfo, err error) error {
 	}
 	ext := filepath.Ext(info.Name())
 	if ext == ".yaml" || ext == ".yml" || ext == ".json" {
-		fmt.Println("_____________________________________________________________________________________________")
-		fmt.Println(path)
+		logger.Init(path)
 		content, err := ioutil.ReadFile(path)
 		if err != nil {
 			return err
 		}
 		err = p.ProcessResources(content, checkObject)
-		if err != nil && !runtime.IsMissingKind(err) && !IsYAMLSyntaxError(err) {
+		if err != nil && !runtime.IsMissingKind(err) && !p.IsYAMLSyntaxError(err) {
 			return err
 		}
 	} else if ext == ".md" && filepath.Base(path) != "_index.md" {
-		fmt.Println("_____________________________________________________________________________________________")
-		fmt.Println(path)
+		logger.Init(path)
 		content, err := ioutil.ReadFile(path)
 		if err != nil {
 			return err
@@ -242,16 +239,8 @@ func checkObject(obj *unstructured.Unstructured) error {
 		errList := validator.Validate(context.TODO(), obj)
 		if len(errList) > 0 {
 			// err
-			fmt.Fprintln(os.Stderr, errList.ToAggregate().Error())
+			logger.Log(errList.ToAggregate())
 		}
 	}
 	return nil
-}
-
-func IsYAMLSyntaxError(err error) bool {
-	if err == nil {
-		return false
-	}
-	_, ok := err.(yaml.YAMLSyntaxError)
-	return ok
 }

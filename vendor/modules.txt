@@ -125,6 +125,8 @@ github.com/mailru/easyjson/jlexer
 github.com/mailru/easyjson/jwriter
 # github.com/mattn/go-isatty v0.0.12
 github.com/mattn/go-isatty
+# github.com/mattn/go-runewidth v0.0.7
+github.com/mattn/go-runewidth
 # github.com/mitchellh/go-wordwrap v1.0.0
 github.com/mitchellh/go-wordwrap
 # github.com/mitchellh/mapstructure v1.3.3
@@ -135,6 +137,9 @@ github.com/modern-go/concurrent
 github.com/modern-go/reflect2
 # github.com/niklasfasching/go-org v1.3.2
 github.com/niklasfasching/go-org/org
+# github.com/olekukonko/tablewriter v0.0.4
+## explicit
+github.com/olekukonko/tablewriter
 # github.com/peterbourgon/diskv v2.0.1+incompatible
 github.com/peterbourgon/diskv
 # github.com/pkg/errors v0.9.1
@@ -461,7 +466,7 @@ k8s.io/utils/integer
 k8s.io/utils/pointer
 # kmodules.xyz/apiversion v0.2.0
 kmodules.xyz/apiversion
-# kmodules.xyz/client-go v0.0.0-20210121025702-edd3540a5f47
+# kmodules.xyz/client-go v0.0.0-20210213000708-f480974ce46d
 ## explicit
 kmodules.xyz/client-go
 kmodules.xyz/client-go/apiextensions
