@@ -17,6 +17,7 @@ limitations under the License.
 package main
 
 import (
+	"errors"
 	"fmt"
 	"io"
 
@@ -29,6 +30,7 @@ type Logger struct {
 	// context
 	filename string
 	count    int
+	errFound bool
 }
 
 func NewLogger(w io.Writer) *Logger {
@@ -53,4 +55,12 @@ func (l *Logger) Log(err error) {
 	}
 	_, _ = fmt.Fprintln(l.w, err)
 	l.count++
+	l.errFound = true
+}
+
+func (l *Logger) Result() error {
+	if l.errFound {
+		return errors.New("error found")
+	}
+	return nil
 }

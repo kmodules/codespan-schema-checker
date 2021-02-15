@@ -89,7 +89,7 @@ func main() {
 				}
 			}
 
-			return nil
+			return logger.Result()
 		},
 	}
 	flags := rootCmd.Flags()
