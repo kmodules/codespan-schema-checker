@@ -215,9 +215,6 @@ func checkObject(obj *unstructured.Unstructured) error {
 		logger.Log(err)
 		return nil
 	}
-	if v1alpha1.IsOfficialType(rd.Spec.Resource.Group) {
-		return nil
-	}
 
 	data, err := json.Marshal(obj)
 	if err != nil {
