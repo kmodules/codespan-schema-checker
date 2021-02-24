@@ -80,7 +80,12 @@ func (a customResourceValidator) ValidateTypeMeta(ctx context.Context, obj *unst
 	if typeAccessor.GetKind() != a.kind.Kind {
 		allErrs = append(allErrs, field.Invalid(field.NewPath("kind"), typeAccessor.GetKind(), fmt.Sprintf("must be %v", a.kind.Kind)))
 	}
-	if typeAccessor.GetAPIVersion() != a.kind.Group+"/"+a.kind.Version {
+
+	apiVersion := a.kind.Version
+	if a.kind.Group != "" {
+		apiVersion = a.kind.Group + "/" + a.kind.Version
+	}
+	if typeAccessor.GetAPIVersion() != apiVersion {
 		allErrs = append(allErrs, field.Invalid(field.NewPath("apiVersion"), typeAccessor.GetAPIVersion(), fmt.Sprintf("must be %v", a.kind.Group+"/"+a.kind.Version)))
 	}
 	return allErrs

@@ -13,7 +13,7 @@ require (
 	k8s.io/kubectl v0.18.9
 	kmodules.xyz/client-go v0.0.0-20210213000708-f480974ce46d
 	kmodules.xyz/resource-metadata v0.4.13-0.20210224101948-f8c28e42c5fb
-	kmodules.xyz/resource-validator v0.0.0-20210212162753-ee21f1952114
+	kmodules.xyz/resource-validator v0.0.0-20210224121851-c4fb322bda20
 )
 
 replace bitbucket.org/ww/goautoneg => gomodules.xyz/goautoneg v0.0.0-20120707110453-a547fc61f48d
