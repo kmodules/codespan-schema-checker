@@ -852,8 +852,8 @@ kmodules.xyz/client-go v0.0.0-20201105071625-0b277310b9b8/go.mod h1:WXDwZBmvrcLg
 kmodules.xyz/client-go v0.0.0-20210213000708-f480974ce46d h1:Ezz+MeGDmvAZCpEURzyWHiZuIrRLATNk3Novwbn5ZuU=
 kmodules.xyz/client-go v0.0.0-20210213000708-f480974ce46d/go.mod h1:GdX1CHOpjL4F8P9O/7dE9m0fIOs05BNHKVT+kM51rk8=
 kmodules.xyz/crd-schema-fuzz v0.0.0-20200521005638-2433a187de95/go.mod h1:jpu8xFsDKd6kAWUAKk8oTu/GQGBWqhrcaDeOJdaCJnk=
-kmodules.xyz/resource-metadata v0.4.13-0.20210224101948-f8c28e42c5fb h1:Ncu63Jjpx47G6aBamRNXgv7XF/r3WERaUU+aZk+L34Y=
-kmodules.xyz/resource-metadata v0.4.13-0.20210224101948-f8c28e42c5fb/go.mod h1:LdkBpeKIZphEezsALiwnH0eTXQwZAKq9YMQhaMU5CsE=
+kmodules.xyz/resource-metadata v0.4.13-0.20210224132625-fbe425b9b591 h1:upyF0u+e5fQ3DViZeGSiiiIaJvQG1iGwKcyVEC7qjhk=
+kmodules.xyz/resource-metadata v0.4.13-0.20210224132625-fbe425b9b591/go.mod h1:LdkBpeKIZphEezsALiwnH0eTXQwZAKq9YMQhaMU5CsE=
 kmodules.xyz/resource-validator v0.0.0-20210224121851-c4fb322bda20 h1:W8C+PAtBat4jsfPaCs4kLG2iMUt4KW0ubLoI4hvF3bc=
 kmodules.xyz/resource-validator v0.0.0-20210224121851-c4fb322bda20/go.mod h1:Ta2257xLuN2ncue6tMpN3U1WYrbYdrIH1SB7y7GMHxk=
 sigs.k8s.io/apiserver-network-proxy/konnectivity-client v0.0.7/go.mod h1:PHgbrJT7lCHcxMU+mDHEm+nx46H4zuuHZkDP6icnhu0=
