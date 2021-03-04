@@ -21,6 +21,7 @@ import (
 	"context"
 	"encoding/json"
 	"flag"
+	"fmt"
 	"io/ioutil"
 	"os"
 	"path/filepath"
@@ -45,9 +46,11 @@ import (
 	"k8s.io/apimachinery/pkg/runtime"
 	"k8s.io/apimachinery/pkg/runtime/schema"
 	utilruntime "k8s.io/apimachinery/pkg/util/runtime"
+	"k8s.io/apimachinery/pkg/util/sets"
 	"k8s.io/cli-runtime/pkg/genericclioptions"
 	cliflag "k8s.io/component-base/cli/flag"
 	cmdutil "k8s.io/kubectl/pkg/cmd/util"
+	"kubedb.dev/installer/catalog"
 )
 
 var (
@@ -238,6 +241,18 @@ func checkObject(obj *unstructured.Unstructured) error {
 		errList := validator.Validate(context.TODO(), obj)
 		if len(errList) > 0 {
 			logger.Log(errList.ToAggregate())
+			return nil
+		}
+	}
+
+	if gvr.Group == "kubedb.com" {
+		dbVersion, _, err := unstructured.NestedString(obj.Object, "spec", "version")
+		if err != nil {
+			logger.Log(err)
+			return nil
+		}
+		if dbVersion != "" && !sets.NewString(catalog.ActiveDBVersions()[obj.GetKind()]...).Has(dbVersion) {
+			logger.Log(fmt.Errorf("using deprecated %s version %s", obj.GetKind(), dbVersion))
 			return nil
 		}
 	}
