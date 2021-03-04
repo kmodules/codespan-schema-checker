@@ -1,6 +1,6 @@
 module kmodules.xyz/codespan-schema-checker
 
-go 1.14
+go 1.16
 
 require (
 	github.com/gohugoio/hugo v0.80.0
@@ -11,9 +11,10 @@ require (
 	k8s.io/cli-runtime v0.18.9
 	k8s.io/component-base v0.18.9
 	k8s.io/kubectl v0.18.9
-	kmodules.xyz/client-go v0.0.0-20210213000708-f480974ce46d
+	kmodules.xyz/client-go v0.0.0-20210220080427-fd7308e30bb4
 	kmodules.xyz/resource-metadata v0.4.13-0.20210226072035-7a448c6e6997
 	kmodules.xyz/resource-validator v0.0.0-20210224121851-c4fb322bda20
+	kubedb.dev/installer v0.16.3-0.20210304070123-fd67c67630a5
 )
 
 replace bitbucket.org/ww/goautoneg => gomodules.xyz/goautoneg v0.0.0-20120707110453-a547fc61f48d
