@@ -16,27 +16,40 @@ limitations under the License.
 
 package v1alpha1
 
+import "gopkg.in/yaml.v2"
+
 const (
 	ObjectMetaSchema = `properties:
-  annotations:
-    additionalProperties:
-      type: string
-    description: 'Annotations is an unstructured key value map stored with a resource that may be set by external tools to store and retrieve arbitrary metadata. They are not queryable and should be preserved when modifying objects. More info: http://kubernetes.io/docs/user-guide/annotations'
-    type: object
-  labels:
-    additionalProperties:
-      type: string
-    description: 'Map of string keys and values that can be used to organize and categorize (scope and select) objects. May match selectors of replication controllers and services. More info: http://kubernetes.io/docs/user-guide/labels'
-    type: object
   name:
     description: 'Name must be unique within a namespace. Is required when creating resources, although some resources may allow a client to request the generation of an appropriate name automatically. Name is primarily intended for creation idempotence and configuration definition. Cannot be updated. More info: http://kubernetes.io/docs/user-guide/identifiers#names'
     type: string
   namespace:
     description: "Namespace defines the space within which each name must be unique. An empty namespace is equivalent to the \"default\" namespace, but \"default\" is the canonical representation. Not all objects are required to be scoped to a namespace - the value of this field for those objects will be empty. \n Must be a DNS_LABEL. Cannot be updated. More info: http://kubernetes.io/docs/user-guide/namespaces"
     type: string
+  labels:
+    additionalProperties:
+      type: string
+    description: 'Map of string keys and values that can be used to organize and categorize (scope and select) objects. May match selectors of replication controllers and services. More info: http://kubernetes.io/docs/user-guide/labels'
+    type: object
+  annotations:
+    additionalProperties:
+      type: string
+    description: 'Annotations is an unstructured key value map stored with a resource that may be set by external tools to store and retrieve arbitrary metadata. They are not queryable and should be preserved when modifying objects. More info: http://kubernetes.io/docs/user-guide/annotations'
+    type: object
 type: object`
 
 	ObjectMetaFullSchema = `properties:
+  name:
+    description: 'Name must be unique within a namespace. Is required when creating resources, although some resources may allow a client to request the generation of an appropriate name automatically. Name is primarily intended for creation idempotence and configuration definition. Cannot be updated. More info: http://kubernetes.io/docs/user-guide/identifiers#names'
+    type: string
+  namespace:
+    description: "Namespace defines the space within which each name must be unique. An empty namespace is equivalent to the \"default\" namespace, but \"default\" is the canonical representation. Not all objects are required to be scoped to a namespace - the value of this field for those objects will be empty. \n Must be a DNS_LABEL. Cannot be updated. More info: http://kubernetes.io/docs/user-guide/namespaces"
+    type: string
+  labels:
+    additionalProperties:
+      type: string
+    description: 'Map of string keys and values that can be used to organize and categorize (scope and select) objects. May match selectors of replication controllers and services. More info: http://kubernetes.io/docs/user-guide/labels'
+    type: object
   annotations:
     additionalProperties:
       type: string
@@ -69,11 +82,6 @@ type: object`
     description: A sequence number representing a specific generation of the desired state. Populated by the system. Read-only.
     format: int64
     type: integer
-  labels:
-    additionalProperties:
-      type: string
-    description: 'Map of string keys and values that can be used to organize and categorize (scope and select) objects. May match selectors of replication controllers and services. More info: http://kubernetes.io/docs/user-guide/labels'
-    type: object
   managedFields:
     description: ManagedFields maps workflow-id and version to the set of fields that are managed by that workflow. This is mostly for internal housekeeping, and users typically shouldn't need to set or understand this field. A workflow can be the user's name, a controller's name, or the name of a specific apply path like "ci-cd". The set of fields is always in the version that the workflow used when modifying the object.
     items:
@@ -100,12 +108,6 @@ type: object`
           type: string
       type: object
     type: array
-  name:
-    description: 'Name must be unique within a namespace. Is required when creating resources, although some resources may allow a client to request the generation of an appropriate name automatically. Name is primarily intended for creation idempotence and configuration definition. Cannot be updated. More info: http://kubernetes.io/docs/user-guide/identifiers#names'
-    type: string
-  namespace:
-    description: "Namespace defines the space within which each name must be unique. An empty namespace is equivalent to the \"default\" namespace, but \"default\" is the canonical representation. Not all objects are required to be scoped to a namespace - the value of this field for those objects will be empty. \n Must be a DNS_LABEL. Cannot be updated. More info: http://kubernetes.io/docs/user-guide/namespaces"
-    type: string
   ownerReferences:
     description: List of objects depended by this object. If ALL objects in the list have been deleted, this object will be garbage collected. If this object is managed by a controller, then an entry in this list will point to this controller, with the controller field set to true. There cannot be more than one managing controller.
     items:
@@ -147,3 +149,69 @@ type: object`
     type: string
 type: object`
 )
+
+func FormatMetadata(data []byte) ([]byte, error) {
+	var root yaml.MapSlice
+	err := yaml.Unmarshal(data, &root)
+	if err != nil {
+		return nil, err
+	}
+
+	spec := find(root, "spec")
+	if spec == nil {
+		return data, nil
+	}
+	validation := find(spec.(yaml.MapSlice), "validation")
+	if validation == nil {
+		return data, nil
+	}
+	openAPIV3Schema := find(validation.(yaml.MapSlice), "openAPIV3Schema")
+	if openAPIV3Schema == nil {
+		return data, nil
+	}
+	prop1 := find(openAPIV3Schema.(yaml.MapSlice), "properties")
+	if prop1 == nil {
+		return data, nil
+	}
+	metadata := find(prop1.(yaml.MapSlice), "metadata")
+	if metadata == nil {
+		return data, nil
+	}
+	prop2 := find(metadata.(yaml.MapSlice), "properties")
+	if prop2 == nil {
+		return data, nil
+	}
+	p := prop2.(yaml.MapSlice)
+	moveToIndex(0, "name", p)
+	if moveToIndex(1, "namespace", p) {
+		moveToIndex(2, "labels", p)
+		moveToIndex(3, "annotations", p)
+	} else {
+		moveToIndex(1, "labels", p)
+		moveToIndex(2, "annotations", p)
+	}
+
+	return yaml.Marshal(root)
+}
+
+func find(node yaml.MapSlice, key string) interface{} {
+	for i := range node {
+		if node[i].Key.(string) == key {
+			return node[i].Value
+		}
+	}
+	return nil
+}
+
+func moveToIndex(idx int, needle string, haystack yaml.MapSlice) bool {
+	if len(haystack) != idx && haystack[0].Key.(string) == needle {
+		return true
+	}
+	for i, elem := range haystack {
+		if elem.Key.(string) == needle {
+			haystack[idx], haystack[i] = haystack[i], haystack[idx]
+			return true
+		}
+	}
+	return false
+}

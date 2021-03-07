@@ -871,8 +871,8 @@ kmodules.xyz/client-go v0.0.0-20201105071625-0b277310b9b8/go.mod h1:WXDwZBmvrcLg
 kmodules.xyz/client-go v0.0.0-20210220080427-fd7308e30bb4 h1:kPPcEpeXNkb8Nnce7gDHQeSgJLZEfeYMzMfIiB7BpHA=
 kmodules.xyz/client-go v0.0.0-20210220080427-fd7308e30bb4/go.mod h1:GdX1CHOpjL4F8P9O/7dE9m0fIOs05BNHKVT+kM51rk8=
 kmodules.xyz/crd-schema-fuzz v0.0.0-20200521005638-2433a187de95/go.mod h1:jpu8xFsDKd6kAWUAKk8oTu/GQGBWqhrcaDeOJdaCJnk=
-kmodules.xyz/resource-metadata v0.4.13-0.20210226072035-7a448c6e6997 h1:mgK7krJW7CplfylOFy/0nW0wIPvwT3nUfh6v03RC9OI=
-kmodules.xyz/resource-metadata v0.4.13-0.20210226072035-7a448c6e6997/go.mod h1:LdkBpeKIZphEezsALiwnH0eTXQwZAKq9YMQhaMU5CsE=
+kmodules.xyz/resource-metadata v0.4.15 h1:zMWX/xdQUQDhhhFbcRmSJmisnnDLSi0nhEtaH9+nbZg=
+kmodules.xyz/resource-metadata v0.4.15/go.mod h1:tFxChzilNgTFlVFYOUPTHLlKkN42PpEn0I6dBk6DtN8=
 kmodules.xyz/resource-validator v0.0.0-20210224121851-c4fb322bda20 h1:W8C+PAtBat4jsfPaCs4kLG2iMUt4KW0ubLoI4hvF3bc=
 kmodules.xyz/resource-validator v0.0.0-20210224121851-c4fb322bda20/go.mod h1:Ta2257xLuN2ncue6tMpN3U1WYrbYdrIH1SB7y7GMHxk=
 kmodules.xyz/schema-checker v0.1.2/go.mod h1:JyT3tjizU/gQY9bK56xzAvkjJoAaUPRam7HELx4Nb/o=
