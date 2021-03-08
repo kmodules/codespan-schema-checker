@@ -12,7 +12,7 @@ require (
 	k8s.io/component-base v0.18.9
 	k8s.io/kubectl v0.18.9
 	kmodules.xyz/client-go v0.0.0-20210220080427-fd7308e30bb4
-	kmodules.xyz/resource-metadata v0.4.16
+	kmodules.xyz/resource-metadata v0.4.17
 	kmodules.xyz/resource-validator v0.0.0-20210224121851-c4fb322bda20
 	kubedb.dev/installer v0.16.3-0.20210304070123-fd67c67630a5
 )
