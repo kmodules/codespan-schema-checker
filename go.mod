@@ -14,7 +14,7 @@ require (
 	kmodules.xyz/client-go v0.0.0-20210220080427-fd7308e30bb4
 	kmodules.xyz/resource-metadata v0.4.17
 	kmodules.xyz/resource-validator v0.0.0-20210224121851-c4fb322bda20
-	kubedb.dev/installer v0.16.3-0.20210304070123-fd67c67630a5
+	kubedb.dev/installer v0.16.3-0.20210311053300-d4d9f3a17f57
 )
 
 replace bitbucket.org/ww/goautoneg => gomodules.xyz/goautoneg v0.0.0-20120707110453-a547fc61f48d

@@ -788,8 +788,7 @@ gomodules.xyz/jsonpatch/v2 v2.1.0/go.mod h1:IhYNNY4jnS53ZnfE4PAmpKtDpTCj1JFXc+3m
 gomodules.xyz/password-generator v0.2.6/go.mod h1:TvwYYTx9+P1pPwKQKfZgB/wr2Id9MqAQ3B5auY7reNg=
 gomodules.xyz/pointer v0.0.0-20201105040656-991dd254b680 h1:MqQStdJSfPUtcgDUQFU00ZmJBtGiujZWnBfXseFZK3g=
 gomodules.xyz/pointer v0.0.0-20201105040656-991dd254b680/go.mod h1:sPLsC0+yLTRecUiC5yVlyvXhZ6LAGojNCRWNNqoplvo=
-gomodules.xyz/semvers v0.0.0-20210303214013-a7245da66f4f/go.mod h1:qOWZ+HCW1y1TMCo5rMtFpPRweMnRJEErSmD1eXoJZKw=
-gomodules.xyz/semvers v0.0.0-20210304001136-2d8cbb06f26b/go.mod h1:qOWZ+HCW1y1TMCo5rMtFpPRweMnRJEErSmD1eXoJZKw=
+gomodules.xyz/semvers v0.0.0-20210310134147-b22f1a8bc683/go.mod h1:qOWZ+HCW1y1TMCo5rMtFpPRweMnRJEErSmD1eXoJZKw=
 gomodules.xyz/sets v0.0.0-20200930152147-4f4543544799/go.mod h1:jKgNp01/iDs+svOWXaPk5cKP3VXy0mWUoTF/ore+aMc=
 gomodules.xyz/version v0.1.0 h1:inGItCg/egI0jPMeIE0SQkiDIJaodOMoCrxYqasQLR0=
 gomodules.xyz/version v0.1.0/go.mod h1:Y8xuV02mL/45psyPKG3NCVOwvAOy6T5Kx0l3rCjKSjU=
@@ -876,8 +875,8 @@ kmodules.xyz/resource-metadata v0.4.17/go.mod h1:tFxChzilNgTFlVFYOUPTHLlKkN42PpE
 kmodules.xyz/resource-validator v0.0.0-20210224121851-c4fb322bda20 h1:W8C+PAtBat4jsfPaCs4kLG2iMUt4KW0ubLoI4hvF3bc=
 kmodules.xyz/resource-validator v0.0.0-20210224121851-c4fb322bda20/go.mod h1:Ta2257xLuN2ncue6tMpN3U1WYrbYdrIH1SB7y7GMHxk=
 kmodules.xyz/schema-checker v0.1.2/go.mod h1:JyT3tjizU/gQY9bK56xzAvkjJoAaUPRam7HELx4Nb/o=
-kubedb.dev/installer v0.16.3-0.20210304070123-fd67c67630a5 h1:i4rPL717oB4Z4KSp7fyAimZ3k84I2sWR3JUc2lijlVw=
-kubedb.dev/installer v0.16.3-0.20210304070123-fd67c67630a5/go.mod h1:eI04msFpt9o4RyWet4rMo+kEv6ptKgLYeYAQB2TRjTQ=
+kubedb.dev/installer v0.16.3-0.20210311053300-d4d9f3a17f57 h1:cgrKVBfa54kHWq2/2j800aMKSEscf504kvYA7G/0mrQ=
+kubedb.dev/installer v0.16.3-0.20210311053300-d4d9f3a17f57/go.mod h1:1woZFK+Yb1Kb0a2JJ3FClQu7+1X1WUjTPsWnWegAIgw=
 sigs.k8s.io/apiserver-network-proxy/konnectivity-client v0.0.7/go.mod h1:PHgbrJT7lCHcxMU+mDHEm+nx46H4zuuHZkDP6icnhu0=
 sigs.k8s.io/kustomize v2.0.3+incompatible h1:JUufWFNlI44MdtnjUqVnvh29rR37PQFzPbLXqhyOyX0=
 sigs.k8s.io/kustomize v2.0.3+incompatible/go.mod h1:MkjgH3RdOWrievjo6c9T245dYlB5QeXV4WCbnt/PEpU=
@@ -887,5 +886,5 @@ sigs.k8s.io/structured-merge-diff/v3 v3.0.0/go.mod h1:PlARxl6Hbt/+BC80dRLi1qAmnM
 sigs.k8s.io/yaml v1.1.0/go.mod h1:UJmg0vDUVViEyp3mgSv9WPwZCDxu4rQW1olrI1uml+o=
 sigs.k8s.io/yaml v1.2.0 h1:kr/MCeFWJWTwyaHoR9c8EjH9OumOmoF9YGiZd7lFm/Q=
 sigs.k8s.io/yaml v1.2.0/go.mod h1:yfXDCHCao9+ENCvLSE62v9VSji2MKu5jeNfTrofGhJc=
-stash.appscode.dev/catalog v0.0.0-20210303214218-1306ba59af95/go.mod h1:ZS4f7z6QMwCRH0piNJDZENX4lelmFQ2/WjdmfsVOyQs=
+stash.appscode.dev/catalog v0.0.0-20210310134336-3544e1b89c80/go.mod h1:0ilLoUy5KWYOYPQGuarr/cssdC+z2V5YDvlaRU3p/Oo=
 vbom.ml/util v0.0.0-20160121211510-db5cfe13f5cc/go.mod h1:so/NYdZXCz+E3ZpW0uAoCj6uzU2+8OWDFv/HxUSs7kI=

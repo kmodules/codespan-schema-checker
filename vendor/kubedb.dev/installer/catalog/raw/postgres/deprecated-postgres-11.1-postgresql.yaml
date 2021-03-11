@@ -1,11 +1,12 @@
 apiVersion: catalog.kubedb.com/v1alpha1
 kind: PostgresVersion
 metadata:
-  name: "10.6"
+  name: "11.1"
   namespace: default
 spec:
   db:
-    image: kubedb/postgres:10.6
+    image: kubedb/postgres:11.1
+  deprecated: true
   distribution: PostgreSQL
   exporter:
     image: kubedb/postgres_exporter:v0.4.7
@@ -14,20 +15,21 @@ spec:
   stash:
     addon:
       backupTask:
-        name: postgres-backup-10.14.0-v4
+        name: postgres-backup-11.9.0-v4
       restoreTask:
-        name: postgres-restore-10.14.0-v4
-  version: "10.6"
+        name: postgres-restore-11.9.0-v4
+  version: "11.1"
 
 ---
 apiVersion: catalog.kubedb.com/v1alpha1
 kind: PostgresVersion
 metadata:
-  name: 10.6-v1
+  name: 11.1-v1
   namespace: default
 spec:
   db:
-    image: kubedb/postgres:10.6-v1
+    image: kubedb/postgres:11.1-v1
+  deprecated: true
   distribution: PostgreSQL
   exporter:
     image: kubedb/postgres_exporter:v0.4.7
@@ -36,20 +38,21 @@ spec:
   stash:
     addon:
       backupTask:
-        name: postgres-backup-10.14.0-v4
+        name: postgres-backup-11.9.0-v4
       restoreTask:
-        name: postgres-restore-10.14.0-v4
-  version: "10.6"
+        name: postgres-restore-11.9.0-v4
+  version: "11.1"
 
 ---
 apiVersion: catalog.kubedb.com/v1alpha1
 kind: PostgresVersion
 metadata:
-  name: 10.6-v2
+  name: 11.1-v2
   namespace: default
 spec:
   db:
-    image: kubedb/postgres:10.6-v2
+    image: kubedb/postgres:11.1-v2
+  deprecated: true
   distribution: PostgreSQL
   exporter:
     image: kubedb/postgres_exporter:v0.4.7
@@ -58,20 +61,21 @@ spec:
   stash:
     addon:
       backupTask:
-        name: postgres-backup-10.14.0-v4
+        name: postgres-backup-11.9.0-v4
       restoreTask:
-        name: postgres-restore-10.14.0-v4
-  version: "10.6"
+        name: postgres-restore-11.9.0-v4
+  version: "11.1"
 
 ---
 apiVersion: catalog.kubedb.com/v1alpha1
 kind: PostgresVersion
 metadata:
-  name: 10.6-v3
+  name: 11.1-v3
   namespace: default
 spec:
   db:
-    image: kubedb/postgres:10.6-v3
+    image: kubedb/postgres:11.1-v3
+  deprecated: true
   distribution: PostgreSQL
   exporter:
     image: kubedb/postgres_exporter:v0.4.7
@@ -80,7 +84,7 @@ spec:
   stash:
     addon:
       backupTask:
-        name: postgres-backup-10.14.0-v4
+        name: postgres-backup-11.9.0-v4
       restoreTask:
-        name: postgres-restore-10.14.0-v4
-  version: "10.6"
+        name: postgres-restore-11.9.0-v4
+  version: "11.1"

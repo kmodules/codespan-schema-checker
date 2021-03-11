@@ -1,7 +1,7 @@
 apiVersion: catalog.kubedb.com/v1alpha1
 kind: ElasticsearchVersion
 metadata:
-  name: 6.8.1-searchguard
+  name: searchguard-6.8.1
   namespace: default
 spec:
   authPlugin: SearchGuard
@@ -18,19 +18,19 @@ spec:
   stash:
     addon:
       backupTask:
-        name: elasticsearch-backup-6.8.0-v6
+        name: elasticsearch-backup-6.8.0-v7
         params:
         - name: args
-          value: --match=^(?!searchguard)([a-zA-Z0-9_-]+)$
+          value: --match=^(?![.])(?!searchguard).+
       restoreTask:
-        name: elasticsearch-restore-6.8.0-v6
+        name: elasticsearch-restore-6.8.0-v7
   version: 6.8.1
 
 ---
 apiVersion: catalog.kubedb.com/v1alpha1
 kind: ElasticsearchVersion
 metadata:
-  name: 6.8.1-searchguard-v1
+  name: searchguard-6.8.1-v1
   namespace: default
 spec:
   authPlugin: SearchGuard
@@ -47,10 +47,10 @@ spec:
   stash:
     addon:
       backupTask:
-        name: elasticsearch-backup-6.8.0-v6
+        name: elasticsearch-backup-6.8.0-v7
         params:
         - name: args
           value: --match=^(?!searchguard)([a-zA-Z0-9_-]+)$
       restoreTask:
-        name: elasticsearch-restore-6.8.0-v6
+        name: elasticsearch-restore-6.8.0-v7
   version: 6.8.1

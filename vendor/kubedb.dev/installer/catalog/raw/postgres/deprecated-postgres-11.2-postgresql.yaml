@@ -6,6 +6,7 @@ metadata:
 spec:
   db:
     image: kubedb/postgres:11.2
+  deprecated: true
   distribution: PostgreSQL
   exporter:
     image: kubedb/postgres_exporter:v0.4.7
@@ -28,6 +29,7 @@ metadata:
 spec:
   db:
     image: kubedb/postgres:11.2-v1
+  deprecated: true
   distribution: PostgreSQL
   exporter:
     image: kubedb/postgres_exporter:v0.4.7

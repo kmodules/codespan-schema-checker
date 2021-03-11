@@ -1,7 +1,7 @@
 apiVersion: catalog.kubedb.com/v1alpha1
 kind: ElasticsearchVersion
 metadata:
-  name: 1.2.1-opendistro
+  name: opendistro-1.2.1
   namespace: default
 spec:
   authPlugin: OpenDistro
@@ -18,16 +18,19 @@ spec:
   stash:
     addon:
       backupTask:
-        name: elasticsearch-backup-7.2.0-v6
+        name: elasticsearch-backup-7.2.0-v7
+        params:
+        - name: args
+          value: --match=^(?![.])(?!security-auditlog).+
       restoreTask:
-        name: elasticsearch-restore-7.2.0-v6
+        name: elasticsearch-restore-7.2.0-v7
   version: 7.2.1
 
 ---
 apiVersion: catalog.kubedb.com/v1alpha1
 kind: ElasticsearchVersion
 metadata:
-  name: 1.2.1-opendistro-v1
+  name: opendistro-1.2.1-v1
   namespace: default
 spec:
   authPlugin: OpenDistro
@@ -44,7 +47,10 @@ spec:
   stash:
     addon:
       backupTask:
-        name: elasticsearch-backup-7.2.0-v6
+        name: elasticsearch-backup-7.2.0-v7
+        params:
+        - name: args
+          value: --match=^(?![.])(?!security-auditlog).+
       restoreTask:
-        name: elasticsearch-restore-7.2.0-v6
+        name: elasticsearch-restore-7.2.0-v7
   version: 7.2.1
