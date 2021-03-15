@@ -2,7 +2,6 @@ apiVersion: catalog.kubedb.com/v1alpha1
 kind: MongoDBVersion
 metadata:
   name: 3.4.22-v1
-  namespace: default
 spec:
   db:
     image: kubedb/mongo:3.4.22-v1
@@ -14,13 +13,13 @@ spec:
   podSecurityPolicies:
     databasePolicyName: mongodb-db
   replicationModeDetector:
-    image: kubedb/replication-mode-detector:v0.3.2
+    image: kubedb/replication-mode-detector:v0.4.0
   stash:
     addon:
       backupTask:
-        name: mongodb-backup-3.4.22-v6
+        name: mongodb-backup-3.4.22
       restoreTask:
-        name: mongodb-restore-3.4.22-v6
+        name: mongodb-restore-3.4.22
   version: 3.4.22
 
 ---
@@ -28,7 +27,6 @@ apiVersion: catalog.kubedb.com/v1alpha1
 kind: MongoDBVersion
 metadata:
   name: 3.4-v4
-  namespace: default
 spec:
   db:
     image: kubedb/mongo:3.4-v4
@@ -41,7 +39,7 @@ spec:
   podSecurityPolicies:
     databasePolicyName: mongodb-db
   replicationModeDetector:
-    image: kubedb/replication-mode-detector:v0.3.2
+    image: kubedb/replication-mode-detector:v0.4.0
   version: 3.4.22
 
 ---
@@ -49,7 +47,6 @@ apiVersion: catalog.kubedb.com/v1alpha1
 kind: MongoDBVersion
 metadata:
   name: 3.4-v5
-  namespace: default
 spec:
   db:
     image: kubedb/mongo:3.4-v5
@@ -62,7 +59,7 @@ spec:
   podSecurityPolicies:
     databasePolicyName: mongodb-db
   replicationModeDetector:
-    image: kubedb/replication-mode-detector:v0.3.2
+    image: kubedb/replication-mode-detector:v0.4.0
   version: 3.4.22
 
 ---
@@ -70,7 +67,6 @@ apiVersion: catalog.kubedb.com/v1alpha1
 kind: MongoDBVersion
 metadata:
   name: 3.4.22
-  namespace: default
 spec:
   db:
     image: kubedb/mongo:3.4.22
@@ -83,5 +79,5 @@ spec:
   podSecurityPolicies:
     databasePolicyName: mongodb-db
   replicationModeDetector:
-    image: kubedb/replication-mode-detector:v0.3.2
+    image: kubedb/replication-mode-detector:v0.4.0
   version: 3.4.22

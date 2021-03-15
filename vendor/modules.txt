@@ -5,6 +5,8 @@ github.com/Azure/go-ansiterm/winterm
 github.com/BurntSushi/toml
 # github.com/MakeNowJust/heredoc v0.0.0-20170808103936-bb23615498cd
 github.com/MakeNowJust/heredoc
+# github.com/Masterminds/semver v1.5.0
+github.com/Masterminds/semver
 # github.com/PuerkitoBio/purell v1.1.1
 github.com/PuerkitoBio/purell
 # github.com/PuerkitoBio/urlesc v0.0.0-20170810143723-de5bf2ad4578
@@ -220,6 +222,8 @@ golang.org/x/text/width
 golang.org/x/time/rate
 # gomodules.xyz/jsonpatch/v2 v2.1.0
 gomodules.xyz/jsonpatch/v2
+# gomodules.xyz/semvers v0.0.0-20210310134147-b22f1a8bc683
+gomodules.xyz/semvers
 # gomodules.xyz/version v0.1.0
 gomodules.xyz/version
 # gomodules.xyz/x v0.0.0-20201105065653-91c568df6331
@@ -476,7 +480,7 @@ kmodules.xyz/client-go/discovery
 kmodules.xyz/client-go/logs
 kmodules.xyz/client-go/meta
 kmodules.xyz/client-go/tools/parser
-# kmodules.xyz/resource-metadata v0.4.17
+# kmodules.xyz/resource-metadata v0.4.18-0.20210315120400-254abb0fa3ed
 ## explicit
 kmodules.xyz/resource-metadata/apis/meta
 kmodules.xyz/resource-metadata/apis/meta/v1alpha1
@@ -487,7 +491,7 @@ kmodules.xyz/resource-metadata/hub/resourcedescriptors
 # kmodules.xyz/resource-validator v0.0.0-20210224121851-c4fb322bda20
 ## explicit
 kmodules.xyz/resource-validator
-# kubedb.dev/installer v0.16.3-0.20210311053300-d4d9f3a17f57
+# kubedb.dev/installer v0.17.1-0.20210315105420-ad073339e6c6
 ## explicit
 kubedb.dev/installer/catalog
 # sigs.k8s.io/kustomize v2.0.3+incompatible
@@ -517,6 +521,9 @@ sigs.k8s.io/kustomize/pkg/types
 sigs.k8s.io/structured-merge-diff/v3/value
 # sigs.k8s.io/yaml v1.2.0
 sigs.k8s.io/yaml
+# stash.appscode.dev/installer v0.11.12-0.20210314033443-416b680d3837
+## explicit
+stash.appscode.dev/installer/catalog
 # bitbucket.org/ww/goautoneg => gomodules.xyz/goautoneg v0.0.0-20120707110453-a547fc61f48d
 # cloud.google.com/go => cloud.google.com/go v0.49.0
 # git.apache.org/thrift.git => github.com/apache/thrift v0.13.0
