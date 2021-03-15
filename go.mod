@@ -11,11 +11,11 @@ require (
 	k8s.io/cli-runtime v0.18.9
 	k8s.io/component-base v0.18.9
 	k8s.io/kubectl v0.18.9
-	kmodules.xyz/client-go v0.0.0-20210220080427-fd7308e30bb4
+	kmodules.xyz/client-go v0.0.0-20210315112949-a05d2cc96f28
 	kmodules.xyz/resource-metadata v0.4.18-0.20210315120400-254abb0fa3ed
 	kmodules.xyz/resource-validator v0.0.0-20210224121851-c4fb322bda20
-	kubedb.dev/installer v0.17.1-0.20210315105420-ad073339e6c6
-	stash.appscode.dev/installer v0.11.12-0.20210314033443-416b680d3837
+	kubedb.dev/installer v0.17.1-0.20210315133557-5bb89cdfaee5
+	stash.appscode.dev/installer v0.11.12-0.20210315211908-801f30c6436a
 )
 
 replace bitbucket.org/ww/goautoneg => gomodules.xyz/goautoneg v0.0.0-20120707110453-a547fc61f48d
@@ -105,5 +105,3 @@ replace k8s.io/component-base => k8s.io/component-base v0.18.9
 replace k8s.io/kube-openapi => k8s.io/kube-openapi v0.0.0-20200410145947-61e04a5be9a6
 
 replace k8s.io/kubernetes => github.com/kmodules/kubernetes v1.19.0-alpha.0.0.20200922200158-8b13196d8dc4
-
-replace k8s.io/utils => k8s.io/utils v0.0.0-20200324210504-a9aa75ae1b89
