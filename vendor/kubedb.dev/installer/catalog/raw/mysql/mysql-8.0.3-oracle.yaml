@@ -2,7 +2,6 @@ apiVersion: catalog.kubedb.com/v1alpha1
 kind: MySQLVersion
 metadata:
   name: 8.0.3-v2
-  namespace: default
 spec:
   db:
     image: kubedb/mysql:8.0.3-v2
@@ -14,13 +13,13 @@ spec:
   podSecurityPolicies:
     databasePolicyName: mysql-db
   replicationModeDetector:
-    image: kubedb/replication-mode-detector:v0.3.2
+    image: kubedb/replication-mode-detector:v0.4.0
   stash:
     addon:
       backupTask:
-        name: mysql-backup-8.0.3-v7
+        name: mysql-backup-8.0.3
       restoreTask:
-        name: mysql-restore-8.0.3-v7
+        name: mysql-restore-8.0.3
   upgradeConstraints:
     allowlist:
       groupReplication:
@@ -34,7 +33,6 @@ apiVersion: catalog.kubedb.com/v1alpha1
 kind: MySQLVersion
 metadata:
   name: 8.0-v1
-  namespace: default
 spec:
   db:
     image: kubedb/mysql:8.0-v1
@@ -47,7 +45,7 @@ spec:
   podSecurityPolicies:
     databasePolicyName: mysql-db
   replicationModeDetector:
-    image: kubedb/replication-mode-detector:v0.3.2
+    image: kubedb/replication-mode-detector:v0.4.0
   upgradeConstraints:
     allowlist:
       groupReplication:
@@ -61,7 +59,6 @@ apiVersion: catalog.kubedb.com/v1alpha1
 kind: MySQLVersion
 metadata:
   name: 8.0.3
-  namespace: default
 spec:
   db:
     image: kubedb/mysql:8.0.3
@@ -74,7 +71,7 @@ spec:
   podSecurityPolicies:
     databasePolicyName: mysql-db
   replicationModeDetector:
-    image: kubedb/replication-mode-detector:v0.3.2
+    image: kubedb/replication-mode-detector:v0.4.0
   upgradeConstraints:
     allowlist:
       groupReplication:
@@ -88,7 +85,6 @@ apiVersion: catalog.kubedb.com/v1alpha1
 kind: MySQLVersion
 metadata:
   name: 8.0.3-v1
-  namespace: default
 spec:
   db:
     image: kubedb/mysql:8.0.3-v1
@@ -101,7 +97,7 @@ spec:
   podSecurityPolicies:
     databasePolicyName: mysql-db
   replicationModeDetector:
-    image: kubedb/replication-mode-detector:v0.3.2
+    image: kubedb/replication-mode-detector:v0.4.0
   upgradeConstraints:
     allowlist:
       groupReplication:

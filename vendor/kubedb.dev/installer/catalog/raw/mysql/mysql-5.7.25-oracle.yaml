@@ -2,7 +2,6 @@ apiVersion: catalog.kubedb.com/v1alpha1
 kind: MySQLVersion
 metadata:
   name: 5.7.25-v2
-  namespace: default
 spec:
   db:
     image: kubedb/mysql:5.7.25-v2
@@ -14,13 +13,13 @@ spec:
   podSecurityPolicies:
     databasePolicyName: mysql-db
   replicationModeDetector:
-    image: kubedb/replication-mode-detector:v0.3.2
+    image: kubedb/replication-mode-detector:v0.4.0
   stash:
     addon:
       backupTask:
-        name: mysql-backup-5.7.25-v7
+        name: mysql-backup-5.7.25
       restoreTask:
-        name: mysql-restore-5.7.25-v7
+        name: mysql-restore-5.7.25
   upgradeConstraints:
     denylist:
       groupReplication:
@@ -36,7 +35,6 @@ apiVersion: catalog.kubedb.com/v1alpha1
 kind: MySQLVersion
 metadata:
   name: 5.7-v2
-  namespace: default
 spec:
   db:
     image: kubedb/mysql:5.7-v2
@@ -49,7 +47,7 @@ spec:
   podSecurityPolicies:
     databasePolicyName: mysql-db
   replicationModeDetector:
-    image: kubedb/replication-mode-detector:v0.3.2
+    image: kubedb/replication-mode-detector:v0.4.0
   upgradeConstraints:
     allowlist:
       groupReplication:
@@ -63,7 +61,6 @@ apiVersion: catalog.kubedb.com/v1alpha1
 kind: MySQLVersion
 metadata:
   name: 5.7-v3
-  namespace: default
 spec:
   db:
     image: kubedb/mysql:5.7.25
@@ -76,7 +73,7 @@ spec:
   podSecurityPolicies:
     databasePolicyName: mysql-db
   replicationModeDetector:
-    image: kubedb/replication-mode-detector:v0.3.2
+    image: kubedb/replication-mode-detector:v0.4.0
   upgradeConstraints:
     allowlist:
       groupReplication:
@@ -90,7 +87,6 @@ apiVersion: catalog.kubedb.com/v1alpha1
 kind: MySQLVersion
 metadata:
   name: 5.7.25
-  namespace: default
 spec:
   db:
     image: kubedb/mysql:5.7.25
@@ -103,7 +99,7 @@ spec:
   podSecurityPolicies:
     databasePolicyName: mysql-db
   replicationModeDetector:
-    image: kubedb/replication-mode-detector:v0.3.2
+    image: kubedb/replication-mode-detector:v0.4.0
   upgradeConstraints:
     allowlist:
       groupReplication:
@@ -117,7 +113,6 @@ apiVersion: catalog.kubedb.com/v1alpha1
 kind: MySQLVersion
 metadata:
   name: 5.7.25-v1
-  namespace: default
 spec:
   db:
     image: kubedb/mysql:5.7.25-v1
@@ -130,7 +125,7 @@ spec:
   podSecurityPolicies:
     databasePolicyName: mysql-db
   replicationModeDetector:
-    image: kubedb/replication-mode-detector:v0.3.2
+    image: kubedb/replication-mode-detector:v0.4.0
   upgradeConstraints:
     denylist:
       groupReplication:

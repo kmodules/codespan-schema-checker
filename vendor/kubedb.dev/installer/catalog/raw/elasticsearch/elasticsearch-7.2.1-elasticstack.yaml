@@ -2,7 +2,6 @@ apiVersion: catalog.kubedb.com/v1alpha1
 kind: ElasticsearchVersion
 metadata:
   name: xpack-7.2.1
-  namespace: default
 spec:
   authPlugin: X-Pack
   db:
@@ -18,9 +17,9 @@ spec:
   stash:
     addon:
       backupTask:
-        name: elasticsearch-backup-7.2.0-v7
+        name: elasticsearch-backup-7.2.0
       restoreTask:
-        name: elasticsearch-restore-7.2.0-v7
+        name: elasticsearch-restore-7.2.0
   version: 7.2.1
 
 ---
@@ -28,7 +27,6 @@ apiVersion: catalog.kubedb.com/v1alpha1
 kind: ElasticsearchVersion
 metadata:
   name: xpack-7.2.1-v1
-  namespace: default
 spec:
   authPlugin: X-Pack
   db:
@@ -44,7 +42,7 @@ spec:
   stash:
     addon:
       backupTask:
-        name: elasticsearch-backup-7.2.0-v7
+        name: elasticsearch-backup-7.2.0
       restoreTask:
-        name: elasticsearch-restore-7.2.0-v7
+        name: elasticsearch-restore-7.2.0
   version: 7.2.1

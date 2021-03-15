@@ -25,6 +25,7 @@ import (
 	"io/ioutil"
 	"os"
 	"path/filepath"
+	"strings"
 
 	"kmodules.xyz/client-go/logs"
 	p "kmodules.xyz/client-go/tools/parser"
@@ -50,8 +51,14 @@ import (
 	"k8s.io/cli-runtime/pkg/genericclioptions"
 	cliflag "k8s.io/component-base/cli/flag"
 	cmdutil "k8s.io/kubectl/pkg/cmd/util"
-	"kubedb.dev/installer/catalog"
+	kubedbcatalog "kubedb.dev/installer/catalog"
+	stashcatalog "stash.appscode.dev/installer/catalog"
 )
+
+type Location struct {
+	App     string
+	Version string
+}
 
 var (
 	filename string
@@ -69,6 +76,8 @@ var (
 	)
 	logger = NewLogger(os.Stderr)
 	f      cmdutil.Factory
+
+	stashCatalog = map[Location]string{}
 )
 
 func main() {
@@ -76,6 +85,16 @@ func main() {
 		Use:   "codespan-schema-checker",
 		Short: "Check schema of Kubernetes resources inside markdown code blocks",
 		RunE: func(cmd *cobra.Command, args []string) error {
+			for _, addon := range stashcatalog.Load().Addons {
+				app := strings.ReplaceAll(addon.Name, "-", "")
+				for _, v := range addon.Versions {
+					stashCatalog[Location{
+						App:     app,
+						Version: toVersion(app, v),
+					}] = v
+				}
+			}
+
 			info, err := os.Stat(filename)
 			if os.IsNotExist(err) {
 				return err
@@ -251,10 +270,66 @@ func checkObject(obj *unstructured.Unstructured) error {
 			logger.Log(err)
 			return nil
 		}
-		if dbVersion != "" && !sets.NewString(catalog.ActiveDBVersions()[obj.GetKind()]...).Has(dbVersion) {
-			logger.Log(fmt.Errorf("using deprecated %s version %s", obj.GetKind(), dbVersion))
+		if dbVersion != "" && !sets.NewString(kubedbcatalog.ActiveDBVersions()[obj.GetKind()]...).Has(dbVersion) {
+			logger.Log(fmt.Errorf("using unknown %s version %s", obj.GetKind(), dbVersion))
+			return nil
+		}
+	} else if gvr.Group == "catalog.kuebdb.com" {
+		if !sets.NewString(kubedbcatalog.ActiveDBVersions()[obj.GetKind()]...).Has(obj.GetName()) {
+			logger.Log(fmt.Errorf("using unknown %s version %s", obj.GetKind(), obj.GetName()))
+			return nil
+		}
+		backupTask, _, _ := unstructured.NestedString(obj.Object, "spec", "stash", "addon", "backupTask", "name")
+		if err := checkStashTaskName(backupTask); err != nil {
+			logger.Log(err)
+			return nil
+		}
+		restoreTask, _, _ := unstructured.NestedString(obj.Object, "spec", "stash", "addon", "restoreTask", "name")
+		if err := checkStashTaskName(restoreTask); err != nil {
+			logger.Log(err)
+			return nil
+		}
+	} else if gvr.Group == "stash.appscode.com" {
+		taskName, _, err := unstructured.NestedString(obj.Object, "spec", "task", "name")
+		if err != nil {
+			logger.Log(err)
+			return nil
+		}
+		if err := checkStashTaskName(taskName); err != nil {
+			logger.Log(err)
 			return nil
 		}
 	}
 	return nil
+}
+
+func checkStashTaskName(taskName string) error {
+	if taskName != "" && !strings.Contains(taskName, "{{<") {
+		parts := strings.SplitN(taskName, "-", 3)
+		loc := Location{
+			App:     parts[0],
+			Version: parts[2],
+		}
+		if _, ok := stashCatalog[loc]; !ok {
+			return fmt.Errorf("failed to detect image tag for %+v", loc)
+		}
+	}
+	return nil
+}
+
+func toVersion(app, v string) string {
+	idx := strings.IndexRune(v, '-')
+	if idx == -1 {
+		return v
+	}
+	v2 := v[:idx]
+
+	if app == "postgres" {
+		if strings.HasPrefix(v2, "9.6.") {
+			return v2
+		}
+		parts := strings.Split(v2, ".")
+		return parts[0] + "." + parts[1]
+	}
+	return v2
 }
