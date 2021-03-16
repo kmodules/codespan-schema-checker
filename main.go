@@ -306,12 +306,15 @@ func checkObject(obj *unstructured.Unstructured) error {
 func checkStashTaskName(taskName string) error {
 	if taskName != "" && !strings.Contains(taskName, "{{<") {
 		parts := strings.SplitN(taskName, "-", 3)
+		if len(parts) != 3 {
+			return nil // pvc-backup
+		}
 		loc := Location{
 			App:     parts[0],
 			Version: parts[2],
 		}
 		if _, ok := stashCatalog[loc]; !ok {
-			return fmt.Errorf("failed to detect image tag for %+v", loc)
+			return fmt.Errorf("%+v has no matching image tag for task %s", loc, taskName)
 		}
 	}
 	return nil
