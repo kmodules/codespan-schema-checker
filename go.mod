@@ -15,7 +15,7 @@ require (
 	kmodules.xyz/resource-metadata v0.4.18-0.20210315120400-254abb0fa3ed
 	kmodules.xyz/resource-validator v0.0.0-20210224121851-c4fb322bda20
 	kubedb.dev/installer v0.17.1-0.20210315133557-5bb89cdfaee5
-	stash.appscode.dev/installer v0.11.12-0.20210315211908-801f30c6436a
+	stash.appscode.dev/installer v0.12.0
 )
 
 replace bitbucket.org/ww/goautoneg => gomodules.xyz/goautoneg v0.0.0-20120707110453-a547fc61f48d
