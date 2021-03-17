@@ -491,7 +491,7 @@ kmodules.xyz/resource-metadata/hub/resourcedescriptors
 # kmodules.xyz/resource-validator v0.0.0-20210224121851-c4fb322bda20
 ## explicit
 kmodules.xyz/resource-validator
-# kubedb.dev/installer v0.17.1-0.20210315133557-5bb89cdfaee5
+# kubedb.dev/installer v0.17.1-0.20210317180935-18344eef9472
 ## explicit
 kubedb.dev/installer/catalog
 # sigs.k8s.io/kustomize v2.0.3+incompatible
