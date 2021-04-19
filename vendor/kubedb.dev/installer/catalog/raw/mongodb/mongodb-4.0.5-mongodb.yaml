@@ -9,11 +9,11 @@ spec:
   exporter:
     image: kubedb/percona-mongodb-exporter:v0.8.0
   initContainer:
-    image: kubedb/mongodb-init:4.1-v1
+    image: kubedb/mongodb-init:4.1-v2
   podSecurityPolicies:
     databasePolicyName: mongodb-db
   replicationModeDetector:
-    image: kubedb/replication-mode-detector:v0.4.0
+    image: kubedb/replication-mode-detector:v0.5.0
   stash:
     addon:
       backupTask:
@@ -39,7 +39,7 @@ spec:
   podSecurityPolicies:
     databasePolicyName: mongodb-db
   replicationModeDetector:
-    image: kubedb/replication-mode-detector:v0.4.0
+    image: kubedb/replication-mode-detector:v0.5.0
   version: 4.0.5
 
 ---
@@ -59,7 +59,7 @@ spec:
   podSecurityPolicies:
     databasePolicyName: mongodb-db
   replicationModeDetector:
-    image: kubedb/replication-mode-detector:v0.4.0
+    image: kubedb/replication-mode-detector:v0.5.0
   version: 4.0.5
 
 ---
@@ -79,7 +79,7 @@ spec:
   podSecurityPolicies:
     databasePolicyName: mongodb-db
   replicationModeDetector:
-    image: kubedb/replication-mode-detector:v0.4.0
+    image: kubedb/replication-mode-detector:v0.5.0
   version: 4.0.5
 
 ---
@@ -99,7 +99,7 @@ spec:
   podSecurityPolicies:
     databasePolicyName: mongodb-db
   replicationModeDetector:
-    image: kubedb/replication-mode-detector:v0.4.0
+    image: kubedb/replication-mode-detector:v0.5.0
   version: 4.0.5
 
 ---
@@ -119,5 +119,5 @@ spec:
   podSecurityPolicies:
     databasePolicyName: mongodb-db
   replicationModeDetector:
-    image: kubedb/replication-mode-detector:v0.4.0
+    image: kubedb/replication-mode-detector:v0.5.0
   version: 4.0.5

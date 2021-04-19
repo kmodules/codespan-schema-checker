@@ -24,6 +24,7 @@
     "opendistro-1.0.2"
   ],
   "elasticsearch-restore-7.3.2": [
+    "xpack-7.12.0",
     "xpack-7.9.1-v1",
     "xpack-7.9.1",
     "xpack-7.8.0-v1",
@@ -38,6 +39,7 @@
     "xpack-7.4.2",
     "xpack-7.3.2-v1",
     "xpack-7.3.2",
+    "searchguard-7.10.2",
     "searchguard-7.9.3",
     "searchguard-7.8.1",
     "searchguard-7.5.2-v1",
@@ -100,42 +102,47 @@
     "4.2.3"
   ],
   "mysql-restore-5.7.25": [
-    "5.7.33",
-    "5.7.31-v1",
-    "5.7.29-v1",
-    "5.7.25-v2"
+    "5.7.33-v1",
+    "5.7.31-v2",
+    "5.7.29-v2",
+    "5.7.25-v3"
   ],
   "mysql-restore-8.0.14": [
-    "8.0.14-v2"
+    "8.0.14-v3"
   ],
   "mysql-restore-8.0.21": [
-    "8.0.23",
-    "8.0.21-v1",
-    "8.0.20-v1"
+    "8.0.23-v1",
+    "8.0.21-v2",
+    "8.0.20-v2"
   ],
   "mysql-restore-8.0.3": [
-    "8.0.3-v2"
+    "8.0.3-v3"
   ],
   "percona-xtradb-restore-5.7": [
     "5.7",
     "5.7-cluster"
   ],
   "postgres-restore-10.14": [
-    "10.16"
+    "10.16",
+    "10.16-debian"
   ],
   "postgres-restore-11.9": [
     "timescaledb-2.1.0-pg11",
-    "11.11"
+    "11.11",
+    "11.11-debian"
   ],
   "postgres-restore-12.4": [
     "timescaledb-2.1.0-pg12",
-    "12.6"
+    "12.6",
+    "12.6-debian"
   ],
   "postgres-restore-13.1": [
     "timescaledb-2.1.0-pg13",
-    "13.2"
+    "13.2",
+    "13.2-debian"
   ],
   "postgres-restore-9.6.19": [
-    "9.6.21"
+    "9.6.21",
+    "9.6.21-debian"
   ]
 }
