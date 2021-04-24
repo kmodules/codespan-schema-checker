@@ -488,7 +488,7 @@ kmodules.xyz/resource-metadata/crds
 kmodules.xyz/resource-metadata/hub
 kmodules.xyz/resource-metadata/hub/resourceclasses
 kmodules.xyz/resource-metadata/hub/resourcedescriptors
-# kmodules.xyz/resource-validator v0.0.0-20210224121851-c4fb322bda20
+# kmodules.xyz/resource-validator v0.0.0-20210424063213-7c311db45556
 ## explicit
 kmodules.xyz/resource-validator
 # kubedb.dev/installer v0.17.2-0.20210416123544-a5f3c6347e9f

@@ -40,6 +40,15 @@ type customResourceValidator struct {
 	structuralSchemas *structuralschema.Structural
 }
 
+func nameValidator(gvk schema.GroupVersionKind) func(_ string, _ bool) []string {
+	if gvk.Group == "rbac.authorization.k8s.io" {
+		return func(name string, prefix bool) []string {
+			return nil
+		}
+	}
+	return validation.NameIsDNSSubdomain
+}
+
 func (a customResourceValidator) Validate(ctx context.Context, obj runtime.Object) field.ErrorList {
 	u, ok := obj.(*unstructured.Unstructured)
 	if !ok {
@@ -56,7 +65,7 @@ func (a customResourceValidator) Validate(ctx context.Context, obj runtime.Objec
 
 	var allErrs field.ErrorList
 
-	allErrs = append(allErrs, validation.ValidateObjectMetaAccessor(accessor, a.namespaceScoped, validation.NameIsDNSSubdomain, field.NewPath("metadata"))...)
+	allErrs = append(allErrs, validation.ValidateObjectMetaAccessor(accessor, a.namespaceScoped, nameValidator(obj.GetObjectKind().GroupVersionKind()), field.NewPath("metadata"))...)
 	allErrs = append(allErrs, apiservervalidation.ValidateCustomResource(nil, u.UnstructuredContent(), a.schemaValidator)...)
 
 	// validate embedded resources

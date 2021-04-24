@@ -777,7 +777,6 @@ golang.org/x/tools v0.0.0-20200515010526-7d3b6ebf133d/go.mod h1:EkVYQZoAsY45+roY
 golang.org/x/tools v0.0.0-20200601175630-2caf76543d99/go.mod h1:EkVYQZoAsY45+roYkvgYkIh4xh/qjgUK9TdY2XT94GE=
 golang.org/x/tools v0.0.0-20200608174601-1b747fd94509/go.mod h1:EkVYQZoAsY45+roYkvgYkIh4xh/qjgUK9TdY2XT94GE=
 golang.org/x/tools v0.0.0-20201224043029-2b0845dc783e/go.mod h1:emZCQorbCU4vsT4fOWvOPXz4eW1wZW4PmDk9uLelYpA=
-golang.org/x/tools v0.1.0/go.mod h1:xkSsbof2nBLbhDlRMhhhyNLN/zl3eTqcnHD5viDpcZ0=
 golang.org/x/xerrors v0.0.0-20190717185122-a985d3407aa7/go.mod h1:I/5z698sn9Ka8TeJc9MKroUUfqBBauWjQqLJ2OPfmY0=
 golang.org/x/xerrors v0.0.0-20191011141410-1b5146add898/go.mod h1:I/5z698sn9Ka8TeJc9MKroUUfqBBauWjQqLJ2OPfmY0=
 golang.org/x/xerrors v0.0.0-20191204190536-9bdfabe68543/go.mod h1:I/5z698sn9Ka8TeJc9MKroUUfqBBauWjQqLJ2OPfmY0=
@@ -874,8 +873,8 @@ kmodules.xyz/client-go v0.0.0-20210315112949-a05d2cc96f28/go.mod h1:GdX1CHOpjL4F
 kmodules.xyz/crd-schema-fuzz v0.0.0-20200521005638-2433a187de95/go.mod h1:jpu8xFsDKd6kAWUAKk8oTu/GQGBWqhrcaDeOJdaCJnk=
 kmodules.xyz/resource-metadata v0.4.18-0.20210419084234-c0ef4db0b057 h1:jFHbT94R7HtKfN0TBhTUa41bIk+Z4+5UZOmeqrnWTes=
 kmodules.xyz/resource-metadata v0.4.18-0.20210419084234-c0ef4db0b057/go.mod h1:tFxChzilNgTFlVFYOUPTHLlKkN42PpEn0I6dBk6DtN8=
-kmodules.xyz/resource-validator v0.0.0-20210224121851-c4fb322bda20 h1:W8C+PAtBat4jsfPaCs4kLG2iMUt4KW0ubLoI4hvF3bc=
-kmodules.xyz/resource-validator v0.0.0-20210224121851-c4fb322bda20/go.mod h1:Ta2257xLuN2ncue6tMpN3U1WYrbYdrIH1SB7y7GMHxk=
+kmodules.xyz/resource-validator v0.0.0-20210424063213-7c311db45556 h1:mNfr0A9awNsMp/BuEX79I4NpaNvblSjS5bvkA9wmHN8=
+kmodules.xyz/resource-validator v0.0.0-20210424063213-7c311db45556/go.mod h1:ybYRqOplbxWljvhP8Jx9z5lzqSBhmZpSZeZZIObbi84=
 kmodules.xyz/schema-checker v0.1.2/go.mod h1:JyT3tjizU/gQY9bK56xzAvkjJoAaUPRam7HELx4Nb/o=
 kubedb.dev/installer v0.17.2-0.20210416123544-a5f3c6347e9f h1:lcn2diw+SxkJ9LAj9NdSkAxkmD9Ssh47IKma9aYlwMM=
 kubedb.dev/installer v0.17.2-0.20210416123544-a5f3c6347e9f/go.mod h1:8Xf5CftWKhcm6/FGI+gKK6lYq0AkCXmJtfRwIuKcgl4=

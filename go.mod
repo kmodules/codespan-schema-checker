@@ -13,7 +13,7 @@ require (
 	k8s.io/kubectl v0.18.9
 	kmodules.xyz/client-go v0.0.0-20210315112949-a05d2cc96f28
 	kmodules.xyz/resource-metadata v0.4.18-0.20210419084234-c0ef4db0b057
-	kmodules.xyz/resource-validator v0.0.0-20210224121851-c4fb322bda20
+	kmodules.xyz/resource-validator v0.0.0-20210424063213-7c311db45556
 	kubedb.dev/installer v0.17.2-0.20210416123544-a5f3c6347e9f
 	stash.appscode.dev/installer v0.12.2-0.20210410130945-2814743a0ad3
 )
