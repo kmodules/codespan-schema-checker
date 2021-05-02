@@ -20,7 +20,6 @@ import (
 	"context"
 	"fmt"
 
-	"github.com/go-openapi/validate"
 	structuralschema "k8s.io/apiextensions-apiserver/pkg/apiserver/schema"
 	structurallisttype "k8s.io/apiextensions-apiserver/pkg/apiserver/schema/listtype"
 	schemaobjectmeta "k8s.io/apiextensions-apiserver/pkg/apiserver/schema/objectmeta"
@@ -31,6 +30,7 @@ import (
 	"k8s.io/apimachinery/pkg/runtime"
 	"k8s.io/apimachinery/pkg/runtime/schema"
 	"k8s.io/apimachinery/pkg/util/validation/field"
+	"k8s.io/kube-openapi/pkg/validation/validate"
 )
 
 type customResourceValidator struct {
