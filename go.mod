@@ -5,7 +5,7 @@ go 1.16
 require (
 	github.com/gohugoio/hugo v0.80.0
 	github.com/olekukonko/tablewriter v0.0.4
-	github.com/spf13/cobra v1.1.1
+	github.com/spf13/cobra v1.1.3
 	github.com/yuin/goldmark v1.3.2
 	gomodules.xyz/x v0.0.3 // indirect
 	k8s.io/apimachinery v0.21.0
