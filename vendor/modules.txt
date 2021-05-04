@@ -62,8 +62,6 @@ github.com/gohugoio/hugo/docshelper
 github.com/gohugoio/hugo/media
 github.com/gohugoio/hugo/parser/metadecoders
 github.com/gohugoio/hugo/parser/pageparser
-# github.com/golang/glog v0.0.0-20160126235308-23def4e6c14b
-github.com/golang/glog
 # github.com/golang/protobuf v1.4.3 => github.com/golang/protobuf v1.4.3
 github.com/golang/protobuf/jsonpb
 github.com/golang/protobuf/proto
@@ -221,7 +219,8 @@ gomodules.xyz/jsonpatch/v2
 gomodules.xyz/semvers
 # gomodules.xyz/version v0.1.0
 gomodules.xyz/version
-# gomodules.xyz/x v0.0.0-20201105065653-91c568df6331
+# gomodules.xyz/x v0.0.3
+## explicit
 gomodules.xyz/x/strings
 # google.golang.org/appengine v1.6.5
 google.golang.org/appengine/internal
@@ -544,7 +543,7 @@ k8s.io/utils/integer
 k8s.io/utils/pointer
 # kmodules.xyz/apiversion v0.2.0
 kmodules.xyz/apiversion
-# kmodules.xyz/client-go v0.0.0-20210503064222-c8c59295a3a5
+# kmodules.xyz/client-go v0.0.0-20210504024435-1eb80721e9b8
 ## explicit
 kmodules.xyz/client-go
 kmodules.xyz/client-go/apiextensions
