@@ -3,9 +3,6 @@ module kmodules.xyz/resource-validator
 go 1.15
 
 require (
-	github.com/imdario/mergo v0.3.6 // indirect
-	github.com/onsi/gomega v1.8.1 // indirect
-	google.golang.org/appengine v1.6.5 // indirect
 	k8s.io/apiextensions-apiserver v0.21.0
 	k8s.io/apimachinery v0.21.0
 	k8s.io/kube-openapi v0.0.0-20210305001622-591a79e4bda7

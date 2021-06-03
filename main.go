@@ -27,7 +27,6 @@ import (
 	"path/filepath"
 	"strings"
 
-	"kmodules.xyz/client-go/logs"
 	p "kmodules.xyz/client-go/tools/parser"
 	"kmodules.xyz/resource-metadata/apis/meta/v1alpha1"
 	"kmodules.xyz/resource-metadata/hub"
@@ -43,6 +42,7 @@ import (
 	"github.com/yuin/goldmark/renderer"
 	"github.com/yuin/goldmark/renderer/html"
 	"github.com/yuin/goldmark/util"
+	"gomodules.xyz/kglog"
 	"k8s.io/apimachinery/pkg/apis/meta/v1/unstructured"
 	"k8s.io/apimachinery/pkg/runtime"
 	"k8s.io/apimachinery/pkg/runtime/schema"
@@ -129,7 +129,7 @@ func main() {
 
 	flags.StringVar(&filename, "content", filename, "Path to directory where markdown files reside")
 
-	logs.ParseFlags()
+	kglog.Init(rootCmd, false)
 
 	utilruntime.Must(rootCmd.Execute())
 }

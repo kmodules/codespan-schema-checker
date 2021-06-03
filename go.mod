@@ -7,22 +7,17 @@ require (
 	github.com/olekukonko/tablewriter v0.0.4
 	github.com/spf13/cobra v1.1.3
 	github.com/yuin/goldmark v1.3.2
-	gomodules.xyz/x v0.0.3 // indirect
+	gomodules.xyz/kglog v0.0.3
 	k8s.io/apimachinery v0.21.0
 	k8s.io/cli-runtime v0.21.0
 	k8s.io/component-base v0.21.0
 	k8s.io/kubectl v0.21.0
-	k8s.io/utils v0.0.0-20210111153108-fddb29f9d009 // indirect
-	kmodules.xyz/client-go v0.0.0-20210504024435-1eb80721e9b8
-	kmodules.xyz/resource-metadata v0.4.18-0.20210419084234-c0ef4db0b057
-	kmodules.xyz/resource-validator v0.0.0-20210503010222-36aaf23afec2
-	kubedb.dev/installer v0.17.2-0.20210416123544-a5f3c6347e9f
-	stash.appscode.dev/installer v0.12.2-0.20210410130945-2814743a0ad3
+	kmodules.xyz/client-go v0.0.0-20210514054158-27e164b43474
+	kmodules.xyz/resource-metadata v0.5.5-0.20210518185031-147bfd9e841c
+	kmodules.xyz/resource-validator v0.0.0-20210505180422-99e3eaad5765
+	kubedb.dev/installer v0.17.2-0.20210516182219-b2a806b6fb2f
+	stash.appscode.dev/installer v0.12.2-0.20210528131103-1a0fccb52792
 )
-
-replace git.apache.org/thrift.git => github.com/apache/thrift v0.13.0
-
-replace github.com/Azure/go-autorest/autorest/azure/auth => github.com/Azure/go-autorest/autorest/azure/auth v0.2.0
 
 replace bitbucket.org/ww/goautoneg => gomodules.xyz/goautoneg v0.0.0-20120707110453-a547fc61f48d
 
