@@ -62,8 +62,6 @@ github.com/gohugoio/hugo/docshelper
 github.com/gohugoio/hugo/media
 github.com/gohugoio/hugo/parser/metadecoders
 github.com/gohugoio/hugo/parser/pageparser
-# github.com/golang/glog v0.0.0-20210429001901-424d2337a529
-github.com/golang/glog
 # github.com/golang/protobuf v1.4.3 => github.com/golang/protobuf v1.4.3
 github.com/golang/protobuf/jsonpb
 github.com/golang/protobuf/proto
@@ -219,9 +217,9 @@ golang.org/x/time/rate
 gomodules.xyz/clock
 # gomodules.xyz/jsonpatch/v2 v2.1.0
 gomodules.xyz/jsonpatch/v2
-# gomodules.xyz/kglog v0.0.3
+# gomodules.xyz/logs v0.0.1
 ## explicit
-gomodules.xyz/kglog
+gomodules.xyz/logs
 # gomodules.xyz/semvers v0.0.0-20210317131320-984e32dd89ca
 gomodules.xyz/semvers
 # gomodules.xyz/sets v0.0.0-20210218105342-2efe2fb519a2

@@ -7,7 +7,7 @@ require (
 	github.com/olekukonko/tablewriter v0.0.4
 	github.com/spf13/cobra v1.1.3
 	github.com/yuin/goldmark v1.3.2
-	gomodules.xyz/kglog v0.0.3
+	gomodules.xyz/logs v0.0.1
 	k8s.io/apimachinery v0.21.0
 	k8s.io/cli-runtime v0.21.0
 	k8s.io/component-base v0.21.0

@@ -42,7 +42,7 @@ import (
 	"github.com/yuin/goldmark/renderer"
 	"github.com/yuin/goldmark/renderer/html"
 	"github.com/yuin/goldmark/util"
-	"gomodules.xyz/kglog"
+	"gomodules.xyz/logs"
 	"k8s.io/apimachinery/pkg/apis/meta/v1/unstructured"
 	"k8s.io/apimachinery/pkg/runtime"
 	"k8s.io/apimachinery/pkg/runtime/schema"
@@ -129,7 +129,7 @@ func main() {
 
 	flags.StringVar(&filename, "content", filename, "Path to directory where markdown files reside")
 
-	kglog.Init(rootCmd, false)
+	logs.Init(rootCmd, false)
 
 	utilruntime.Must(rootCmd.Execute())
 }
