@@ -15,8 +15,8 @@ require (
 	kmodules.xyz/client-go v0.0.0-20210514054158-27e164b43474
 	kmodules.xyz/resource-metadata v0.5.5-0.20210518185031-147bfd9e841c
 	kmodules.xyz/resource-validator v0.0.0-20210505180422-99e3eaad5765
-	kubedb.dev/installer v0.17.2-0.20210516182219-b2a806b6fb2f
-	stash.appscode.dev/installer v0.12.2-0.20210528131103-1a0fccb52792
+	kubedb.dev/installer v0.17.2-0.20210616083611-95aa010abfa2
+	stash.appscode.dev/installer v0.12.2-0.20210616105710-2082d2d110e3
 )
 
 replace bitbucket.org/ww/goautoneg => gomodules.xyz/goautoneg v0.0.0-20120707110453-a547fc61f48d
