@@ -27,8 +27,8 @@ import (
 	"path/filepath"
 	"strings"
 
+	kmapi "kmodules.xyz/client-go/api/v1"
 	p "kmodules.xyz/client-go/tools/parser"
-	"kmodules.xyz/resource-metadata/apis/meta/v1alpha1"
 	"kmodules.xyz/resource-metadata/hub"
 	resourcevalidator "kmodules.xyz/resource-validator"
 
@@ -249,7 +249,7 @@ func checkObject(obj *unstructured.Unstructured) error {
 	}
 
 	if rd.Spec.Validation != nil {
-		validator, err := resourcevalidator.New(rd.Spec.Resource.Scope == v1alpha1.NamespaceScoped, schema.GroupVersionKind{
+		validator, err := resourcevalidator.New(rd.Spec.Resource.Scope == kmapi.NamespaceScoped, schema.GroupVersionKind{
 			Group:   rd.Spec.Resource.Group,
 			Version: rd.Spec.Resource.Version,
 			Kind:    rd.Spec.Resource.Kind,
