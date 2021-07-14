@@ -52,6 +52,7 @@ import (
 	cliflag "k8s.io/component-base/cli/flag"
 	cmdutil "k8s.io/kubectl/pkg/cmd/util"
 	kubedbcatalog "kubedb.dev/installer/catalog"
+	kubevaultcatalog "kubevault.dev/installer/catalog"
 	stashcatalog "stash.appscode.dev/installer/catalog"
 )
 
@@ -274,7 +275,7 @@ func checkObject(obj *unstructured.Unstructured) error {
 			logger.Log(fmt.Errorf("using unknown %s version %s", obj.GetKind(), dbVersion))
 			return nil
 		}
-	} else if gvr.Group == "catalog.kuebdb.com" {
+	} else if gvr.Group == "catalog.kubedb.com" {
 		if !sets.NewString(kubedbcatalog.ActiveDBVersions()[obj.GetKind()]...).Has(obj.GetName()) {
 			logger.Log(fmt.Errorf("using unknown %s version %s", obj.GetKind(), obj.GetName()))
 			return nil
@@ -297,6 +298,21 @@ func checkObject(obj *unstructured.Unstructured) error {
 		}
 		if err := checkStashTaskName(taskName); err != nil {
 			logger.Log(err)
+			return nil
+		}
+	} else if gvr.Group == "kubevault.com" {
+		appVersion, _, err := unstructured.NestedString(obj.Object, "spec", "version")
+		if err != nil {
+			logger.Log(err)
+			return nil
+		}
+		if appVersion != "" && !sets.NewString(kubevaultcatalog.ActiveVersions()[obj.GetKind()]...).Has(appVersion) {
+			logger.Log(fmt.Errorf("using unknown %s version %s", obj.GetKind(), appVersion))
+			return nil
+		}
+	} else if gvr.Group == "catalog.kubevault.com" {
+		if !sets.NewString(kubevaultcatalog.ActiveVersions()[obj.GetKind()]...).Has(obj.GetName()) {
+			logger.Log(fmt.Errorf("using unknown %s version %s", obj.GetKind(), obj.GetName()))
 			return nil
 		}
 	}

@@ -576,6 +576,9 @@ kmodules.xyz/resource-validator
 # kubedb.dev/installer v0.17.2-0.20210627093516-d957f4d072d7
 ## explicit
 kubedb.dev/installer/catalog
+# kubevault.dev/installer v0.4.0-beta.0.0.20210712154710-bd3512bbcd79
+## explicit
+kubevault.dev/installer/catalog
 # sigs.k8s.io/controller-runtime v0.9.0
 sigs.k8s.io/controller-runtime/pkg/client/apiutil
 # sigs.k8s.io/kustomize/api v0.8.8
