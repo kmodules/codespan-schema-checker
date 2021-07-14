@@ -12,11 +12,11 @@ require (
 	k8s.io/cli-runtime v0.21.1
 	k8s.io/component-base v0.21.1
 	k8s.io/kubectl v0.21.1
-	kmodules.xyz/client-go v0.0.0-20210617233340-13d22e91512b
-	kmodules.xyz/resource-metadata v0.5.7
+	kmodules.xyz/client-go v0.0.0-20210702123511-a25836cf4332
+	kmodules.xyz/resource-metadata v0.5.8-0.20210712150818-2d0db054dfef
 	kmodules.xyz/resource-validator v0.0.0-20210618010435-0dd3dffe1687
-	kubedb.dev/installer v0.17.2-0.20210616083611-95aa010abfa2
-	stash.appscode.dev/installer v0.12.2-0.20210616105710-2082d2d110e3
+	kubedb.dev/installer v0.17.2-0.20210627093516-d957f4d072d7
+	stash.appscode.dev/installer v0.12.2-0.20210627093606-3cb28a08f137
 )
 
 replace bitbucket.org/ww/goautoneg => gomodules.xyz/goautoneg v0.0.0-20120707110453-a547fc61f48d

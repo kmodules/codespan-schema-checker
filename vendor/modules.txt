@@ -5,8 +5,6 @@ github.com/Azure/go-ansiterm/winterm
 github.com/BurntSushi/toml
 # github.com/MakeNowJust/heredoc v0.0.0-20170808103936-bb23615498cd
 github.com/MakeNowJust/heredoc
-# github.com/Masterminds/semver v1.5.0
-github.com/Masterminds/semver
 # github.com/Masterminds/semver/v3 v3.1.1
 github.com/Masterminds/semver/v3
 # github.com/PuerkitoBio/purell v1.1.1
@@ -79,8 +77,9 @@ github.com/google/go-cmp/cmp/internal/diff
 github.com/google/go-cmp/cmp/internal/flags
 github.com/google/go-cmp/cmp/internal/function
 github.com/google/go-cmp/cmp/internal/value
-# github.com/google/gofuzz v1.1.0
+# github.com/google/gofuzz v1.2.0
 github.com/google/gofuzz
+github.com/google/gofuzz/bytesource
 # github.com/google/shlex v0.0.0-20191202100458-e7afc7fbc510
 github.com/google/shlex
 # github.com/google/uuid v1.1.2
@@ -140,7 +139,7 @@ github.com/pkg/errors
 github.com/pmezard/go-difflib/difflib
 # github.com/russross/blackfriday v1.5.3-0.20200218234912-41c5fccfd6f6
 github.com/russross/blackfriday
-# github.com/sergi/go-diff v1.1.0
+# github.com/sergi/go-diff v1.2.0
 github.com/sergi/go-diff/diffmatchpatch
 # github.com/spf13/afero v1.6.0
 github.com/spf13/afero
@@ -224,7 +223,7 @@ gomodules.xyz/jsonpatch/v2
 # gomodules.xyz/logs v0.0.2
 ## explicit
 gomodules.xyz/logs
-# gomodules.xyz/semvers v0.0.0-20210317131320-984e32dd89ca
+# gomodules.xyz/semvers v0.0.0-20210603205601-45dfbb5326a4
 gomodules.xyz/semvers
 # gomodules.xyz/sets v0.0.0-20210218105342-2efe2fb519a2
 gomodules.xyz/sets
@@ -553,7 +552,7 @@ k8s.io/utils/integer
 k8s.io/utils/pointer
 # kmodules.xyz/apiversion v0.2.0
 kmodules.xyz/apiversion
-# kmodules.xyz/client-go v0.0.0-20210617233340-13d22e91512b
+# kmodules.xyz/client-go v0.0.0-20210702123511-a25836cf4332
 ## explicit
 kmodules.xyz/client-go
 kmodules.xyz/client-go/api/v1
@@ -563,7 +562,7 @@ kmodules.xyz/client-go/apiextensions/v1beta1
 kmodules.xyz/client-go/discovery
 kmodules.xyz/client-go/meta
 kmodules.xyz/client-go/tools/parser
-# kmodules.xyz/resource-metadata v0.5.7
+# kmodules.xyz/resource-metadata v0.5.8-0.20210712150818-2d0db054dfef
 ## explicit
 kmodules.xyz/resource-metadata/apis/meta
 kmodules.xyz/resource-metadata/apis/meta/v1alpha1
@@ -574,7 +573,7 @@ kmodules.xyz/resource-metadata/hub/resourcedescriptors
 # kmodules.xyz/resource-validator v0.0.0-20210618010435-0dd3dffe1687
 ## explicit
 kmodules.xyz/resource-validator
-# kubedb.dev/installer v0.17.2-0.20210616083611-95aa010abfa2
+# kubedb.dev/installer v0.17.2-0.20210627093516-d957f4d072d7
 ## explicit
 kubedb.dev/installer/catalog
 # sigs.k8s.io/controller-runtime v0.9.0
@@ -660,7 +659,7 @@ sigs.k8s.io/structured-merge-diff/v4/typed
 sigs.k8s.io/structured-merge-diff/v4/value
 # sigs.k8s.io/yaml v1.2.0
 sigs.k8s.io/yaml
-# stash.appscode.dev/installer v0.12.2-0.20210616105710-2082d2d110e3
+# stash.appscode.dev/installer v0.12.2-0.20210627093606-3cb28a08f137
 ## explicit
 stash.appscode.dev/installer/catalog
 # bitbucket.org/ww/goautoneg => gomodules.xyz/goautoneg v0.0.0-20120707110453-a547fc61f48d
