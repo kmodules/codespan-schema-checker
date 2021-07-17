@@ -276,7 +276,7 @@ func checkObject(obj *unstructured.Unstructured) error {
 			return nil
 		}
 	} else if gvr.Group == "catalog.kubedb.com" {
-		if !sets.NewString(kubedbcatalog.ActiveDBVersions()[obj.GetKind()]...).Has(obj.GetName()) {
+		if !sets.NewString(kubedbcatalog.ActiveDBVersions()[strings.TrimSuffix(obj.GetKind(), "Version")]...).Has(obj.GetName()) {
 			logger.Log(fmt.Errorf("using unknown %s version %s", obj.GetKind(), obj.GetName()))
 			return nil
 		}
@@ -311,7 +311,7 @@ func checkObject(obj *unstructured.Unstructured) error {
 			return nil
 		}
 	} else if gvr.Group == "catalog.kubevault.com" {
-		if !sets.NewString(kubevaultcatalog.ActiveVersions()[obj.GetKind()]...).Has(obj.GetName()) {
+		if !sets.NewString(kubevaultcatalog.ActiveVersions()[strings.TrimSuffix(obj.GetKind(), "Version")]...).Has(obj.GetName()) {
 			logger.Log(fmt.Errorf("using unknown %s version %s", obj.GetKind(), obj.GetName()))
 			return nil
 		}
