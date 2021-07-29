@@ -1007,8 +1007,8 @@ kmodules.xyz/client-go v0.0.0-20210719120358-dd0503cf99cf/go.mod h1:E/vGngai00Ut
 kmodules.xyz/crd-schema-fuzz v0.0.0-20210618002152-fae23aef5fb4/go.mod h1:IIkUctlfoptoci0BOrsUf8ya+MOG5uaeh1PE4uzaIbA=
 kmodules.xyz/monitoring-agent-api v0.0.0-20210618005119-a8c212adc2bf/go.mod h1:QsbPe5SefM7XmLzJgdMX/1iXxwqAC1Do1eHa98TCq3k=
 kmodules.xyz/offshoot-api v0.0.0-20210618005544-5217a24765da/go.mod h1:3LECbAL3FgbyK80NP3V3Pmiuo/a3hFWg/PR6SPFhTns=
-kmodules.xyz/resource-metadata v0.5.8-0.20210722055301-dcc1abc08aa0 h1:UzXrXZfxpqodzLU4udLWY2aP2ELItaIGI9tYazu5AUI=
-kmodules.xyz/resource-metadata v0.5.8-0.20210722055301-dcc1abc08aa0/go.mod h1:1nJoLnEHCPbbFhliLNI2sGG5epHmxC/eAO94MFf6hiI=
+kmodules.xyz/resource-metadata v0.5.8-0.20210729153230-0faa61c37a20 h1:1Rz1DmKSG2700aPaqBAq6ua37LgAG2hz7jPP7ep9Kjo=
+kmodules.xyz/resource-metadata v0.5.8-0.20210729153230-0faa61c37a20/go.mod h1:1nJoLnEHCPbbFhliLNI2sGG5epHmxC/eAO94MFf6hiI=
 kmodules.xyz/resource-validator v0.0.0-20210618010435-0dd3dffe1687 h1:d1aQdvFrlPypRUhAmqfxzkmfz2WKqxSFa//xz/rGLCQ=
 kmodules.xyz/resource-validator v0.0.0-20210618010435-0dd3dffe1687/go.mod h1:46H7fdY9OYa7pNCTKtFwKjl7mWcbMQpTO3HUqrWpwA4=
 kmodules.xyz/schema-checker v0.1.2/go.mod h1:JyT3tjizU/gQY9bK56xzAvkjJoAaUPRam7HELx4Nb/o=
