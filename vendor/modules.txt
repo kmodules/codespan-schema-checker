@@ -576,7 +576,7 @@ kmodules.xyz/resource-validator
 # kubedb.dev/installer v0.17.2-0.20210627093516-d957f4d072d7
 ## explicit
 kubedb.dev/installer/catalog
-# kubevault.dev/installer v0.4.0-beta.0.0.20210716002929-a19a644c0899
+# kubevault.dev/installer v0.4.0-beta.0.0.20210731054938-7e69ed8915f6
 ## explicit
 kubevault.dev/installer/catalog
 # sigs.k8s.io/controller-runtime v0.9.0
@@ -662,7 +662,7 @@ sigs.k8s.io/structured-merge-diff/v4/typed
 sigs.k8s.io/structured-merge-diff/v4/value
 # sigs.k8s.io/yaml v1.2.0
 sigs.k8s.io/yaml
-# stash.appscode.dev/installer v0.12.2-0.20210627093606-3cb28a08f137
+# stash.appscode.dev/installer v0.12.2-0.20210731102342-a156259a1b44
 ## explicit
 stash.appscode.dev/installer/catalog
 # bitbucket.org/ww/goautoneg => gomodules.xyz/goautoneg v0.0.0-20120707110453-a547fc61f48d
