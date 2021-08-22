@@ -98,7 +98,7 @@ github.com/hashicorp/golang-lru/simplelru
 github.com/imdario/mergo
 # github.com/inconshreveable/mousetrap v1.0.0
 github.com/inconshreveable/mousetrap
-# github.com/json-iterator/go v1.1.10
+# github.com/json-iterator/go v1.1.11
 github.com/json-iterator/go
 # github.com/liggitt/tabwriter v0.0.0-20181228230101-89fcab3d43de
 github.com/liggitt/tabwriter
@@ -225,11 +225,11 @@ gomodules.xyz/jsonpatch/v2
 gomodules.xyz/logs
 # gomodules.xyz/semvers v0.0.0-20210603205601-45dfbb5326a4
 gomodules.xyz/semvers
-# gomodules.xyz/sets v0.0.0-20210218105342-2efe2fb519a2
+# gomodules.xyz/sets v0.1.0
 gomodules.xyz/sets
 # gomodules.xyz/wait v0.0.0-20210218105358-639bd9211545
 gomodules.xyz/wait
-# gomodules.xyz/x v0.0.5
+# gomodules.xyz/x v0.0.6
 gomodules.xyz/x/strings
 # google.golang.org/appengine v1.6.7
 google.golang.org/appengine/internal
@@ -552,7 +552,7 @@ k8s.io/utils/integer
 k8s.io/utils/pointer
 # kmodules.xyz/apiversion v0.2.0
 kmodules.xyz/apiversion
-# kmodules.xyz/client-go v0.0.0-20210719120358-dd0503cf99cf
+# kmodules.xyz/client-go v0.0.0-20210816193105-1158390a19cd
 ## explicit
 kmodules.xyz/client-go
 kmodules.xyz/client-go/api/v1
@@ -573,10 +573,10 @@ kmodules.xyz/resource-metadata/hub/resourcedescriptors
 # kmodules.xyz/resource-validator v0.0.0-20210618010435-0dd3dffe1687
 ## explicit
 kmodules.xyz/resource-validator
-# kubedb.dev/installer v0.17.2-0.20210627093516-d957f4d072d7
+# kubedb.dev/installer v0.17.2-0.20210816205208-aaf9f13bba89
 ## explicit
 kubedb.dev/installer/catalog
-# kubevault.dev/installer v0.4.0-beta.0.0.20210731054938-7e69ed8915f6
+# kubevault.dev/installer v0.4.0-beta.0.0.20210816194008-fdfceb0581f4
 ## explicit
 kubevault.dev/installer/catalog
 # sigs.k8s.io/controller-runtime v0.9.0
@@ -662,7 +662,7 @@ sigs.k8s.io/structured-merge-diff/v4/typed
 sigs.k8s.io/structured-merge-diff/v4/value
 # sigs.k8s.io/yaml v1.2.0
 sigs.k8s.io/yaml
-# stash.appscode.dev/installer v0.12.2-0.20210731102342-a156259a1b44
+# stash.appscode.dev/installer v0.12.2-0.20210805002232-9d47a4874efb
 ## explicit
 stash.appscode.dev/installer/catalog
 # bitbucket.org/ww/goautoneg => gomodules.xyz/goautoneg v0.0.0-20120707110453-a547fc61f48d
