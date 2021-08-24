@@ -15,7 +15,7 @@ require (
 	kmodules.xyz/client-go v0.0.0-20210816193105-1158390a19cd
 	kmodules.xyz/resource-metadata v0.5.8-0.20210729184221-a7955c869095
 	kmodules.xyz/resource-validator v0.0.0-20210618010435-0dd3dffe1687
-	kubedb.dev/installer v0.17.2-0.20210816205208-aaf9f13bba89
+	kubedb.dev/installer v0.17.2-0.20210823115539-2a48613e8d61
 	kubevault.dev/installer v0.4.0-beta.0.0.20210816194008-fdfceb0581f4
 	stash.appscode.dev/installer v0.12.2-0.20210805002232-9d47a4874efb
 )

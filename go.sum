@@ -1021,8 +1021,8 @@ kmodules.xyz/resource-validator v0.0.0-20210618010435-0dd3dffe1687 h1:d1aQdvFrlP
 kmodules.xyz/resource-validator v0.0.0-20210618010435-0dd3dffe1687/go.mod h1:46H7fdY9OYa7pNCTKtFwKjl7mWcbMQpTO3HUqrWpwA4=
 kmodules.xyz/schema-checker v0.1.2/go.mod h1:JyT3tjizU/gQY9bK56xzAvkjJoAaUPRam7HELx4Nb/o=
 kmodules.xyz/schema-checker v0.1.3/go.mod h1:mp0Y2dChcsE7Ws0BcV4OmpdeD9ZB2NgUrGnqeZdfr4o=
-kubedb.dev/installer v0.17.2-0.20210816205208-aaf9f13bba89 h1:s7+GkhzwQORQO+AFjbJ38G04motSkGcGXq8ns+tcODs=
-kubedb.dev/installer v0.17.2-0.20210816205208-aaf9f13bba89/go.mod h1:uBa18gon5opP3YJyuHeXa65EfVK5CvJKJwOwR2ZiryY=
+kubedb.dev/installer v0.17.2-0.20210823115539-2a48613e8d61 h1:yDs1aDx52y7qLQrsDXn+0fFbdVsFaAU4y16z/x7Oe0M=
+kubedb.dev/installer v0.17.2-0.20210823115539-2a48613e8d61/go.mod h1:uBa18gon5opP3YJyuHeXa65EfVK5CvJKJwOwR2ZiryY=
 kubevault.dev/installer v0.4.0-beta.0.0.20210816194008-fdfceb0581f4 h1:F96vig0N61kx4j8EO8pHIBSSkzLk6Xb1Yk+FIh9eyEA=
 kubevault.dev/installer v0.4.0-beta.0.0.20210816194008-fdfceb0581f4/go.mod h1:8JAMQeuQ9VZc6Zzl9plcSQrbUYDOGCZ40GCxOT9NeQY=
 rsc.io/quote/v3 v3.1.0/go.mod h1:yEA65RcK8LyAZtP9Kv3t0HmxON59tX3rD+tICJqUlj0=
