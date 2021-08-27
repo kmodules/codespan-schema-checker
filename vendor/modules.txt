@@ -216,20 +216,20 @@ golang.org/x/text/width
 golang.org/x/time/rate
 # gomodules.xyz/clock v0.0.0-20200817085942-06523dba733f
 gomodules.xyz/clock
-# gomodules.xyz/flags v0.1.0
+# gomodules.xyz/flags v0.1.2
 gomodules.xyz/flags
 # gomodules.xyz/jsonpatch/v2 v2.2.0
 gomodules.xyz/jsonpatch/v2
-# gomodules.xyz/logs v0.0.3
+# gomodules.xyz/logs v0.0.4
 ## explicit
 gomodules.xyz/logs
 # gomodules.xyz/semvers v0.0.0-20210603205601-45dfbb5326a4
 gomodules.xyz/semvers
-# gomodules.xyz/sets v0.1.0
+# gomodules.xyz/sets v0.2.0
 gomodules.xyz/sets
 # gomodules.xyz/wait v0.0.0-20210218105358-639bd9211545
 gomodules.xyz/wait
-# gomodules.xyz/x v0.0.6
+# gomodules.xyz/x v0.0.7
 gomodules.xyz/x/strings
 # google.golang.org/appengine v1.6.7
 google.golang.org/appengine/internal
@@ -562,7 +562,7 @@ kmodules.xyz/client-go/apiextensions/v1beta1
 kmodules.xyz/client-go/discovery
 kmodules.xyz/client-go/meta
 kmodules.xyz/client-go/tools/parser
-# kmodules.xyz/resource-metadata v0.5.8-0.20210729184221-a7955c869095
+# kmodules.xyz/resource-metadata v0.5.8-0.20210827075808-ed8d9b48f916
 ## explicit
 kmodules.xyz/resource-metadata/apis/meta
 kmodules.xyz/resource-metadata/apis/meta/v1alpha1

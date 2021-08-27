@@ -7,13 +7,13 @@ require (
 	github.com/olekukonko/tablewriter v0.0.5
 	github.com/spf13/cobra v1.1.3
 	github.com/yuin/goldmark v1.3.5
-	gomodules.xyz/logs v0.0.3
+	gomodules.xyz/logs v0.0.4
 	k8s.io/apimachinery v0.21.1
 	k8s.io/cli-runtime v0.21.1
 	k8s.io/component-base v0.21.1
 	k8s.io/kubectl v0.21.1
 	kmodules.xyz/client-go v0.0.0-20210816193105-1158390a19cd
-	kmodules.xyz/resource-metadata v0.5.8-0.20210729184221-a7955c869095
+	kmodules.xyz/resource-metadata v0.5.8-0.20210827075808-ed8d9b48f916
 	kmodules.xyz/resource-validator v0.0.0-20210618010435-0dd3dffe1687
 	kubedb.dev/installer v0.17.2-0.20210823115539-2a48613e8d61
 	kubevault.dev/installer v0.4.0-beta.0.0.20210816194008-fdfceb0581f4
