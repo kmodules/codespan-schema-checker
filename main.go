@@ -231,6 +231,9 @@ func check(path string, info os.FileInfo, err error) error {
 func checkObject(obj *unstructured.Unstructured) error {
 	gvr, err := reg.GVR(obj.GetObjectKind().GroupVersionKind())
 	if err != nil {
+		if _, ok := err.(hub.UnregisteredErr); ok {
+			return fmt.Errorf("add %v to kmodules/resource-metadata project", obj.GetObjectKind().GroupVersionKind())
+		}
 		return err
 	}
 	rd, err := reg.LoadByGVR(gvr)
