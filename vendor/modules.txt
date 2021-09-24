@@ -552,7 +552,7 @@ k8s.io/utils/integer
 k8s.io/utils/pointer
 # kmodules.xyz/apiversion v0.2.0
 kmodules.xyz/apiversion
-# kmodules.xyz/client-go v0.0.0-20210816193105-1158390a19cd
+# kmodules.xyz/client-go v0.0.0-20210924002416-7c77a9d403d1
 ## explicit
 kmodules.xyz/client-go
 kmodules.xyz/client-go/api/v1

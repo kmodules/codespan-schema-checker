@@ -228,7 +228,8 @@ func check(path string, info os.FileInfo, err error) error {
 	return nil
 }
 
-func checkObject(obj *unstructured.Unstructured) error {
+func checkObject(ri p.ResourceInfo) error {
+	obj := ri.Object
 	gvr, err := reg.GVR(obj.GetObjectKind().GroupVersionKind())
 	if err != nil {
 		if _, ok := err.(hub.UnregisteredErr); ok {
