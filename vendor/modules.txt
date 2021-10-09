@@ -71,7 +71,7 @@ github.com/golang/protobuf/ptypes/duration
 github.com/golang/protobuf/ptypes/timestamp
 # github.com/google/btree v1.0.0
 github.com/google/btree
-# github.com/google/go-cmp v0.5.5
+# github.com/google/go-cmp v0.5.6
 github.com/google/go-cmp/cmp
 github.com/google/go-cmp/cmp/internal/diff
 github.com/google/go-cmp/cmp/internal/flags
@@ -552,7 +552,7 @@ k8s.io/utils/integer
 k8s.io/utils/pointer
 # kmodules.xyz/apiversion v0.2.0
 kmodules.xyz/apiversion
-# kmodules.xyz/client-go v0.0.0-20210924002416-7c77a9d403d1
+# kmodules.xyz/client-go v0.0.0-20210928133955-8df5bb467db6
 ## explicit
 kmodules.xyz/client-go
 kmodules.xyz/client-go/api/v1
@@ -562,7 +562,7 @@ kmodules.xyz/client-go/apiextensions/v1beta1
 kmodules.xyz/client-go/discovery
 kmodules.xyz/client-go/meta
 kmodules.xyz/client-go/tools/parser
-# kmodules.xyz/resource-metadata v0.6.0
+# kmodules.xyz/resource-metadata v0.6.5-0.20211007080951-4c307d65ad66
 ## explicit
 kmodules.xyz/resource-metadata/apis/meta
 kmodules.xyz/resource-metadata/apis/meta/v1alpha1
@@ -573,10 +573,10 @@ kmodules.xyz/resource-metadata/hub/resourcedescriptors
 # kmodules.xyz/resource-validator v0.0.0-20210618010435-0dd3dffe1687
 ## explicit
 kmodules.xyz/resource-validator
-# kubedb.dev/installer v0.17.2-0.20210823115539-2a48613e8d61
+# kubedb.dev/installer v0.17.2-0.20211009104859-01ae10873a48
 ## explicit
 kubedb.dev/installer/catalog
-# kubevault.dev/installer v0.4.0-beta.0.0.20210816194008-fdfceb0581f4
+# kubevault.dev/installer v0.4.0-beta.0.0.20211009104618-fa92ac037fc2
 ## explicit
 kubevault.dev/installer/catalog
 # sigs.k8s.io/controller-runtime v0.9.0
@@ -662,7 +662,7 @@ sigs.k8s.io/structured-merge-diff/v4/typed
 sigs.k8s.io/structured-merge-diff/v4/value
 # sigs.k8s.io/yaml v1.2.0
 sigs.k8s.io/yaml
-# stash.appscode.dev/installer v0.12.2-0.20210805002232-9d47a4874efb
+# stash.appscode.dev/installer v0.12.2-0.20211009102051-17e1fdc5d83a
 ## explicit
 stash.appscode.dev/installer/catalog
 # bitbucket.org/ww/goautoneg => gomodules.xyz/goautoneg v0.0.0-20120707110453-a547fc61f48d

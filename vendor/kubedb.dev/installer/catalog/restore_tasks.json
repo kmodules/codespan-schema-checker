@@ -61,6 +61,7 @@
     "kubedb-xpack-7.12.0"
   ],
   "mariadb-restore-10.5.8": [
+    "10.6.4",
     "10.5.8",
     "10.4.17"
   ],
@@ -103,7 +104,12 @@
   "mongodb-restore-4.4.6": [
     "4.4.6"
   ],
+  "mongodb-restore-5.0.3": [
+    "5.0.3",
+    "5.0.2"
+  ],
   "mysql-restore-5.7.25": [
+    "5.7.35",
     "5.7.33-v1",
     "5.7.31-v2",
     "5.7.29-v2",
@@ -113,6 +119,7 @@
     "8.0.14-v3"
   ],
   "mysql-restore-8.0.21": [
+    "8.0.26",
     "8.0.23-v1",
     "8.0.21-v2",
     "8.0.20-v2"
@@ -125,26 +132,44 @@
     "5.7-cluster"
   ],
   "postgres-restore-10.14": [
+    "10.18",
+    "10.18-bullseye",
     "10.16",
     "10.16-debian"
   ],
   "postgres-restore-11.9": [
     "timescaledb-2.1.0-pg11",
+    "11.13",
+    "11.13-bullseye",
     "11.11",
     "11.11-debian"
   ],
   "postgres-restore-12.4": [
     "timescaledb-2.1.0-pg12",
+    "12.8",
+    "12.8-bullseye",
     "12.6",
     "12.6-debian"
   ],
   "postgres-restore-13.1": [
     "timescaledb-2.1.0-pg13",
+    "13.4",
+    "13.4-bullseye",
     "13.2",
     "13.2-debian"
   ],
+  "postgres-restore-14.0": [
+    "14.0",
+    "14.0-bullseye"
+  ],
   "postgres-restore-9.6.19": [
+    "9.6.23",
+    "9.6.23-bullseye",
     "9.6.21",
     "9.6.21-debian"
+  ],
+  "redis-restore-6.2.5": [
+    "6.2.5",
+    "6.0.6"
   ]
 }
