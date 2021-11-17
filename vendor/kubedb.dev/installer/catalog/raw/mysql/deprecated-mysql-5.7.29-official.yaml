@@ -1,41 +1,10 @@
 apiVersion: catalog.kubedb.com/v1alpha1
 kind: MySQLVersion
 metadata:
-  name: 8.0.20-v2
+  name: 5.7-v4
 spec:
   db:
-    image: mysql:8.0.20
-  distribution: Official
-  exporter:
-    image: prom/mysqld-exporter:v0.13.0
-  initContainer:
-    image: kubedb/mysql-init:8.0.17
-  podSecurityPolicies:
-    databasePolicyName: mysql-db
-  replicationModeDetector:
-    image: kubedb/replication-mode-detector:v0.9.0
-  stash:
-    addon:
-      backupTask:
-        name: mysql-backup-8.0.21
-      restoreTask:
-        name: mysql-restore-8.0.21
-  upgradeConstraints:
-    denylist:
-      groupReplication:
-      - < 8.0.20
-      standalone:
-      - < 8.0.20
-  version: 8.0.20
-
----
-apiVersion: catalog.kubedb.com/v1alpha1
-kind: MySQLVersion
-metadata:
-  name: 8.0-v3
-spec:
-  db:
-    image: kubedb/mysql:8.0.20
+    image: kubedb/mysql:5.7.29
   deprecated: true
   distribution: Official
   exporter:
@@ -45,23 +14,23 @@ spec:
   podSecurityPolicies:
     databasePolicyName: mysql-db
   replicationModeDetector:
-    image: kubedb/replication-mode-detector:v0.9.0
+    image: kubedb/replication-mode-detector:v0.10.0
   upgradeConstraints:
     denylist:
       groupReplication:
-      - < 8.0.20
+      - < 5.7.29
       standalone:
-      - < 8.0.20
-  version: 8.0.20
+      - < 5.7.29
+  version: 5.7.29
 
 ---
 apiVersion: catalog.kubedb.com/v1alpha1
 kind: MySQLVersion
 metadata:
-  name: 8.0.20
+  name: 5.7.29
 spec:
   db:
-    image: kubedb/mysql:8.0.20
+    image: kubedb/mysql:5.7.29
   deprecated: true
   distribution: Official
   exporter:
@@ -71,23 +40,23 @@ spec:
   podSecurityPolicies:
     databasePolicyName: mysql-db
   replicationModeDetector:
-    image: kubedb/replication-mode-detector:v0.9.0
+    image: kubedb/replication-mode-detector:v0.10.0
   upgradeConstraints:
     denylist:
       groupReplication:
-      - < 8.0.20
+      - < 5.7.29
       standalone:
-      - < 8.0.20
-  version: 8.0.20
+      - < 5.7.29
+  version: 5.7.29
 
 ---
 apiVersion: catalog.kubedb.com/v1alpha1
 kind: MySQLVersion
 metadata:
-  name: 8.0.20-v1
+  name: 5.7.29-v1
 spec:
   db:
-    image: kubedb/mysql:8.0.20-v1
+    image: mysql:5.7.29-v1
   deprecated: true
   distribution: Official
   exporter:
@@ -97,17 +66,49 @@ spec:
   podSecurityPolicies:
     databasePolicyName: mysql-db
   replicationModeDetector:
-    image: kubedb/replication-mode-detector:v0.9.0
+    image: kubedb/replication-mode-detector:v0.10.0
   stash:
     addon:
       backupTask:
-        name: mysql-backup-8.0.21
+        name: mysql-backup-5.7.25
       restoreTask:
-        name: mysql-restore-8.0.21
+        name: mysql-restore-5.7.25
   upgradeConstraints:
     denylist:
       groupReplication:
-      - < 8.0.20
+      - < 5.7.29
       standalone:
-      - < 8.0.20
-  version: 8.0.20
+      - < 5.7.29
+  version: 5.7.29
+
+---
+apiVersion: catalog.kubedb.com/v1alpha1
+kind: MySQLVersion
+metadata:
+  name: 5.7.29-v2
+spec:
+  db:
+    image: mysql:5.7.29
+  deprecated: true
+  distribution: Official
+  exporter:
+    image: prom/mysqld-exporter:v0.13.0
+  initContainer:
+    image: kubedb/mysql-init:5.7
+  podSecurityPolicies:
+    databasePolicyName: mysql-db
+  replicationModeDetector:
+    image: kubedb/replication-mode-detector:v0.10.0
+  stash:
+    addon:
+      backupTask:
+        name: mysql-backup-5.7.25
+      restoreTask:
+        name: mysql-restore-5.7.25
+  upgradeConstraints:
+    denylist:
+      groupReplication:
+      - < 5.7.29
+      standalone:
+      - < 5.7.29
+  version: 5.7.29

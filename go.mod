@@ -8,17 +8,16 @@ require (
 	github.com/spf13/cobra v1.1.3
 	github.com/yuin/goldmark v1.3.5
 	gomodules.xyz/logs v0.0.4
-	gomodules.xyz/x v0.0.8 // indirect
 	k8s.io/apimachinery v0.21.1
 	k8s.io/cli-runtime v0.21.1
 	k8s.io/component-base v0.21.1
 	k8s.io/kubectl v0.21.1
-	kmodules.xyz/client-go v0.0.0-20211013093146-1fbfd52e78c9
-	kmodules.xyz/resource-metadata v0.6.5-0.20211007080951-4c307d65ad66
+	kmodules.xyz/client-go v0.0.0-20211116191353-a321f503ea3a
+	kmodules.xyz/resource-metadata v0.6.7
 	kmodules.xyz/resource-validator v0.0.0-20210618010435-0dd3dffe1687
-	kubedb.dev/installer v0.17.2-0.20211009104859-01ae10873a48
-	kubevault.dev/installer v0.4.0-beta.0.0.20211009104618-fa92ac037fc2
-	stash.appscode.dev/installer v0.12.2-0.20211009102051-17e1fdc5d83a
+	kubedb.dev/installer v0.17.2-0.20211117114149-3fe4c869a262
+	kubevault.dev/installer v0.4.0-beta.0.0.20211116231502-57e4d3c36eb4
+	stash.appscode.dev/installer v0.12.2-0.20211116192109-6f10ba72cc57
 )
 
 replace bitbucket.org/ww/goautoneg => gomodules.xyz/goautoneg v0.0.0-20120707110453-a547fc61f48d

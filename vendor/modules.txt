@@ -193,7 +193,7 @@ golang.org/x/net/publicsuffix
 # golang.org/x/oauth2 v0.0.0-20200107190931-bf48bf16ab8d
 golang.org/x/oauth2
 golang.org/x/oauth2/internal
-# golang.org/x/sys v0.0.0-20210423082822-04245dca01da
+# golang.org/x/sys v0.0.0-20210817190340-bfb29a6856f2
 golang.org/x/sys/internal/unsafeheader
 golang.org/x/sys/plan9
 golang.org/x/sys/unix
@@ -212,7 +212,7 @@ golang.org/x/text/transform
 golang.org/x/text/unicode/bidi
 golang.org/x/text/unicode/norm
 golang.org/x/text/width
-# golang.org/x/time v0.0.0-20210220033141-f8bda1e9f3ba
+# golang.org/x/time v0.0.0-20210723032227-1f47c861a9ac
 golang.org/x/time/rate
 # gomodules.xyz/clock v0.0.0-20200817085942-06523dba733f
 gomodules.xyz/clock
@@ -230,7 +230,6 @@ gomodules.xyz/sets
 # gomodules.xyz/wait v0.0.0-20210218105358-639bd9211545
 gomodules.xyz/wait
 # gomodules.xyz/x v0.0.8
-## explicit
 gomodules.xyz/x/strings
 # google.golang.org/appengine v1.6.7
 google.golang.org/appengine/internal
@@ -547,13 +546,13 @@ k8s.io/kubectl/pkg/util/openapi/validation
 k8s.io/kubectl/pkg/util/templates
 k8s.io/kubectl/pkg/util/term
 k8s.io/kubectl/pkg/validation
-# k8s.io/utils v0.0.0-20210527160623-6fdb442a123b => k8s.io/utils v0.0.0-20201110183641-67b214c5f920
+# k8s.io/utils v0.0.0-20210802155522-efc7438f0176 => k8s.io/utils v0.0.0-20201110183641-67b214c5f920
 k8s.io/utils/exec
 k8s.io/utils/integer
 k8s.io/utils/pointer
 # kmodules.xyz/apiversion v0.2.0
 kmodules.xyz/apiversion
-# kmodules.xyz/client-go v0.0.0-20211013093146-1fbfd52e78c9
+# kmodules.xyz/client-go v0.0.0-20211116191353-a321f503ea3a
 ## explicit
 kmodules.xyz/client-go
 kmodules.xyz/client-go/api/v1
@@ -563,7 +562,7 @@ kmodules.xyz/client-go/apiextensions/v1beta1
 kmodules.xyz/client-go/discovery
 kmodules.xyz/client-go/meta
 kmodules.xyz/client-go/tools/parser
-# kmodules.xyz/resource-metadata v0.6.5-0.20211007080951-4c307d65ad66
+# kmodules.xyz/resource-metadata v0.6.7
 ## explicit
 kmodules.xyz/resource-metadata/apis/meta
 kmodules.xyz/resource-metadata/apis/meta/v1alpha1
@@ -574,10 +573,10 @@ kmodules.xyz/resource-metadata/hub/resourcedescriptors
 # kmodules.xyz/resource-validator v0.0.0-20210618010435-0dd3dffe1687
 ## explicit
 kmodules.xyz/resource-validator
-# kubedb.dev/installer v0.17.2-0.20211009104859-01ae10873a48
+# kubedb.dev/installer v0.17.2-0.20211117114149-3fe4c869a262
 ## explicit
 kubedb.dev/installer/catalog
-# kubevault.dev/installer v0.4.0-beta.0.0.20211009104618-fa92ac037fc2
+# kubevault.dev/installer v0.4.0-beta.0.0.20211116231502-57e4d3c36eb4
 ## explicit
 kubevault.dev/installer/catalog
 # sigs.k8s.io/controller-runtime v0.9.0
@@ -656,14 +655,14 @@ sigs.k8s.io/kustomize/kyaml/yaml/merge2
 sigs.k8s.io/kustomize/kyaml/yaml/merge3
 sigs.k8s.io/kustomize/kyaml/yaml/schema
 sigs.k8s.io/kustomize/kyaml/yaml/walk
-# sigs.k8s.io/structured-merge-diff/v4 v4.1.0
+# sigs.k8s.io/structured-merge-diff/v4 v4.1.2
 sigs.k8s.io/structured-merge-diff/v4/fieldpath
 sigs.k8s.io/structured-merge-diff/v4/schema
 sigs.k8s.io/structured-merge-diff/v4/typed
 sigs.k8s.io/structured-merge-diff/v4/value
 # sigs.k8s.io/yaml v1.2.0
 sigs.k8s.io/yaml
-# stash.appscode.dev/installer v0.12.2-0.20211009102051-17e1fdc5d83a
+# stash.appscode.dev/installer v0.12.2-0.20211116192109-6f10ba72cc57
 ## explicit
 stash.appscode.dev/installer/catalog
 # bitbucket.org/ww/goautoneg => gomodules.xyz/goautoneg v0.0.0-20120707110453-a547fc61f48d

@@ -1,19 +1,21 @@
 apiVersion: catalog.kubedb.com/v1alpha1
 kind: MySQLVersion
 metadata:
-  name: 8.0.3-v3
+  name: 8.0.3-v4
 spec:
+  coordinator:
+    image: kubedb/mysql-coordinator:v0.1.0
   db:
     image: mysql:8.0.3
   distribution: Official
   exporter:
-    image: prom/mysqld-exporter:v0.13.0
+    image: kubedb/mysqld-exporter:v0.13.1
   initContainer:
-    image: kubedb/mysql-init:8.0.3
+    image: kubedb/mysql-init:8.0.3-v1
   podSecurityPolicies:
     databasePolicyName: mysql-db
   replicationModeDetector:
-    image: kubedb/replication-mode-detector:v0.9.0
+    image: kubedb/replication-mode-detector:v0.10.0
   stash:
     addon:
       backupTask:
@@ -23,7 +25,7 @@ spec:
   upgradeConstraints:
     allowlist:
       groupReplication:
-      - 8.0.3
+      - 8.0.17
       standalone:
       - 8.0.3
   version: 8.0.3
@@ -45,11 +47,11 @@ spec:
   podSecurityPolicies:
     databasePolicyName: mysql-db
   replicationModeDetector:
-    image: kubedb/replication-mode-detector:v0.9.0
+    image: kubedb/replication-mode-detector:v0.10.0
   upgradeConstraints:
     allowlist:
       groupReplication:
-      - 8.0.3
+      - 8.0.17
       standalone:
       - 8.0.3
   version: 8.0.3
@@ -71,11 +73,11 @@ spec:
   podSecurityPolicies:
     databasePolicyName: mysql-db
   replicationModeDetector:
-    image: kubedb/replication-mode-detector:v0.9.0
+    image: kubedb/replication-mode-detector:v0.10.0
   upgradeConstraints:
     allowlist:
       groupReplication:
-      - 8.0.3
+      - 8.0.17
       standalone:
       - 8.0.3
   version: 8.0.3
@@ -97,11 +99,11 @@ spec:
   podSecurityPolicies:
     databasePolicyName: mysql-db
   replicationModeDetector:
-    image: kubedb/replication-mode-detector:v0.9.0
+    image: kubedb/replication-mode-detector:v0.10.0
   upgradeConstraints:
     allowlist:
       groupReplication:
-      - 8.0.3
+      - 8.0.17
       standalone:
       - 8.0.3
   version: 8.0.3
@@ -123,7 +125,7 @@ spec:
   podSecurityPolicies:
     databasePolicyName: mysql-db
   replicationModeDetector:
-    image: kubedb/replication-mode-detector:v0.9.0
+    image: kubedb/replication-mode-detector:v0.10.0
   stash:
     addon:
       backupTask:
@@ -133,7 +135,39 @@ spec:
   upgradeConstraints:
     allowlist:
       groupReplication:
+      - 8.0.17
+      standalone:
       - 8.0.3
+  version: 8.0.3
+
+---
+apiVersion: catalog.kubedb.com/v1alpha1
+kind: MySQLVersion
+metadata:
+  name: 8.0.3-v3
+spec:
+  db:
+    image: mysql:8.0.3
+  deprecated: true
+  distribution: Official
+  exporter:
+    image: prom/mysqld-exporter:v0.13.0
+  initContainer:
+    image: kubedb/mysql-init:8.0.3
+  podSecurityPolicies:
+    databasePolicyName: mysql-db
+  replicationModeDetector:
+    image: kubedb/replication-mode-detector:v0.10.0
+  stash:
+    addon:
+      backupTask:
+        name: mysql-backup-8.0.3
+      restoreTask:
+        name: mysql-restore-8.0.3
+  upgradeConstraints:
+    allowlist:
+      groupReplication:
+      - 8.0.17
       standalone:
       - 8.0.3
   version: 8.0.3
