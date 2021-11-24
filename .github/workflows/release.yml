@@ -42,5 +42,6 @@ jobs:
             bin/codespan-schema-checker-linux-arm
             bin/codespan-schema-checker-linux-arm64
             bin/codespan-schema-checker-darwin-amd64
+            bin/codespan-schema-checker-darwin-arm64
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
