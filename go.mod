@@ -12,7 +12,7 @@ require (
 	k8s.io/cli-runtime v0.21.1
 	k8s.io/component-base v0.21.1
 	k8s.io/kubectl v0.21.1
-	kmodules.xyz/client-go v0.0.0-20211122091731-6c471b24a4ea
+	kmodules.xyz/client-go 9963581d69a70b5675bdaa8f611aa65473764cf2
 	kmodules.xyz/resource-metadata v0.7.0
 	kmodules.xyz/resource-validator v0.0.0-20210618010435-0dd3dffe1687
 	kubedb.dev/installer v0.17.2-0.20211124020415-3d726598aac3
