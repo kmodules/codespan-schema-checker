@@ -581,7 +581,7 @@ kmodules.xyz/client-go/apiextensions/v1
 kmodules.xyz/client-go/discovery
 kmodules.xyz/client-go/meta
 kmodules.xyz/client-go/tools/parser
-# kmodules.xyz/resource-metadata v0.9.9-0.20220218022149-2e718861f809
+# kmodules.xyz/resource-metadata v0.9.9-0.20220218050929-ad6592b55b0f
 ## explicit
 kmodules.xyz/resource-metadata/apis/meta
 kmodules.xyz/resource-metadata/apis/meta/v1alpha1

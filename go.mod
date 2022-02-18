@@ -13,7 +13,7 @@ require (
 	k8s.io/component-base v0.21.1
 	k8s.io/kubectl v0.21.1
 	kmodules.xyz/client-go v0.0.0-20220216040252-58232c4f73ea
-	kmodules.xyz/resource-metadata v0.9.9-0.20220218022149-2e718861f809
+	kmodules.xyz/resource-metadata v0.9.9-0.20220218050929-ad6592b55b0f
 	kmodules.xyz/resource-validator v0.0.0-20211025154137-6a5a20ec7581
 	kubedb.dev/installer v0.17.2-0.20220217072919-685c3103ff33
 	kubevault.dev/installer v0.4.0-beta.0.0.20220215143142-51e1f6cbe093
