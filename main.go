@@ -82,7 +82,7 @@ var (
 )
 
 func main() {
-	var rootCmd = &cobra.Command{
+	rootCmd := &cobra.Command{
 		Use:   "codespan-schema-checker",
 		Short: "Check schema of Kubernetes resources inside markdown code blocks",
 		RunE: func(cmd *cobra.Command, args []string) error {
@@ -176,8 +176,7 @@ func (r *CodeExtractor) extractCode(_ util.BufWriter, source []byte, n gast.Node
 	return ast.WalkContinue, nil
 }
 
-type codeExtractor struct {
-}
+type codeExtractor struct{}
 
 // Strikethrough is an extension that allow you to use codeExtractor expression like '~~text~~' .
 var Strikethrough = &codeExtractor{}
