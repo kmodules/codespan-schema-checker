@@ -572,7 +572,7 @@ k8s.io/utils/integer
 k8s.io/utils/pointer
 # kmodules.xyz/apiversion v0.2.0
 kmodules.xyz/apiversion
-# kmodules.xyz/client-go v0.0.0-20220216040252-58232c4f73ea
+# kmodules.xyz/client-go v0.0.0-20220308080632-2543b61b64fd
 ## explicit
 kmodules.xyz/client-go
 kmodules.xyz/client-go/api/v1
@@ -581,7 +581,7 @@ kmodules.xyz/client-go/apiextensions/v1
 kmodules.xyz/client-go/discovery
 kmodules.xyz/client-go/meta
 kmodules.xyz/client-go/tools/parser
-# kmodules.xyz/resource-metadata v0.9.9-0.20220218050929-ad6592b55b0f
+# kmodules.xyz/resource-metadata v0.10.0
 ## explicit
 kmodules.xyz/resource-metadata/apis/meta
 kmodules.xyz/resource-metadata/apis/meta/v1alpha1
