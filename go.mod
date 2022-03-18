@@ -4,6 +4,7 @@ go 1.16
 
 require (
 	github.com/gohugoio/hugo v0.83.1
+	github.com/json-iterator/go v1.1.12 // indirect
 	github.com/olekukonko/tablewriter v0.0.5
 	github.com/spf13/cobra v1.2.1
 	github.com/yuin/goldmark v1.3.5
