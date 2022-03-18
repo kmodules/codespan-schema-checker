@@ -4,7 +4,6 @@ go 1.16
 
 require (
 	github.com/gohugoio/hugo v0.83.1
-	github.com/json-iterator/go v1.1.12 // indirect
 	github.com/olekukonko/tablewriter v0.0.5
 	github.com/spf13/cobra v1.2.1
 	github.com/yuin/goldmark v1.3.5
@@ -14,7 +13,7 @@ require (
 	k8s.io/component-base v0.21.1
 	k8s.io/kubectl v0.21.1
 	kmodules.xyz/client-go v0.0.0-20220308080632-2543b61b64fd
-	kmodules.xyz/resource-metadata v0.10.0
+	kmodules.xyz/resource-metadata v0.10.6
 	kmodules.xyz/resource-validator v0.0.0-20211025154137-6a5a20ec7581
 	kubedb.dev/installer v0.17.2-0.20220217072919-685c3103ff33
 	kubevault.dev/installer v0.4.0-beta.0.0.20220215143142-51e1f6cbe093
