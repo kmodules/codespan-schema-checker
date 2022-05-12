@@ -1109,5 +1109,5 @@ sigs.k8s.io/yaml v1.3.0 h1:a2VclLzOGrwOHDiV8EfBGhvjHvP46CtW5j6POvhYGGo=
 sigs.k8s.io/yaml v1.3.0/go.mod h1:GeOyir5tyXNByN85N/dRIT9es5UQNerPYEKK56eTBm8=
 sourcegraph.com/sourcegraph/appdash v0.0.0-20190731080439-ebfcffb1b5c0/go.mod h1:hI742Nqp5OhwiqlzhgfbWU4mW4yO10fP+LoT9WOswdU=
 stash.appscode.dev/installer v0.12.2-0.20220211115919-29686b4e636c/go.mod h1:nmwe/BcrU7POpomcUCirl8xUhDKXIZ0Jfz0ir3hk8/o=
-stash.appscode.dev/installer v0.12.2-0.20220509090828-5cbe698c927c h1:oJ32clF32V6PoyKJpDOQymCgt0VhY+eD2rMekzWHINk=
-stash.appscode.dev/installer v0.12.2-0.20220509090828-5cbe698c927c/go.mod h1:QYdE2+A110izy81LAPh/LmNEr4vNOEUIazMnjPbq7Ag=
+stash.appscode.dev/installer v0.12.2-0.20220511101130-332673706191 h1:09Q30xZ5dzVWbMrQCu+iY7tdTkfeaXGaIQRczRAB5Ws=
+stash.appscode.dev/installer v0.12.2-0.20220511101130-332673706191/go.mod h1:QYdE2+A110izy81LAPh/LmNEr4vNOEUIazMnjPbq7Ag=

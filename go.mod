@@ -17,7 +17,7 @@ require (
 	kmodules.xyz/resource-validator v0.0.0-20211025154137-6a5a20ec7581
 	kubedb.dev/installer v0.17.2-0.20220426104533-07776374c371
 	kubevault.dev/installer v0.4.0-beta.0.0.20220412000726-f07c0de63fd8
-	stash.appscode.dev/installer v0.12.2-0.20220509090828-5cbe698c927c
+	stash.appscode.dev/installer v0.12.2-0.20220511101130-332673706191
 )
 
 require (
