@@ -671,7 +671,7 @@ kmodules.xyz/client-go/apiextensions/v1
 kmodules.xyz/client-go/discovery
 kmodules.xyz/client-go/meta
 kmodules.xyz/client-go/tools/parser
-# kmodules.xyz/resource-metadata v0.10.16-0.20220419233724-fbd1b7e25b05
+# kmodules.xyz/resource-metadata v0.10.17
 ## explicit; go 1.17
 kmodules.xyz/resource-metadata/apis/meta
 kmodules.xyz/resource-metadata/apis/meta/v1alpha1
@@ -681,7 +681,7 @@ kmodules.xyz/resource-metadata/hub/resourcedescriptors
 # kmodules.xyz/resource-validator v0.0.0-20211025154137-6a5a20ec7581
 ## explicit; go 1.15
 kmodules.xyz/resource-validator
-# kubedb.dev/installer v0.17.2-0.20220520004634-f6056dcac421
+# kubedb.dev/installer v0.17.2-0.20220520120148-f4ef869dfcd6
 ## explicit; go 1.17
 kubedb.dev/installer/catalog
 # kubevault.dev/installer v0.4.0-beta.0.0.20220412000726-f07c0de63fd8

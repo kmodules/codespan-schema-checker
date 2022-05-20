@@ -13,9 +13,9 @@ require (
 	k8s.io/component-base v0.21.1
 	k8s.io/kubectl v0.21.1
 	kmodules.xyz/client-go v0.0.0-20220512223652-dc247aa7f6df
-	kmodules.xyz/resource-metadata v0.10.16-0.20220419233724-fbd1b7e25b05
+	kmodules.xyz/resource-metadata v0.10.17
 	kmodules.xyz/resource-validator v0.0.0-20211025154137-6a5a20ec7581
-	kubedb.dev/installer v0.17.2-0.20220520004634-f6056dcac421
+	kubedb.dev/installer v0.17.2-0.20220520120148-f4ef869dfcd6
 	kubevault.dev/installer v0.4.0-beta.0.0.20220412000726-f07c0de63fd8
 	stash.appscode.dev/installer v0.12.2-0.20220518054717-3b45a21b5419
 )
