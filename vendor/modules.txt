@@ -662,7 +662,7 @@ k8s.io/utils/pointer
 # kmodules.xyz/apiversion v0.2.0
 ## explicit; go 1.14
 kmodules.xyz/apiversion
-# kmodules.xyz/client-go v0.0.0-20220427165208-36281a681909
+# kmodules.xyz/client-go v0.0.0-20220512223652-dc247aa7f6df
 ## explicit; go 1.17
 kmodules.xyz/client-go
 kmodules.xyz/client-go/api/v1
@@ -681,7 +681,7 @@ kmodules.xyz/resource-metadata/hub/resourcedescriptors
 # kmodules.xyz/resource-validator v0.0.0-20211025154137-6a5a20ec7581
 ## explicit; go 1.15
 kmodules.xyz/resource-validator
-# kubedb.dev/installer v0.17.2-0.20220426104533-07776374c371
+# kubedb.dev/installer v0.17.2-0.20220520004634-f6056dcac421
 ## explicit; go 1.17
 kubedb.dev/installer/catalog
 # kubevault.dev/installer v0.4.0-beta.0.0.20220412000726-f07c0de63fd8
@@ -777,7 +777,7 @@ sigs.k8s.io/structured-merge-diff/v4/value
 # sigs.k8s.io/yaml v1.3.0
 ## explicit; go 1.12
 sigs.k8s.io/yaml
-# stash.appscode.dev/installer v0.12.2-0.20220511101130-332673706191
+# stash.appscode.dev/installer v0.12.2-0.20220518054717-3b45a21b5419
 ## explicit; go 1.17
 stash.appscode.dev/installer/catalog
 # bitbucket.org/ww/goautoneg => gomodules.xyz/goautoneg v0.0.0-20120707110453-a547fc61f48d
