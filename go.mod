@@ -13,7 +13,7 @@ require (
 	k8s.io/component-base v0.24.1
 	k8s.io/kubectl v0.24.1
 	kmodules.xyz/client-go v0.24.1
-	kmodules.xyz/resource-metadata v0.11.3
+	kmodules.xyz/resource-metadata v0.10.17
 	kmodules.xyz/resource-validator v0.0.0-20211025154137-6a5a20ec7581
 	kubedb.dev/installer v0.17.2-0.20220604075735-f8d8e2742443
 	kubevault.dev/installer v0.4.0-beta.0.0.20220610102834-43feb59dae3d
@@ -40,6 +40,7 @@ require (
 	github.com/go-logr/logr v1.2.0 // indirect
 	github.com/go-openapi/jsonpointer v0.19.5 // indirect
 	github.com/go-openapi/jsonreference v0.20.0 // indirect
+	github.com/go-openapi/spec v0.19.5 // indirect
 	github.com/go-openapi/swag v0.19.15 // indirect
 	github.com/gobwas/glob v0.2.3 // indirect
 	github.com/gogo/protobuf v1.3.2 // indirect
