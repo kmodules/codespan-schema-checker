@@ -12,8 +12,8 @@ require (
 	k8s.io/cli-runtime v0.24.1
 	k8s.io/component-base v0.24.1
 	k8s.io/kubectl v0.24.1
-	kmodules.xyz/client-go v0.24.1
-	kmodules.xyz/resource-metadata v0.12.4
+	kmodules.xyz/client-go v0.24.8
+	kmodules.xyz/resource-metadata v0.12.6
 	kmodules.xyz/resource-validator v0.0.0-20211025154137-6a5a20ec7581
 	kubedb.dev/installer v0.17.2-0.20220604075735-f8d8e2742443
 	kubevault.dev/installer v0.4.0-beta.0.0.20220610102834-43feb59dae3d
