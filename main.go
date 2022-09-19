@@ -22,7 +22,7 @@ import (
 	"encoding/json"
 	"flag"
 	"fmt"
-	"io/ioutil"
+	"io"
 	"os"
 	"path/filepath"
 	"strings"
@@ -200,7 +200,7 @@ func check(path string, info os.FileInfo, err error) error {
 	ext := filepath.Ext(info.Name())
 	if ext == ".yaml" || ext == ".yml" || ext == ".json" {
 		logger.Init(path)
-		content, err := ioutil.ReadFile(path)
+		content, err := os.ReadFile(path)
 		if err != nil {
 			return err
 		}
@@ -210,7 +210,7 @@ func check(path string, info os.FileInfo, err error) error {
 		}
 	} else if ext == ".md" && filepath.Base(path) != "_index.md" {
 		logger.Init(path)
-		content, err := ioutil.ReadFile(path)
+		content, err := os.ReadFile(path)
 		if err != nil {
 			return err
 		}
@@ -219,7 +219,7 @@ func check(path string, info os.FileInfo, err error) error {
 		if err != nil {
 			return err
 		}
-		err = md.Convert(page.Content, ioutil.Discard)
+		err = md.Convert(page.Content, io.Discard)
 		if err != nil {
 			return err
 		}
