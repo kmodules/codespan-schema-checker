@@ -4,10 +4,13 @@ import (
 	"fmt"
 	"html"
 	"log"
+	"reflect"
 	"regexp"
 	"strconv"
 	"strings"
 	"unicode"
+
+	u "net/url"
 
 	h "golang.org/x/net/html"
 	"golang.org/x/net/html/atom"
@@ -227,7 +230,7 @@ func (w *HTMLWriter) WriteOutline(d *Document, maxLvl int) {
 }
 
 func (w *HTMLWriter) writeSection(section *Section, maxLvl int) {
-	if maxLvl != 0 && section.Headline.Lvl > maxLvl {
+	if (maxLvl != 0 && section.Headline.Lvl > maxLvl) || section.Headline.IsExcluded(w.document) {
 		return
 	}
 	// NOTE: To satisfy hugo ExtractTOC() check we cannot use `<li>\n` here. Doesn't really matter, just a note.
@@ -250,12 +253,8 @@ func (w *HTMLWriter) writeSection(section *Section, maxLvl int) {
 }
 
 func (w *HTMLWriter) WriteHeadline(h Headline) {
-	for _, excludeTag := range strings.Fields(w.document.Get("EXCLUDE_TAGS")) {
-		for _, tag := range h.Tags {
-			if excludeTag == tag {
-				return
-			}
-		}
+	if h.IsExcluded(w.document) {
+		return
 	}
 
 	w.WriteString(fmt.Sprintf(`<div id="outline-container-%s" class="outline-%d">`, h.ID(), h.Lvl+1) + "\n")
@@ -314,7 +313,9 @@ func (w *HTMLWriter) WriteStatisticToken(s StatisticToken) {
 }
 
 func (w *HTMLWriter) WriteLineBreak(l LineBreak) {
-	w.WriteString(strings.Repeat("\n", l.Count))
+	if w.document.GetOption("ealb") == "nil" || !l.BetweenMultibyteCharacters {
+		w.WriteString(strings.Repeat("\n", l.Count))
+	}
 }
 
 func (w *HTMLWriter) WriteExplicitLineBreak(l ExplicitLineBreak) {
@@ -362,7 +363,13 @@ func (w *HTMLWriter) WriteRegularLink(l RegularLink) {
 		url = strings.TrimSuffix(url, ".org") + ".html"
 	}
 	if prefix := w.document.Links[l.Protocol]; prefix != "" {
-		url = html.EscapeString(prefix) + strings.TrimPrefix(url, l.Protocol+":")
+		if tag := strings.TrimPrefix(l.URL, l.Protocol+":"); strings.Contains(prefix, "%s") || strings.Contains(prefix, "%h") {
+			url = html.EscapeString(strings.ReplaceAll(strings.ReplaceAll(prefix, "%s", tag), "%h", u.QueryEscape(tag)))
+		} else {
+			url = html.EscapeString(prefix) + tag
+		}
+	} else if prefix := w.document.Links[l.URL]; prefix != "" {
+		url = html.EscapeString(strings.ReplaceAll(strings.ReplaceAll(prefix, "%s", ""), "%h", ""))
 	}
 	switch l.Kind() {
 	case "image":
@@ -412,12 +419,15 @@ func (w *HTMLWriter) WriteList(l List) {
 }
 
 func (w *HTMLWriter) WriteListItem(li ListItem) {
-	if li.Status != "" {
-		w.WriteString(fmt.Sprintf("<li class=\"%s\">\n", listItemStatuses[li.Status]))
-	} else {
-		w.WriteString("<li>\n")
+	attributes := ""
+	if li.Value != "" {
+		attributes += fmt.Sprintf(` value="%s"`, li.Value)
 	}
-	WriteNodes(w, li.Children...)
+	if li.Status != "" {
+		attributes += fmt.Sprintf(` class="%s"`, listItemStatuses[li.Status])
+	}
+	w.WriteString(fmt.Sprintf("<li%s>", attributes))
+	w.writeListItemContent(li.Children)
 	w.WriteString("</li>\n")
 }
 
@@ -434,9 +444,24 @@ func (w *HTMLWriter) WriteDescriptiveListItem(di DescriptiveListItem) {
 		w.WriteString("?")
 	}
 	w.WriteString("\n</dt>\n")
-	w.WriteString("<dd>\n")
-	WriteNodes(w, di.Details...)
+	w.WriteString("<dd>")
+	w.writeListItemContent(di.Details)
 	w.WriteString("</dd>\n")
+}
+
+func (w *HTMLWriter) writeListItemContent(children []Node) {
+	if isParagraphNodeSlice(children) {
+		for i, c := range children {
+			out := w.WriteNodesAsString(c.(Paragraph).Children...)
+			if i != 0 && out != "" {
+				w.WriteString("\n")
+			}
+			w.WriteString(out)
+		}
+	} else {
+		w.WriteString("\n")
+		WriteNodes(w, children...)
+	}
 }
 
 func (w *HTMLWriter) WriteParagraph(p Paragraph) {
@@ -584,6 +609,15 @@ func setHTMLAttribute(attributes []h.Attribute, k, v string) []h.Attribute {
 		}
 	}
 	return append(attributes, h.Attribute{Namespace: "", Key: k, Val: v})
+}
+
+func isParagraphNodeSlice(ns []Node) bool {
+	for _, n := range ns {
+		if reflect.TypeOf(n).Name() != "Paragraph" {
+			return false
+		}
+	}
+	return true
 }
 
 func (fs *footnotes) add(f FootnoteLink) int {

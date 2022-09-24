@@ -17,62 +17,89 @@ import (
 	"fmt"
 	"strings"
 
-	"github.com/gobwas/glob"
+	"github.com/gohugoio/hugo/common/types"
 
+	"github.com/gobwas/glob"
 	"github.com/spf13/cast"
 )
 
-// ToLower makes all the keys in the given map lower cased and will do so
-// recursively.
-// Notes:
-// * This will modify the map given.
-// * Any nested map[interface{}]interface{} will be converted to Params.
-func ToLower(m Params) {
-	for k, v := range m {
-		var retyped bool
-		switch v.(type) {
-		case map[interface{}]interface{}:
-			var p Params = cast.ToStringMap(v)
-			v = p
-			ToLower(p)
-			retyped = true
-		case map[string]interface{}:
-			var p Params = v.(map[string]interface{})
-			v = p
-			ToLower(p)
-			retyped = true
-		}
-
-		lKey := strings.ToLower(k)
-		if retyped || k != lKey {
-			delete(m, k)
-			m[lKey] = v
-		}
-	}
-}
-
-func ToStringMapE(in interface{}) (map[string]interface{}, error) {
-	switch in.(type) {
+// ToStringMapE converts in to map[string]interface{}.
+func ToStringMapE(in any) (map[string]any, error) {
+	switch vv := in.(type) {
 	case Params:
-		return in.(Params), nil
+		return vv, nil
+	case map[string]string:
+		var m = map[string]any{}
+		for k, v := range vv {
+			m[k] = v
+		}
+		return m, nil
+
 	default:
 		return cast.ToStringMapE(in)
 	}
 }
 
-func ToStringMap(in interface{}) map[string]interface{} {
+// ToParamsAndPrepare converts in to Params and prepares it for use.
+// If in is nil, an empty map is returned.
+// See PrepareParams.
+func ToParamsAndPrepare(in any) (Params, bool) {
+	if types.IsNil(in) {
+		return Params{}, true
+	}
+	m, err := ToStringMapE(in)
+	if err != nil {
+		return nil, false
+	}
+	PrepareParams(m)
+	return m, true
+}
+
+// MustToParamsAndPrepare calls ToParamsAndPrepare and panics if it fails.
+func MustToParamsAndPrepare(in any) Params {
+	if p, ok := ToParamsAndPrepare(in); ok {
+		return p
+	} else {
+		panic(fmt.Sprintf("cannot convert %T to maps.Params", in))
+	}
+}
+
+// ToStringMap converts in to map[string]interface{}.
+func ToStringMap(in any) map[string]any {
 	m, _ := ToStringMapE(in)
 	return m
 }
 
-func ToSliceStringMap(in interface{}) ([]map[string]interface{}, error) {
+// ToStringMapStringE converts in to map[string]string.
+func ToStringMapStringE(in any) (map[string]string, error) {
+	m, err := ToStringMapE(in)
+	if err != nil {
+		return nil, err
+	}
+	return cast.ToStringMapStringE(m)
+}
+
+// ToStringMapString converts in to map[string]string.
+func ToStringMapString(in any) map[string]string {
+	m, _ := ToStringMapStringE(in)
+	return m
+}
+
+// ToStringMapBool converts in to bool.
+func ToStringMapBool(in any) map[string]bool {
+	m, _ := ToStringMapE(in)
+	return cast.ToStringMapBool(m)
+}
+
+// ToSliceStringMap converts in to []map[string]interface{}.
+func ToSliceStringMap(in any) ([]map[string]any, error) {
 	switch v := in.(type) {
-	case []map[string]interface{}:
+	case []map[string]any:
 		return v, nil
-	case []interface{}:
-		var s []map[string]interface{}
+	case []any:
+		var s []map[string]any
 		for _, entry := range v {
-			if vv, ok := entry.(map[string]interface{}); ok {
+			if vv, ok := entry.(map[string]any); ok {
 				s = append(s, vv)
 			}
 		}
@@ -80,6 +107,20 @@ func ToSliceStringMap(in interface{}) ([]map[string]interface{}, error) {
 	default:
 		return nil, fmt.Errorf("unable to cast %#v of type %T to []map[string]interface{}", in, in)
 	}
+}
+
+// LookupEqualFold finds key in m with case insensitive equality checks.
+func LookupEqualFold[T any | string](m map[string]T, key string) (T, bool) {
+	if v, found := m[key]; found {
+		return v, true
+	}
+	for k, v := range m {
+		if strings.EqualFold(k, key) {
+			return v, true
+		}
+	}
+	var s T
+	return s, false
 }
 
 type keyRename struct {
@@ -119,7 +160,7 @@ func (r KeyRenamer) getNewKey(keyPath string) string {
 
 // Rename renames the keys in the given map according
 // to the patterns in the current KeyRenamer.
-func (r KeyRenamer) Rename(m map[string]interface{}) {
+func (r KeyRenamer) Rename(m map[string]any) {
 	r.renamePath("", m)
 }
 
@@ -127,20 +168,19 @@ func (KeyRenamer) keyPath(k1, k2 string) string {
 	k1, k2 = strings.ToLower(k1), strings.ToLower(k2)
 	if k1 == "" {
 		return k2
-	} else {
-		return k1 + "/" + k2
 	}
+	return k1 + "/" + k2
 }
 
-func (r KeyRenamer) renamePath(parentKeyPath string, m map[string]interface{}) {
+func (r KeyRenamer) renamePath(parentKeyPath string, m map[string]any) {
 	for key, val := range m {
 		keyPath := r.keyPath(parentKeyPath, key)
 		switch val.(type) {
-		case map[interface{}]interface{}:
+		case map[any]any:
 			val = cast.ToStringMap(val)
-			r.renamePath(keyPath, val.(map[string]interface{}))
-		case map[string]interface{}:
-			r.renamePath(keyPath, val.(map[string]interface{}))
+			r.renamePath(keyPath, val.(map[string]any))
+		case map[string]any:
+			r.renamePath(keyPath, val.(map[string]any))
 		}
 
 		newKey := r.getNewKey(keyPath)
