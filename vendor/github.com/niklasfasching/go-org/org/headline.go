@@ -47,7 +47,9 @@ func (d *Document) parseHeadline(i int, parentStop stopFn) (int, Node) {
 	headline.Index = d.addHeadline(&headline)
 
 	text := t.content
-	todoKeywords := strings.FieldsFunc(d.Get("TODO"), func(r rune) bool { return unicode.IsSpace(r) || r == '|' })
+	todoKeywords := trimFastTags(
+		strings.FieldsFunc(d.Get("TODO"), func(r rune) bool { return unicode.IsSpace(r) || r == '|' }),
+	)
 	for _, k := range todoKeywords {
 		if strings.HasPrefix(text, k) && len(text) > len(k) && unicode.IsSpace(rune(text[len(k)])) {
 			headline.Status = k
@@ -82,11 +84,37 @@ func (d *Document) parseHeadline(i int, parentStop stopFn) (int, Node) {
 	return consumed + 1, headline
 }
 
+func trimFastTags(tags []string) []string {
+	trimmedTags := make([]string, len(tags))
+	for i, t := range tags {
+		lParen := strings.LastIndex(t, "(")
+		rParen := strings.LastIndex(t, ")")
+		end := len(t) - 1
+		if lParen == end-2 && rParen == end {
+			trimmedTags[i] = t[:end-2]
+		} else {
+			trimmedTags[i] = t
+		}
+	}
+	return trimmedTags
+}
+
 func (h Headline) ID() string {
 	if customID, ok := h.Properties.Get("CUSTOM_ID"); ok {
 		return customID
 	}
 	return fmt.Sprintf("headline-%d", h.Index)
+}
+
+func (h Headline) IsExcluded(d *Document) bool {
+	for _, excludedTag := range strings.Fields(d.Get("EXCLUDE_TAGS")) {
+		for _, tag := range h.Tags {
+			if tag == excludedTag {
+				return true
+			}
+		}
+	}
+	return false
 }
 
 func (parent *Section) add(current *Section) {
