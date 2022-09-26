@@ -814,10 +814,10 @@ kmodules.xyz/resource-metadata/hub/resourcedescriptors
 # kmodules.xyz/resource-validator v0.25.0
 ## explicit; go 1.18
 kmodules.xyz/resource-validator
-# kubedb.dev/installer v0.17.2-0.20220920190006-92069bc77cbb
+# kubedb.dev/installer v0.17.2-0.20220926155610-2451958074ac
 ## explicit; go 1.18
 kubedb.dev/installer/catalog
-# kubevault.dev/installer v0.4.0-beta.0.0.20220922082056-bbbc40a714d7
+# kubevault.dev/installer v0.4.0-beta.0.0.20220924154407-3026d812a81b
 ## explicit; go 1.18
 kubevault.dev/installer/catalog
 # sigs.k8s.io/controller-runtime v0.13.0
@@ -922,7 +922,7 @@ sigs.k8s.io/structured-merge-diff/v4/value
 # sigs.k8s.io/yaml v1.3.0
 ## explicit; go 1.12
 sigs.k8s.io/yaml
-# stash.appscode.dev/installer v0.12.2-0.20220924054555-4e11f0d6c850
+# stash.appscode.dev/installer v0.12.2-0.20220926171226-38eb2de177b2
 ## explicit; go 1.18
 stash.appscode.dev/installer/catalog
 # github.com/imdario/mergo => github.com/imdario/mergo v0.3.6

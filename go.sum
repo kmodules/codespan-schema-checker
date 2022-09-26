@@ -945,10 +945,10 @@ kmodules.xyz/resource-metadata v0.13.1-0.20220919202005-f28a6b7ed3bd h1:vdDS9iWO
 kmodules.xyz/resource-metadata v0.13.1-0.20220919202005-f28a6b7ed3bd/go.mod h1:dHFJGeJjPpeyhXL7hdgb81NaQa/AeLAkhy4kSpnpPzE=
 kmodules.xyz/resource-validator v0.25.0 h1:obDJT/esrRnj7WY7bhlfl7P4D5120FCcz+T/AvOmH8A=
 kmodules.xyz/resource-validator v0.25.0/go.mod h1:0K6Io9jTt1D+Xs4JX6KtN3UVQwQK1HdZAGUhjr73b2I=
-kubedb.dev/installer v0.17.2-0.20220920190006-92069bc77cbb h1:eEEZGqwytEzJFof+z1/Ly+4B9S97KT7RORbCaXDpTO8=
-kubedb.dev/installer v0.17.2-0.20220920190006-92069bc77cbb/go.mod h1:n6an/DT5UV4lC0oIJ4TWWHkvrL+SgbBGKP7t7RWvWOs=
-kubevault.dev/installer v0.4.0-beta.0.0.20220922082056-bbbc40a714d7 h1:tf3cEv5P2mc2topkhti4wsIeTz4M351MklfI3/aohNE=
-kubevault.dev/installer v0.4.0-beta.0.0.20220922082056-bbbc40a714d7/go.mod h1:pWTmw8x83OTyrsNL6jtyqkjgbpBziipILXuudguNvXc=
+kubedb.dev/installer v0.17.2-0.20220926155610-2451958074ac h1:diEtaZnacWT0XDMEp6UvclNPEpUw+xl+g/DT1y2wwQI=
+kubedb.dev/installer v0.17.2-0.20220926155610-2451958074ac/go.mod h1:n6an/DT5UV4lC0oIJ4TWWHkvrL+SgbBGKP7t7RWvWOs=
+kubevault.dev/installer v0.4.0-beta.0.0.20220924154407-3026d812a81b h1:yK2Du3KWKVQNxFz14fUQx9P7FwOqDHSvBBVVU90xEvY=
+kubevault.dev/installer v0.4.0-beta.0.0.20220924154407-3026d812a81b/go.mod h1:pWTmw8x83OTyrsNL6jtyqkjgbpBziipILXuudguNvXc=
 rsc.io/binaryregexp v0.2.0/go.mod h1:qTv7/COck+e2FymRvadv62gMdZztPaShugOCi3I+8D8=
 rsc.io/quote/v3 v3.1.0/go.mod h1:yEA65RcK8LyAZtP9Kv3t0HmxON59tX3rD+tICJqUlj0=
 rsc.io/sampler v1.3.0/go.mod h1:T1hPZKmBbMNahiBKFy5HrXp6adAjACjK9JXDnKaTXpA=
@@ -964,5 +964,5 @@ sigs.k8s.io/structured-merge-diff/v4 v4.2.3 h1:PRbqxJClWWYMNV1dhaG4NsibJbArud9kF
 sigs.k8s.io/structured-merge-diff/v4 v4.2.3/go.mod h1:qjx8mGObPmV2aSZepjQjbmb2ihdVs8cGKBraizNC69E=
 sigs.k8s.io/yaml v1.3.0 h1:a2VclLzOGrwOHDiV8EfBGhvjHvP46CtW5j6POvhYGGo=
 sigs.k8s.io/yaml v1.3.0/go.mod h1:GeOyir5tyXNByN85N/dRIT9es5UQNerPYEKK56eTBm8=
-stash.appscode.dev/installer v0.12.2-0.20220924054555-4e11f0d6c850 h1:+EDNKVesH4nDAK23FC8cu6w6tfh7sFyr2znDCVm/ISI=
-stash.appscode.dev/installer v0.12.2-0.20220924054555-4e11f0d6c850/go.mod h1:8cVzhkAYE1nNas23oO8oQPM1JQ1rsuczRPvDQaY1O7c=
+stash.appscode.dev/installer v0.12.2-0.20220926171226-38eb2de177b2 h1:BBJVLTmE0MhjChOYkFsBbWx22QpIQ3peqnrQY9tPKsY=
+stash.appscode.dev/installer v0.12.2-0.20220926171226-38eb2de177b2/go.mod h1:8cVzhkAYE1nNas23oO8oQPM1JQ1rsuczRPvDQaY1O7c=
