@@ -27,7 +27,6 @@ import (
 	"path/filepath"
 	"strings"
 
-	kmapi "kmodules.xyz/client-go/api/v1"
 	p "kmodules.xyz/client-go/tools/parser"
 	"kmodules.xyz/resource-metadata/hub"
 	resourcevalidator "kmodules.xyz/resource-validator"
@@ -43,16 +42,24 @@ import (
 	"github.com/yuin/goldmark/renderer/html"
 	"github.com/yuin/goldmark/util"
 	"gomodules.xyz/logs"
+	v1 "k8s.io/apiextensions-apiserver/pkg/apis/apiextensions/v1"
+	apierrors "k8s.io/apimachinery/pkg/api/errors"
+	"k8s.io/apimachinery/pkg/api/meta"
 	"k8s.io/apimachinery/pkg/apis/meta/v1/unstructured"
 	"k8s.io/apimachinery/pkg/runtime"
-	"k8s.io/apimachinery/pkg/runtime/schema"
 	utilruntime "k8s.io/apimachinery/pkg/util/runtime"
 	"k8s.io/apimachinery/pkg/util/sets"
 	"k8s.io/cli-runtime/pkg/genericclioptions"
+	clientgoscheme "k8s.io/client-go/kubernetes/scheme"
+	"k8s.io/client-go/rest"
 	cliflag "k8s.io/component-base/cli/flag"
+	"k8s.io/klog/v2/klogr"
 	cmdutil "k8s.io/kubectl/pkg/cmd/util"
 	kubedbcatalog "kubedb.dev/installer/catalog"
 	kubevaultcatalog "kubevault.dev/installer/catalog"
+	"sigs.k8s.io/controller-runtime/pkg/client"
+	"sigs.k8s.io/controller-runtime/pkg/client/apiutil"
+	"sigs.k8s.io/controller-runtime/pkg/log"
 	stashcatalog "stash.appscode.dev/installer/catalog"
 )
 
@@ -77,6 +84,7 @@ var (
 	)
 	logger = NewLogger(os.Stderr)
 	f      cmdutil.Factory
+	kc     client.Client
 
 	stashCatalog = map[Location]string{}
 )
@@ -125,6 +133,10 @@ func main() {
 	matchVersionKubeConfigFlags := cmdutil.NewMatchVersionFlags(kubeConfigFlags)
 	matchVersionKubeConfigFlags.AddFlags(flags)
 	f = cmdutil.NewFactory(matchVersionKubeConfigFlags)
+	cfg, _ := f.ToRESTConfig()
+	cfg.QPS = 1000
+	cfg.Burst = 1000
+	kc = MustClient(cfg)
 
 	flags.AddGoFlagSet(flag.CommandLine)
 
@@ -133,6 +145,39 @@ func main() {
 	logs.Init(rootCmd, false)
 
 	utilruntime.Must(rootCmd.Execute())
+}
+
+func NewClient(cfg *rest.Config) (client.Client, error) {
+	scheme := runtime.NewScheme()
+	_ = clientgoscheme.AddToScheme(scheme)
+	_ = v1.AddToScheme(scheme)
+
+	log.SetLogger(klogr.New())
+	// cfg := ctrl.GetConfigOrDie()
+	// cfg.QPS = 100
+	// cfg.Burst = 100
+
+	mapper, err := apiutil.NewDynamicRESTMapper(cfg)
+	if err != nil {
+		return nil, err
+	}
+
+	return client.New(cfg, client.Options{
+		Scheme: scheme,
+		Mapper: mapper,
+		//Opts: client.WarningHandlerOptions{
+		//	SuppressWarnings:   false,
+		//	AllowDuplicateLogs: false,
+		//},
+	})
+}
+
+func MustClient(cfg *rest.Config) client.Client {
+	kc, err := NewClient(cfg)
+	if err != nil {
+		panic(err)
+	}
+	return kc
 }
 
 // CodeExtractor is a renderer.NodeRenderer implementation that
@@ -229,18 +274,6 @@ func check(path string, info os.FileInfo, err error) error {
 
 func checkObject(ri p.ResourceInfo) error {
 	obj := ri.Object
-	gvr, err := reg.GVR(obj.GetObjectKind().GroupVersionKind())
-	if err != nil {
-		if _, ok := err.(hub.UnregisteredErr); ok {
-			return fmt.Errorf("add %v to kmodules/resource-metadata project", obj.GetObjectKind().GroupVersionKind())
-		}
-		return err
-	}
-	rd, err := reg.LoadByGVR(gvr)
-	if err != nil {
-		logger.Log(err)
-		return nil
-	}
 
 	data, err := json.Marshal(obj)
 	if err != nil {
@@ -252,12 +285,39 @@ func checkObject(ri p.ResourceInfo) error {
 		return nil
 	}
 
-	if rd.Spec.Validation != nil {
-		validator, err := resourcevalidator.New(rd.Spec.Resource.Scope == kmapi.NamespaceScoped, schema.GroupVersionKind{
-			Group:   rd.Spec.Resource.Group,
-			Version: rd.Spec.Resource.Version,
-			Kind:    rd.Spec.Resource.Kind,
-		}, rd.Spec.Validation)
+	gvk := obj.GetObjectKind().GroupVersionKind()
+	mapping, err := kc.RESTMapper().RESTMapping(gvk.GroupKind(), gvk.Version)
+	if err != nil {
+		logger.Log(err)
+		return nil
+	}
+	gvr := mapping.Resource
+
+	var crdSchema *v1.CustomResourceValidation
+
+	var crd v1.CustomResourceDefinition
+	crdName := fmt.Sprintf("%s.%s", gvr.Resource, gvr.Group)
+	err = kc.Get(context.TODO(), client.ObjectKey{Name: crdName}, &crd)
+	if apierrors.IsNotFound(err) {
+		// get resource descriptor from groupVersionResource
+		rd, err := reg.LoadByGVR(gvr)
+		if err != nil {
+			logger.Log(err)
+		}
+		crdSchema = rd.Spec.Validation
+	} else if err != nil {
+		logger.Log(err)
+		return nil
+	} else {
+		for _, v := range crd.Spec.Versions {
+			if v.Name == gvk.Version && v.Schema != nil {
+				crdSchema = v.Schema
+			}
+		}
+	}
+
+	if crdSchema != nil {
+		validator, err := resourcevalidator.New(mapping.Scope.Name() == meta.RESTScopeNameNamespace, gvk, crdSchema)
 		if err != nil {
 			return err
 		}
