@@ -14,7 +14,7 @@ spec:
   podSecurityPolicies:
     databasePolicyName: mongodb-db
   replicationModeDetector:
-    image: kubedb/replication-mode-detector:v0.15.0
+    image: kubedb/replication-mode-detector:v0.16.0-rc.0
   version: "3.4"
 
 ---
@@ -28,13 +28,13 @@ spec:
   deprecated: true
   distribution: Official
   exporter:
-    image: kubedb/mongodb_exporter:v1.0.0
+    image: kubedb/mongodb_exporter:v0.32.0
   initContainer:
     image: kubedb/busybox
   podSecurityPolicies:
     databasePolicyName: mongodb-db
   replicationModeDetector:
-    image: kubedb/replication-mode-detector:v0.15.0
+    image: kubedb/replication-mode-detector:v0.16.0-rc.0
   version: "3.4"
 
 ---
@@ -48,13 +48,13 @@ spec:
   deprecated: true
   distribution: Official
   exporter:
-    image: kubedb/mongodb_exporter:v1.0.0
+    image: kubedb/mongodb_exporter:v0.32.0
   initContainer:
     image: kubedb/busybox
   podSecurityPolicies:
     databasePolicyName: mongodb-db
   replicationModeDetector:
-    image: kubedb/replication-mode-detector:v0.15.0
+    image: kubedb/replication-mode-detector:v0.16.0-rc.0
   version: "3.4"
 
 ---
@@ -68,11 +68,11 @@ spec:
   deprecated: true
   distribution: Official
   exporter:
-    image: kubedb/mongodb_exporter:v1.0.0
+    image: kubedb/mongodb_exporter:v0.32.0
   initContainer:
     image: kubedb/busybox
   podSecurityPolicies:
     databasePolicyName: mongodb-db
   replicationModeDetector:
-    image: kubedb/replication-mode-detector:v0.15.0
+    image: kubedb/replication-mode-detector:v0.16.0-rc.0
   version: "3.4"

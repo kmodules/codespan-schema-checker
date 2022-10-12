@@ -8,16 +8,16 @@ require (
 	github.com/spf13/cobra v1.5.0
 	github.com/yuin/goldmark v1.4.15
 	gomodules.xyz/logs v0.0.6
-	k8s.io/apimachinery v0.25.1
+	k8s.io/apimachinery v0.25.2
 	k8s.io/cli-runtime v0.25.1
 	k8s.io/component-base v0.25.1
 	k8s.io/kubectl v0.25.1
-	kmodules.xyz/client-go v0.25.6
-	kmodules.xyz/resource-metadata v0.13.1-0.20220919202005-f28a6b7ed3bd
+	kmodules.xyz/client-go v0.25.8
+	kmodules.xyz/resource-metadata v0.13.1-0.20221001183334-809797c02490
 	kmodules.xyz/resource-validator v0.25.0
-	kubedb.dev/installer v0.17.2-0.20220926155610-2451958074ac
-	kubevault.dev/installer v0.4.0-beta.0.0.20220924154407-3026d812a81b
-	stash.appscode.dev/installer v0.12.2-0.20220926171226-38eb2de177b2
+	kubedb.dev/installer v0.17.2-0.20221012111550-0d5ff889f3f9
+	kubevault.dev/installer v0.4.0-beta.0.0.20220927135533-49968aca460b
+	stash.appscode.dev/installer v0.12.2-0.20220926204238-29710ffbe0c8
 )
 
 require (
@@ -113,7 +113,7 @@ require (
 	gomodules.xyz/clock v0.0.0-20200817085942-06523dba733f // indirect
 	gomodules.xyz/flags v0.1.3 // indirect
 	gomodules.xyz/jsonpatch/v2 v2.2.0 // indirect
-	gomodules.xyz/semvers v0.0.0-20220316103017-cfbe8c37b63d // indirect
+	gomodules.xyz/semvers v0.0.0-20220924053145-5058ec948ed9 // indirect
 	gomodules.xyz/sets v0.2.1 // indirect
 	gomodules.xyz/wait v0.2.0 // indirect
 	gomodules.xyz/x v0.0.14 // indirect
@@ -123,7 +123,7 @@ require (
 	gopkg.in/inf.v0 v0.9.1 // indirect
 	gopkg.in/yaml.v2 v2.4.0 // indirect
 	gopkg.in/yaml.v3 v3.0.1 // indirect
-	k8s.io/api v0.25.1 // indirect
+	k8s.io/api v0.25.2 // indirect
 	k8s.io/apiextensions-apiserver v0.25.1 // indirect
 	k8s.io/client-go v0.25.1 // indirect
 	k8s.io/klog/v2 v2.80.1 // indirect
