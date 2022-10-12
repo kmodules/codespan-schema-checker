@@ -8,15 +8,19 @@ require (
 	github.com/spf13/cobra v1.5.0
 	github.com/yuin/goldmark v1.4.15
 	gomodules.xyz/logs v0.0.6
+	k8s.io/apiextensions-apiserver v0.25.1
 	k8s.io/apimachinery v0.25.2
 	k8s.io/cli-runtime v0.25.1
+	k8s.io/client-go v0.25.1
 	k8s.io/component-base v0.25.1
+	k8s.io/klog/v2 v2.80.1
 	k8s.io/kubectl v0.25.1
 	kmodules.xyz/client-go v0.25.8
 	kmodules.xyz/resource-metadata v0.13.1-0.20221001183334-809797c02490
 	kmodules.xyz/resource-validator v0.25.0
 	kubedb.dev/installer v0.17.2-0.20221012111550-0d5ff889f3f9
 	kubevault.dev/installer v0.4.0-beta.0.0.20220927135533-49968aca460b
+	sigs.k8s.io/controller-runtime v0.13.0
 	stash.appscode.dev/installer v0.12.2-0.20220926204238-29710ffbe0c8
 )
 
@@ -124,13 +128,9 @@ require (
 	gopkg.in/yaml.v2 v2.4.0 // indirect
 	gopkg.in/yaml.v3 v3.0.1 // indirect
 	k8s.io/api v0.25.2 // indirect
-	k8s.io/apiextensions-apiserver v0.25.1 // indirect
-	k8s.io/client-go v0.25.1 // indirect
-	k8s.io/klog/v2 v2.80.1 // indirect
 	k8s.io/kube-openapi v0.0.0-20220803162953-67bda5d908f1 // indirect
 	k8s.io/utils v0.0.0-20220823124924-e9cbc92d1a73 // indirect
 	kmodules.xyz/apiversion v0.2.0 // indirect
-	sigs.k8s.io/controller-runtime v0.13.0 // indirect
 	sigs.k8s.io/json v0.0.0-20220713155537-f223a00ba0e2 // indirect
 	sigs.k8s.io/kustomize/api v0.12.1 // indirect
 	sigs.k8s.io/kustomize/kyaml v0.13.9 // indirect
