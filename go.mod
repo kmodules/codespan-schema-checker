@@ -9,14 +9,14 @@ require (
 	github.com/yuin/goldmark v1.4.15
 	gomodules.xyz/logs v0.0.6
 	k8s.io/apiextensions-apiserver v0.25.1
-	k8s.io/apimachinery v0.25.2
+	k8s.io/apimachinery v0.25.3
 	k8s.io/cli-runtime v0.25.1
 	k8s.io/client-go v0.25.1
 	k8s.io/component-base v0.25.1
 	k8s.io/klog/v2 v2.80.1
 	k8s.io/kubectl v0.25.1
 	kmodules.xyz/client-go v0.25.8
-	kmodules.xyz/resource-metadata v0.13.1
+	kmodules.xyz/resource-metadata v0.14.4
 	kmodules.xyz/resource-validator v0.25.0
 	kubedb.dev/installer v0.17.2-0.20221012111550-0d5ff889f3f9
 	kubevault.dev/installer v0.4.0-beta.0.0.20220927135533-49968aca460b
