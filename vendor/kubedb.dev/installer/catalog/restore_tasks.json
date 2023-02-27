@@ -74,10 +74,12 @@
     "kubedb-xpack-7.12.0"
   ],
   "elasticsearch-restore-8.2.0": [
+    "xpack-8.5.2",
     "xpack-8.2.0",
     "kubedb-xpack-8.2.0"
   ],
   "mariadb-restore-10.5.8": [
+    "10.10.2",
     "10.6.4",
     "10.5.8",
     "10.4.17"
@@ -165,6 +167,8 @@
   ],
   "postgres-restore-12.4": [
     "timescaledb-2.1.0-pg12",
+    "12.13",
+    "12.13-bullseye",
     "12.10",
     "12.10-bullseye",
     "12.9",
@@ -175,6 +179,8 @@
   ],
   "postgres-restore-13.1": [
     "timescaledb-2.1.0-pg13",
+    "13.9",
+    "13.9-bullseye",
     "13.6",
     "13.6-bullseye",
     "13.5",
@@ -185,11 +191,17 @@
   ],
   "postgres-restore-14.0": [
     "timescaledb-2.5.0-pg14.1",
+    "14.6",
+    "14.6-bullseye",
     "14.2",
     "14.2-bullseye",
     "14.1",
     "14.1-bullseye-postgis",
     "14.1-bullseye"
+  ],
+  "postgres-restore-15.1": [
+    "15.1",
+    "15.1-bullseye"
   ],
   "postgres-restore-9.6.19": [
     "9.6.24",
@@ -202,11 +214,13 @@
     "5.0.3-v1"
   ],
   "redis-restore-6.2.5": [
+    "6.2.8",
     "6.2.7",
     "6.2.5",
     "6.0.6"
   ],
   "redis-restore-7.0.5": [
+    "7.0.6",
     "7.0.5",
     "7.0.4"
   ]
