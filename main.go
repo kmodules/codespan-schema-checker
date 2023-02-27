@@ -334,7 +334,11 @@ func checkObject(ri p.ResourceInfo) error {
 			logger.Log(err)
 			return nil
 		}
-		if dbVersion != "" && !sets.NewString(kubedbcatalog.ActiveDBVersions()[obj.GetKind()]...).Has(dbVersion) {
+		kind := obj.GetKind()
+		if kind == "RedisSentinel" {
+			kind = "Redis"
+		}
+		if dbVersion != "" && !sets.NewString(kubedbcatalog.ActiveDBVersions()[kind]...).Has(dbVersion) {
 			logger.Log(fmt.Errorf("using unknown %s version %s", obj.GetKind(), dbVersion))
 			return nil
 		}
