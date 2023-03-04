@@ -20,7 +20,7 @@ require (
 	kmodules.xyz/resource-validator v0.25.0
 	kubedb.dev/installer v0.17.2-0.20230214042816-a9ca09c0f078
 	kubevault.dev/installer v0.4.0-beta.0.0.20230119130529-140b5954e721
-	sigs.k8s.io/controller-runtime v0.13.0
+	sigs.k8s.io/controller-runtime v0.13.1
 	stash.appscode.dev/installer v0.12.2-0.20230214144813-ebf193a81d8c
 )
 
