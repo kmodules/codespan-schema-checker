@@ -4,18 +4,18 @@ metadata:
   name: 8.0-v3
 spec:
   db:
-    image: kubedb/mysql:8.0.20
+    image: ghcr.io/kubedb/mysql:8.0.20
   deprecated: true
   distribution: Official
   exporter:
-    image: kubedb/mysqld-exporter:v0.11.0
+    image: ghcr.io/kubedb/mysqld-exporter:v0.11.0
   initContainer:
-    image: kubedb/busybox
+    image: ghcr.io/kubedb/busybox
   podSecurityPolicies:
     databasePolicyName: mysql-db
   replicationModeDetector:
-    image: kubedb/replication-mode-detector:v0.18.0
-  upgradeConstraints:
+    image: ghcr.io/kubedb/replication-mode-detector:v0.19.0
+  updateConstraints:
     denylist:
       groupReplication:
       - < 8.0.20
@@ -30,18 +30,18 @@ metadata:
   name: 8.0.20
 spec:
   db:
-    image: kubedb/mysql:8.0.20
+    image: ghcr.io/kubedb/mysql:8.0.20
   deprecated: true
   distribution: Official
   exporter:
-    image: kubedb/mysqld-exporter:v0.11.0
+    image: ghcr.io/kubedb/mysqld-exporter:v0.11.0
   initContainer:
-    image: kubedb/busybox
+    image: ghcr.io/kubedb/busybox
   podSecurityPolicies:
     databasePolicyName: mysql-db
   replicationModeDetector:
-    image: kubedb/replication-mode-detector:v0.18.0
-  upgradeConstraints:
+    image: ghcr.io/kubedb/replication-mode-detector:v0.19.0
+  updateConstraints:
     denylist:
       groupReplication:
       - < 8.0.20
@@ -56,24 +56,24 @@ metadata:
   name: 8.0.20-v1
 spec:
   db:
-    image: kubedb/mysql:8.0.20-v1
+    image: ghcr.io/kubedb/mysql:8.0.20-v1
   deprecated: true
   distribution: Official
   exporter:
-    image: kubedb/mysqld-exporter:v0.11.0
+    image: ghcr.io/kubedb/mysqld-exporter:v0.11.0
   initContainer:
-    image: kubedb/toybox:0.8.4
+    image: ghcr.io/kubedb/toybox:0.8.4
   podSecurityPolicies:
     databasePolicyName: mysql-db
   replicationModeDetector:
-    image: kubedb/replication-mode-detector:v0.18.0
+    image: ghcr.io/kubedb/replication-mode-detector:v0.19.0
   stash:
     addon:
       backupTask:
         name: mysql-backup-8.0.21
       restoreTask:
         name: mysql-restore-8.0.21
-  upgradeConstraints:
+  updateConstraints:
     denylist:
       groupReplication:
       - < 8.0.20
@@ -94,18 +94,18 @@ spec:
   exporter:
     image: prom/mysqld-exporter:v0.13.0
   initContainer:
-    image: kubedb/mysql-init:8.0.17
+    image: ghcr.io/kubedb/mysql-init:8.0.17
   podSecurityPolicies:
     databasePolicyName: mysql-db
   replicationModeDetector:
-    image: kubedb/replication-mode-detector:v0.18.0
+    image: ghcr.io/kubedb/replication-mode-detector:v0.19.0
   stash:
     addon:
       backupTask:
         name: mysql-backup-8.0.21
       restoreTask:
         name: mysql-restore-8.0.21
-  upgradeConstraints:
+  updateConstraints:
     denylist:
       groupReplication:
       - < 8.0.20
