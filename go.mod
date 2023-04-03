@@ -16,12 +16,12 @@ require (
 	k8s.io/klog/v2 v2.80.1
 	k8s.io/kubectl v0.25.1
 	kmodules.xyz/client-go v0.25.17
-	kmodules.xyz/resource-metadata v0.15.0
+	kmodules.xyz/resource-metadata v0.16.1-0.20230401061005-7f76997fa609
 	kmodules.xyz/resource-validator v0.25.0
-	kubedb.dev/installer v0.17.2-0.20230214042816-a9ca09c0f078
-	kubevault.dev/installer v0.4.0-beta.0.0.20230119130529-140b5954e721
+	kubedb.dev/installer v0.17.2-0.20230331162744-a384094de8d1
+	kubevault.dev/installer v0.4.0-beta.0.0.20230326012813-a07923ef9e3b
 	sigs.k8s.io/controller-runtime v0.13.1
-	stash.appscode.dev/installer v0.12.2-0.20230214144813-ebf193a81d8c
+	stash.appscode.dev/installer v0.12.2-0.20230323203020-a607b0ef0da1
 )
 
 require (

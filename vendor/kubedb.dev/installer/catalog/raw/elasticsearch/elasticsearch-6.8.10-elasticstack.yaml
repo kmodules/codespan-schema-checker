@@ -11,7 +11,7 @@ spec:
     image: prometheuscommunity/elasticsearch-exporter:v1.3.0
   initContainer:
     image: tianon/toybox:0.8.4
-    yqImage: kubedb/elasticsearch-init:6.8.10-xpack-v1
+    yqImage: ghcr.io/kubedb/elasticsearch-init:6.8.10-xpack-v1
   podSecurityPolicies:
     databasePolicyName: elasticsearch-db
   stash:
@@ -20,7 +20,7 @@ spec:
         name: elasticsearch-backup-6.8.0
       restoreTask:
         name: elasticsearch-restore-6.8.0
-  upgradeConstraints:
+  updateConstraints:
     allowlist:
     - < 7.5.0
   version: 6.8.10
@@ -40,7 +40,7 @@ spec:
     image: prometheuscommunity/elasticsearch-exporter:v1.3.0
   initContainer:
     image: busybox:1.32.0
-    yqImage: kubedb/elasticsearch-init:6.8.10-xpack
+    yqImage: ghcr.io/kubedb/elasticsearch-init:6.8.10-xpack
   podSecurityPolicies:
     databasePolicyName: elasticsearch-db
   stash:

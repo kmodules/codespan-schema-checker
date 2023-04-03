@@ -11,6 +11,7 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
+
 SHELL=/bin/bash -o pipefail
 
 GO_PKG   := kmodules.xyz
@@ -45,7 +46,7 @@ endif
 SRC_PKGS :=
 SRC_DIRS := $(SRC_PKGS) *.go # directories which hold app source (not vendored)
 
-DOCKER_PLATFORMS := linux/amd64 linux/arm linux/arm64
+DOCKER_PLATFORMS := linux/amd64 linux/arm64
 BIN_PLATFORMS    := $(DOCKER_PLATFORMS) darwin/amd64 darwin/arm64
 
 # Used internally.  Users should pass GOOS and/or GOARCH.
