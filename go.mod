@@ -15,8 +15,8 @@ require (
 	k8s.io/component-base v0.25.1
 	k8s.io/klog/v2 v2.80.1
 	k8s.io/kubectl v0.25.1
-	kmodules.xyz/client-go v0.25.22
-	kmodules.xyz/resource-metadata v0.17.3
+	kmodules.xyz/client-go v0.25.23
+	kmodules.xyz/resource-metadata v0.17.4
 	kmodules.xyz/resource-validator v0.25.0
 	kubedb.dev/installer v0.17.2-0.20230331162744-a384094de8d1
 	kubevault.dev/installer v0.4.0-beta.0.0.20230326012813-a07923ef9e3b
@@ -116,7 +116,7 @@ require (
 	golang.org/x/time v0.0.0-20220722155302-e5dcc9cfc0b9 // indirect
 	gomodules.xyz/clock v0.0.0-20200817085942-06523dba733f // indirect
 	gomodules.xyz/flags v0.1.3 // indirect
-	gomodules.xyz/jsonpatch/v2 v2.2.0 // indirect
+	gomodules.xyz/jsonpatch/v2 v2.3.0 // indirect
 	gomodules.xyz/semvers v0.0.0-20220924053145-5058ec948ed9 // indirect
 	gomodules.xyz/sets v0.2.1 // indirect
 	gomodules.xyz/wait v0.2.0 // indirect
