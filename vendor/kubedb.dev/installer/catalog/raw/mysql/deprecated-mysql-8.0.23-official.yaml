@@ -9,12 +9,14 @@ spec:
   distribution: Official
   exporter:
     image: ghcr.io/kubedb/mysqld-exporter:v0.11.0
+  gitSyncer:
+    image: registry.k8s.io/git-sync/git-sync:v4.0.0-rc5
   initContainer:
     image: ghcr.io/kubedb/toybox:0.8.4
   podSecurityPolicies:
     databasePolicyName: mysql-db
   replicationModeDetector:
-    image: ghcr.io/kubedb/replication-mode-detector:v0.19.0
+    image: ghcr.io/kubedb/replication-mode-detector:v0.23.0
   stash:
     addon:
       backupTask:
@@ -41,12 +43,14 @@ spec:
   distribution: Official
   exporter:
     image: prom/mysqld-exporter:v0.13.0
+  gitSyncer:
+    image: registry.k8s.io/git-sync/git-sync:v4.0.0-rc5
   initContainer:
     image: ghcr.io/kubedb/mysql-init:8.0.21
   podSecurityPolicies:
     databasePolicyName: mysql-db
   replicationModeDetector:
-    image: ghcr.io/kubedb/replication-mode-detector:v0.19.0
+    image: ghcr.io/kubedb/replication-mode-detector:v0.23.0
   stash:
     addon:
       backupTask:

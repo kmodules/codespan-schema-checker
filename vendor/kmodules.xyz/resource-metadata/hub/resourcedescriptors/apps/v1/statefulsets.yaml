@@ -13,12 +13,27 @@ spec:
   - labels:
     - offshoot
     level: Controller
-    namespacePath: metadata.namespace
+    namespace:
+      path: metadata.namespace
     selectorPath: spec.selector
     target:
       apiVersion: v1
       kind: Pod
     type: MatchSelector
+  - labels:
+    - offshoot
+    level: Controller
+    target:
+      apiVersion: monitoring.coreos.com/v1
+      kind: Alertmanager
+    type: OwnedBy
+  - labels:
+    - offshoot
+    level: Controller
+    target:
+      apiVersion: monitoring.coreos.com/v1
+      kind: Prometheus
+    type: OwnedBy
   resource:
     group: apps
     kind: StatefulSet

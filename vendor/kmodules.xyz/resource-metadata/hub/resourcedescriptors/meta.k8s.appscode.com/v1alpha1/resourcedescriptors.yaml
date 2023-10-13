@@ -50,30 +50,45 @@ spec:
                 properties:
                   labels:
                     items:
+                      description: ENUM(authn,authz,auth_secret,backup_via,catalog,cert_issuer,config,connect_via,exposed_by,event,located_on,monitored_by,ocm_bind,offshoot,ops,placed_into,policy,recommended_for,restore_into,scaled_by,storage,view)
                       enum:
-                      - id
-                      - config
+                      - authn
+                      - authz
+                      - auth_secret
                       - backup_via
                       - catalog
+                      - cert_issuer
+                      - config
                       - connect_via
                       - exposed_by
+                      - event
+                      - located_on
                       - monitored_by
+                      - ocm_bind
                       - offshoot
-                      - restore_into
-                      - scaled_by
-                      - view
-                      - cert_issuer
+                      - ops
+                      - placed_into
                       - policy
                       - recommended_for
-                      - ops
+                      - restore_into
+                      - scaled_by
+                      - storage
+                      - view
                       type: string
                     type: array
                   level:
                     type: string
                   nameTemplate:
                     type: string
-                  namespacePath:
-                    type: string
+                  namespace:
+                    properties:
+                      labelSelector:
+                        type: string
+                      path:
+                        type: string
+                      selector:
+                        type: string
+                    type: object
                   references:
                     description: "References are a jsonpath that returns a CSV formatted references to target resources \n If each row has a single column, it is target name. Target resource is non-namespaced or uses the same namespace as the source resource. Example: n1 n2 \n If each row has two columns, it is target [name,namespace]. Example: n1,ns1 n2,ns2 \n If each row has three columns, it is target [name,namespace,kind]. Example: n1,ns1,k1 n2,ns2,k2 \n If each row has four columns, it is target [name,namespace,kind,apiGroup]. Example: n1,ns1,k1,apiGroup1 n2,ns2,k2,apiGroup2"
                     items:
@@ -160,22 +175,30 @@ spec:
                           query:
                             properties:
                               byLabel:
+                                description: ENUM(authn,authz,auth_secret,backup_via,catalog,cert_issuer,config,connect_via,exposed_by,event,located_on,monitored_by,ocm_bind,offshoot,ops,placed_into,policy,recommended_for,restore_into,scaled_by,storage,view)
                                 enum:
-                                - id
-                                - config
+                                - authn
+                                - authz
+                                - auth_secret
                                 - backup_via
                                 - catalog
+                                - cert_issuer
+                                - config
                                 - connect_via
                                 - exposed_by
+                                - event
+                                - located_on
                                 - monitored_by
+                                - ocm_bind
                                 - offshoot
-                                - restore_into
-                                - scaled_by
-                                - view
-                                - cert_issuer
+                                - ops
+                                - placed_into
                                 - policy
                                 - recommended_for
-                                - ops
+                                - restore_into
+                                - scaled_by
+                                - storage
+                                - view
                                 type: string
                               raw:
                                 type: string
@@ -223,7 +246,7 @@ spec:
                 type: object
               type: array
             maintainers:
-              description: Maintainers is an optional list of maintainers of the application. The maintainers in this list maintain the the source code, images, and package for the application.
+              description: Maintainers is an optional list of maintainers of the application. The maintainers in this list maintain the source code, images, and package for the application.
               items:
                 description: ContactData contains information about an individual or organization.
                 properties:

@@ -12,7 +12,8 @@ spec:
   connections:
   - labels:
     - cert_issuer
-    namespacePath: metadata.namespace
+    namespace:
+      path: metadata.namespace
     references:
     - '{.spec.issuerRef.name},{.metadata.namespace}'
     target:
@@ -26,6 +27,14 @@ spec:
     target:
       apiVersion: cert-manager.io/v1
       kind: ClusterIssuer
+    type: MatchRef
+  - labels:
+    - auth_secret
+    references:
+    - '{.spec.secretName}'
+    target:
+      apiVersion: v1
+      kind: Secret
     type: MatchRef
   resource:
     group: cert-manager.io
