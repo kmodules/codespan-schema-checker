@@ -35,7 +35,7 @@ github.com/bep/golibsass/libsass/libsasserrors
 # github.com/blang/semver/v4 v4.0.0
 ## explicit; go 1.14
 github.com/blang/semver/v4
-# github.com/cespare/xxhash/v2 v2.1.2
+# github.com/cespare/xxhash/v2 v2.2.0
 ## explicit; go 1.11
 github.com/cespare/xxhash/v2
 # github.com/chai2010/gettext-go v1.0.2
@@ -340,13 +340,13 @@ go.starlark.net/resolve
 go.starlark.net/starlark
 go.starlark.net/starlarkstruct
 go.starlark.net/syntax
-# golang.org/x/crypto v0.13.0
+# golang.org/x/crypto v0.14.0
 ## explicit; go 1.17
 golang.org/x/crypto/bcrypt
 golang.org/x/crypto/blowfish
 golang.org/x/crypto/pbkdf2
 golang.org/x/crypto/scrypt
-# golang.org/x/net v0.15.0
+# golang.org/x/net v0.17.0
 ## explicit; go 1.17
 golang.org/x/net/context
 golang.org/x/net/html
@@ -357,17 +357,16 @@ golang.org/x/net/http2/hpack
 golang.org/x/net/idna
 golang.org/x/net/internal/socks
 golang.org/x/net/proxy
-# golang.org/x/oauth2 v0.7.0
-## explicit; go 1.17
+# golang.org/x/oauth2 v0.13.0
+## explicit; go 1.18
 golang.org/x/oauth2
 golang.org/x/oauth2/internal
-# golang.org/x/sys v0.12.0
+# golang.org/x/sys v0.13.0
 ## explicit; go 1.17
-golang.org/x/sys/internal/unsafeheader
 golang.org/x/sys/plan9
 golang.org/x/sys/unix
 golang.org/x/sys/windows
-# golang.org/x/term v0.12.0
+# golang.org/x/term v0.13.0
 ## explicit; go 1.17
 golang.org/x/term
 # golang.org/x/text v0.13.0
@@ -401,8 +400,8 @@ gomodules.xyz/logs
 # gomodules.xyz/pointer v0.1.0
 ## explicit; go 1.15
 gomodules.xyz/pointer
-# gomodules.xyz/semvers v0.0.0-20220924053145-5058ec948ed9
-## explicit; go 1.16
+# gomodules.xyz/semvers v0.0.1
+## explicit; go 1.20
 gomodules.xyz/semvers
 # gomodules.xyz/sets v0.2.1
 ## explicit; go 1.14
@@ -423,11 +422,13 @@ google.golang.org/appengine/internal/log
 google.golang.org/appengine/internal/remote_api
 google.golang.org/appengine/internal/urlfetch
 google.golang.org/appengine/urlfetch
-# google.golang.org/genproto v0.0.0-20220502173005-c8bf987b8c21
-## explicit; go 1.15
+# google.golang.org/genproto/googleapis/api v0.0.0-20230711160842-782d3b101e98
+## explicit; go 1.19
 google.golang.org/genproto/googleapis/api/expr/v1alpha1
+# google.golang.org/genproto/googleapis/rpc v0.0.0-20230711160842-782d3b101e98
+## explicit; go 1.19
 google.golang.org/genproto/googleapis/rpc/status
-# google.golang.org/protobuf v1.28.1
+# google.golang.org/protobuf v1.31.0
 ## explicit; go 1.11
 google.golang.org/protobuf/encoding/protojson
 google.golang.org/protobuf/encoding/prototext
@@ -798,7 +799,7 @@ k8s.io/utils/strings/slices
 # kmodules.xyz/apiversion v0.2.0
 ## explicit; go 1.14
 kmodules.xyz/apiversion
-# kmodules.xyz/client-go v0.25.38
+# kmodules.xyz/client-go v0.25.43
 ## explicit; go 1.18
 kmodules.xyz/client-go
 kmodules.xyz/client-go/api/v1
@@ -824,10 +825,10 @@ kmodules.xyz/resource-metrics/api
 # kmodules.xyz/resource-validator v0.25.0
 ## explicit; go 1.18
 kmodules.xyz/resource-validator
-# kubedb.dev/installer v0.17.2-0.20231012160151-a74a4214e0f6
+# kubedb.dev/installer v0.17.2-0.20231130073144-45b0125690d2
 ## explicit; go 1.18
-kubedb.dev/installer/catalog
-# kubevault.dev/installer v0.4.0-beta.0.0.20231004203226-97e0f2fc29ba
+kubedb.dev/installer/catalog/kubedb
+# kubevault.dev/installer v0.4.0-beta.0.0.20231123162226-04c5a03332d0
 ## explicit; go 1.18
 kubevault.dev/installer/catalog
 # sigs.k8s.io/controller-runtime v0.13.1
@@ -933,7 +934,7 @@ sigs.k8s.io/structured-merge-diff/v4/value
 # sigs.k8s.io/yaml v1.3.0
 ## explicit; go 1.12
 sigs.k8s.io/yaml
-# stash.appscode.dev/installer v0.12.2-0.20231004214235-7bd4fbf5dcb0
+# stash.appscode.dev/installer v0.12.2-0.20231123162240-722af4d3a1a5
 ## explicit; go 1.18
 stash.appscode.dev/installer/catalog
 # x-helm.dev/apimachinery v0.0.12

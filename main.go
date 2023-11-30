@@ -55,7 +55,7 @@ import (
 	cliflag "k8s.io/component-base/cli/flag"
 	"k8s.io/klog/v2/klogr"
 	cmdutil "k8s.io/kubectl/pkg/cmd/util"
-	kubedbcatalog "kubedb.dev/installer/catalog"
+	kubedbcatalog "kubedb.dev/installer/catalog/kubedb"
 	kubevaultcatalog "kubevault.dev/installer/catalog"
 	"sigs.k8s.io/controller-runtime/pkg/client"
 	"sigs.k8s.io/controller-runtime/pkg/client/apiutil"
