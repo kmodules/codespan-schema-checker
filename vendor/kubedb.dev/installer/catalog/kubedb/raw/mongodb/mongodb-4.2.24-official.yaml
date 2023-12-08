@@ -16,7 +16,7 @@ spec:
     walg:
       image: ghcr.io/kubedb/wal-g:v2023.11.30_mongo
   db:
-    image: mongo:4.2.24
+    image: ghcr.io/appscode-images/mongo:4.2.24
   distribution: Official
   exporter:
     image: ghcr.io/kubedb/mongodb_exporter:v0.32.0
@@ -27,7 +27,9 @@ spec:
   podSecurityPolicies:
     databasePolicyName: mongodb-db
   replicationModeDetector:
-    image: ghcr.io/kubedb/replication-mode-detector:v0.25.0-rc.0
+    image: ghcr.io/kubedb/replication-mode-detector:v0.25.0
+  securityContext:
+    runAsUser: 999
   stash:
     addon:
       backupTask:

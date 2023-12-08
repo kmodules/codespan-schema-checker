@@ -4,7 +4,7 @@ metadata:
   name: 6.0.6
 spec:
   coordinator:
-    image: ghcr.io/kubedb/redis-coordinator:v0.17.0-rc.0
+    image: ghcr.io/kubedb/redis-coordinator:v0.17.0
   db:
     image: ghcr.io/kubedb/redis:6.0.6
   exporter:
@@ -13,6 +13,8 @@ spec:
     image: ghcr.io/kubedb/redis-init:0.7.0
   podSecurityPolicies:
     databasePolicyName: redis-db
+  securityContext:
+    runAsUser: 999
   stash:
     addon:
       backupTask:

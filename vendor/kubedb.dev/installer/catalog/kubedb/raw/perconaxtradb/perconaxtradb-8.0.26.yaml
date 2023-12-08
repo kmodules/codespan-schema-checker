@@ -4,7 +4,7 @@ metadata:
   name: 8.0.26
 spec:
   coordinator:
-    image: ghcr.io/kubedb/percona-xtradb-coordinator:v0.11.0-rc.0
+    image: ghcr.io/kubedb/percona-xtradb-coordinator:v0.11.0
   db:
     image: percona/percona-xtradb-cluster:8.0.26
   exporter:
@@ -13,6 +13,8 @@ spec:
     image: ghcr.io/kubedb/percona-xtradb-init:0.2.0
   podSecurityPolicies:
     databasePolicyName: percona-xtradb-db
+  securityContext:
+    runAsUser: 999
   stash:
     addon:
       backupTask:

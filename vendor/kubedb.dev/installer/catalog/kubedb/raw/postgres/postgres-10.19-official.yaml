@@ -1,10 +1,10 @@
 apiVersion: catalog.kubedb.com/v1alpha1
 kind: PostgresVersion
 metadata:
-  name: 10.19-bullseye
+  name: "10.19"
 spec:
   coordinator:
-    image: ghcr.io/kubedb/pg-coordinator:v0.22.0-rc.0
+    image: ghcr.io/kubedb/pg-coordinator:v0.22.0
   db:
     baseOS: bullseye
     image: postgres:10.19-bullseye
@@ -16,8 +16,8 @@ spec:
   podSecurityPolicies:
     databasePolicyName: postgres-db
   securityContext:
-    runAsAnyNonRoot: true
-    runAsUser: 999
+    runAsAnyNonRoot: false
+    runAsUser: 70
   stash:
     addon:
       backupTask:
@@ -33,10 +33,10 @@ spec:
 apiVersion: catalog.kubedb.com/v1alpha1
 kind: PostgresVersion
 metadata:
-  name: "10.19"
+  name: 10.19-bullseye
 spec:
   coordinator:
-    image: ghcr.io/kubedb/pg-coordinator:v0.22.0-rc.0
+    image: ghcr.io/kubedb/pg-coordinator:v0.22.0
   db:
     baseOS: bullseye
     image: postgres:10.19-bullseye
@@ -48,8 +48,8 @@ spec:
   podSecurityPolicies:
     databasePolicyName: postgres-db
   securityContext:
-    runAsAnyNonRoot: false
-    runAsUser: 70
+    runAsAnyNonRoot: true
+    runAsUser: 999
   stash:
     addon:
       backupTask:

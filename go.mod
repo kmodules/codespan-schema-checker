@@ -18,7 +18,7 @@ require (
 	kmodules.xyz/client-go v0.25.43
 	kmodules.xyz/resource-metadata v0.17.26-0.20231009112556-f90c55e7954d
 	kmodules.xyz/resource-validator v0.25.0
-	kubedb.dev/installer v0.17.2-0.20231130073144-45b0125690d2
+	kubedb.dev/installer v0.17.2-0.20231208191222-7ae7b760dee7
 	kubevault.dev/installer v0.4.0-beta.0.0.20231123162226-04c5a03332d0
 	sigs.k8s.io/controller-runtime v0.13.1
 	stash.appscode.dev/installer v0.12.2-0.20231123162240-722af4d3a1a5
@@ -118,7 +118,7 @@ require (
 	gomodules.xyz/flags v0.1.3 // indirect
 	gomodules.xyz/jsonpatch/v2 v2.4.0 // indirect
 	gomodules.xyz/pointer v0.1.0 // indirect
-	gomodules.xyz/semvers v0.0.1 // indirect
+	gomodules.xyz/semvers v0.0.2 // indirect
 	gomodules.xyz/sets v0.2.1 // indirect
 	gomodules.xyz/wait v0.2.0 // indirect
 	gomodules.xyz/x v0.0.14 // indirect
