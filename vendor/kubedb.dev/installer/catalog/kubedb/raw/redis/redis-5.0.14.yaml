@@ -4,9 +4,9 @@ metadata:
   name: 5.0.14
 spec:
   coordinator:
-    image: ghcr.io/kubedb/redis-coordinator:v0.17.0
+    image: ghcr.io/kubedb/redis-coordinator:v0.18.0
   db:
-    image: redis:5.0.14
+    image: ghcr.io/appscode-images/redis:5.0.14-bullseye
   exporter:
     image: ghcr.io/kubedb/redis_exporter:1.9.0
   initContainer:
