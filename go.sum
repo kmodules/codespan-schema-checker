@@ -972,8 +972,8 @@ kmodules.xyz/resource-metrics v0.25.3 h1:g9EjNfYRrUSnbA4r+bUQefQ5Ban6I6rpKjnB3ER
 kmodules.xyz/resource-metrics v0.25.3/go.mod h1:H7YLdUQJXUSzf5cNI4IYWU4Wsmrua/jpw7gqDnE3BwM=
 kmodules.xyz/resource-validator v0.25.0 h1:obDJT/esrRnj7WY7bhlfl7P4D5120FCcz+T/AvOmH8A=
 kmodules.xyz/resource-validator v0.25.0/go.mod h1:0K6Io9jTt1D+Xs4JX6KtN3UVQwQK1HdZAGUhjr73b2I=
-kubedb.dev/installer v0.17.2-0.20231222173328-e0c2b5e0b46c h1:R5cVWKWa7ZZ/bC+y0zl5F026bwzglaFgZ9aNZQKfJQk=
-kubedb.dev/installer v0.17.2-0.20231222173328-e0c2b5e0b46c/go.mod h1:3KjOqBjRls5BzQ3SDl98J2CmZLnkkdSMAVT89IYefBg=
+kubedb.dev/installer v0.17.2-0.20240104015444-9fce357cc91a h1:jiTkiWKv/my0lYmXOmQ9WMVjpHPik7610a9ddqnqbxY=
+kubedb.dev/installer v0.17.2-0.20240104015444-9fce357cc91a/go.mod h1:JrBRNb5PhZcRwt2iCTEs+spoLTU8UpGYaGb6TUeol1o=
 kubevault.dev/installer v0.4.0-beta.0.0.20231123162226-04c5a03332d0 h1:QDRaC6kMsdZeM1ra1kHquH34La1MuqS4JghfQt3zVAM=
 kubevault.dev/installer v0.4.0-beta.0.0.20231123162226-04c5a03332d0/go.mod h1:mjbLvhmBtkaHhf35b0rHBjO9LwxLVk5hQ9TR9TfEDeI=
 rsc.io/binaryregexp v0.2.0/go.mod h1:qTv7/COck+e2FymRvadv62gMdZztPaShugOCi3I+8D8=

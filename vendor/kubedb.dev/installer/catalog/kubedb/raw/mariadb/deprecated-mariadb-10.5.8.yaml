@@ -4,14 +4,14 @@ metadata:
   name: 10.5.8
 spec:
   coordinator:
-    image: ghcr.io/kubedb/mariadb-coordinator:v0.19.0
+    image: ghcr.io/kubedb/mariadb-coordinator:v0.20.0
   db:
     image: mariadb:10.5.8
   deprecated: true
   exporter:
     image: prom/mysqld-exporter:v0.13.0
   initContainer:
-    image: ghcr.io/kubedb/mariadb-init:0.5.0
+    image: ghcr.io/kubedb/mariadb-init:0.5.1
   podSecurityPolicies:
     databasePolicyName: maria-db
   stash:
