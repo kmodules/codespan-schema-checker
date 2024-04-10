@@ -157,7 +157,11 @@ func NewClient(cfg *rest.Config) (client.Client, error) {
 	// cfg.QPS = 100
 	// cfg.Burst = 100
 
-	mapper, err := apiutil.NewDynamicRESTMapper(cfg)
+	hc, err := rest.HTTPClientFor(cfg)
+	if err != nil {
+		return nil, err
+	}
+	mapper, err := apiutil.NewDynamicRESTMapper(cfg, hc)
 	if err != nil {
 		return nil, err
 	}
