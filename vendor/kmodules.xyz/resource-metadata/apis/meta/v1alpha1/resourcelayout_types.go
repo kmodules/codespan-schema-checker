@@ -54,8 +54,10 @@ type ResourceLayoutSpec struct {
 }
 
 type ResourcePageLayout struct {
-	Name     string          `json:"name"`
-	Sections []SectionLayout `json:"sections,omitempty"`
+	Name string `json:"name"`
+	// +optional
+	RequiredFeatureSets map[string]FeatureList `json:"requiredFeatureSets,omitempty"`
+	Sections            []SectionLayout        `json:"sections,omitempty"`
 }
 
 type SectionLayout struct {
@@ -64,6 +66,8 @@ type SectionLayout struct {
 	Info    *PageBlockLayout       `json:"info,omitempty"`
 	Insight *PageBlockLayout       `json:"insight,omitempty"`
 	Blocks  []PageBlockLayout      `json:"blocks,omitempty"`
+	// +optional
+	RequiredFeatureSets map[string]FeatureList `json:"requiredFeatureSets,omitempty"`
 }
 
 type PageBlockLayout struct {
@@ -78,7 +82,11 @@ type PageBlockLayout struct {
 	Actions                 *ResourceActions    `json:"actions,omitempty"`
 
 	View *PageBlockTableDefinition `json:"view,omitempty"`
+
+	RequiredFeatureSets map[string]FeatureList `json:"requiredFeatureSets,omitempty"`
 }
+
+type FeatureList []string
 
 type PageBlockTableDefinition struct {
 	Columns []ResourceColumnDefinition `json:"columns,omitempty"`

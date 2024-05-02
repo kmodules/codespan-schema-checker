@@ -36,25 +36,33 @@
     "10.4.32"
   ],
   "mongodb-backup-4.2.3": [
-    "percona-4.2.7",
     "4.2.24"
   ],
   "mongodb-backup-4.4.6": [
-    "percona-4.4.10",
+    "percona-4.4.26",
+    "percona-4.2.24",
     "4.4.26"
   ],
   "mongodb-backup-5.0.15": [
+    "5.0.26",
     "5.0.23"
   ],
   "mongodb-backup-6.0.5": [
+    "percona-7.0.4",
+    "percona-6.0.12",
+    "percona-5.0.23",
+    "7.0.8",
+    "7.0.5",
     "6.0.12"
   ],
   "mysql-backup-5.7.25": [
-    "5.7.44"
+    "5.7.44",
+    "5.7.42-debian"
   ],
   "mysql-backup-8.0.21": [
     "8.2.0",
     "8.1.0",
+    "8.0.36",
     "8.0.35",
     "8.0.31-innodb"
   ],
@@ -68,34 +76,38 @@
     "10.23"
   ],
   "postgres-backup-11.9": [
-    "timescaledb-2.1.0-pg11",
     "11.22-bookworm",
     "11.22",
-    "11.14-bullseye-postgis"
+    "11-bullseye-postgis"
   ],
   "postgres-backup-12.4": [
-    "timescaledb-2.1.0-pg12",
     "12.17-bookworm",
     "12.17",
-    "12.9-bullseye-postgis"
+    "12-bullseye-postgis"
   ],
   "postgres-backup-13.1": [
-    "timescaledb-2.1.0-pg13",
+    "timescaledb-2.14.2-pg13",
     "13.13-bookworm",
     "13.13",
-    "13.5-bullseye-postgis"
+    "13-bullseye-postgis"
   ],
   "postgres-backup-14.0": [
-    "timescaledb-2.5.0-pg14.1",
+    "timescaledb-2.14.2-pg14",
     "14.10-bookworm",
     "14.10",
-    "14.1-bullseye-postgis"
+    "14-bullseye-postgis"
   ],
   "postgres-backup-15.1": [
-    "16.1-bookworm",
-    "16.1",
+    "timescaledb-2.14.2-pg15",
     "15.5-bookworm",
-    "15.5"
+    "15.5",
+    "15-bullseye-postgis"
+  ],
+  "postgres-backup-16.1": [
+    "timescaledb-2.14.2-pg16",
+    "16.2-bullseye-postgis",
+    "16.1-bookworm",
+    "16.1"
   ],
   "redis-backup-5.0.13": [
     "5.0.14"
@@ -105,7 +117,9 @@
     "6.0.20"
   ],
   "redis-backup-7.0.5": [
+    "7.2.4",
     "7.2.3",
+    "7.0.15",
     "7.0.14"
   ]
 }

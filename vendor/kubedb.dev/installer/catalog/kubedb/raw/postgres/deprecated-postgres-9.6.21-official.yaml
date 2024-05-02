@@ -4,16 +4,16 @@ metadata:
   name: 9.6.21
 spec:
   coordinator:
-    image: ghcr.io/kubedb/pg-coordinator:v0.24.0
+    image: ghcr.io/kubedb/pg-coordinator:v0.29.0
   db:
     baseOS: alpine
     image: postgres:9.6.21-alpine
   deprecated: true
   distribution: Official
   exporter:
-    image: prometheuscommunity/postgres-exporter:v0.9.0
+    image: prometheuscommunity/postgres-exporter:v0.15.0
   initContainer:
-    image: ghcr.io/kubedb/postgres-init:0.11.0
+    image: ghcr.io/kubedb/postgres-init:0.12.0
   podSecurityPolicies:
     databasePolicyName: postgres-db
   securityContext:
@@ -37,16 +37,16 @@ metadata:
   name: 9.6.21-debian
 spec:
   coordinator:
-    image: ghcr.io/kubedb/pg-coordinator:v0.24.0
+    image: ghcr.io/kubedb/pg-coordinator:v0.29.0
   db:
     baseOS: debian
     image: postgres:9.6.21
   deprecated: true
   distribution: Official
   exporter:
-    image: prometheuscommunity/postgres-exporter:v0.9.0
+    image: prometheuscommunity/postgres-exporter:v0.15.0
   initContainer:
-    image: ghcr.io/kubedb/postgres-init:0.11.0
+    image: ghcr.io/kubedb/postgres-init:0.12.0
   podSecurityPolicies:
     databasePolicyName: postgres-db
   securityContext:

@@ -21,6 +21,7 @@ import (
 	"strings"
 
 	ofst "kmodules.xyz/offshoot-api/api/v1"
+	ofstv2 "kmodules.xyz/offshoot-api/api/v2"
 
 	"gomodules.xyz/pointer"
 	core "k8s.io/api/core/v1"
@@ -81,6 +82,33 @@ func AddResourceList(x, y core.ResourceList) core.ResourceList {
 		if !sum.IsZero() {
 			result[core.ResourceName(fullName)] = sum
 		}
+	}
+	return result
+}
+
+func SubtractResourceList(x, y core.ResourceList) core.ResourceList {
+	names := sets.NewString()
+	for k := range x {
+		names.Insert(string(k))
+	}
+	for k := range y {
+		names.Insert(string(k))
+	}
+
+	result := core.ResourceList{}
+	for _, fullName := range names.UnsortedList() {
+		_, name, found := strings.Cut(fullName, ".")
+		var rf resource.Format
+		if found {
+			rf = resourceFormat(core.ResourceName(name))
+		} else {
+			rf = resourceFormat(core.ResourceName(fullName))
+		}
+
+		sum := resource.Quantity{Format: rf}
+		sum.Add(*x.Name(core.ResourceName(fullName), rf))
+		sum.Sub(*y.Name(core.ResourceName(fullName), rf))
+		result[core.ResourceName(fullName)] = sum
 	}
 	return result
 }
@@ -266,7 +294,7 @@ func StorageResources(
 	if err != nil {
 		return nil, fmt.Errorf("failed to parse storage %#v: %w", storage, err)
 	}
-	return fn(storage.Resources), nil
+	return fn(ToResourceRequirements(storage.Resources)), nil
 }
 
 type AppNode struct {
@@ -295,8 +323,62 @@ func AppNodeResources(
 		node.Replicas = pointer.Int64P(1)
 	}
 	rr := fn(node.PodTemplate.Spec.Resources)
-	sr := fn(node.Storage.Resources)
+	sr := fn(ToResourceRequirements(node.Storage.Resources))
 	rr[core.ResourceStorage] = *sr.Storage()
 
 	return rr, *node.Replicas, nil
+}
+
+type AppNodeV2 struct {
+	Replicas    *int64                         `json:"replicas,omitempty"`
+	PodTemplate ofstv2.PodTemplateSpec         `json:"podTemplate,omitempty"`
+	Storage     core.PersistentVolumeClaimSpec `json:"storage,omitempty"`
+}
+
+func AppNodeResourcesV2(
+	obj map[string]interface{},
+	fn func(rr core.ResourceRequirements) core.ResourceList,
+	containerName string,
+	fields ...string,
+) (core.ResourceList, int64, error) {
+	val, found, err := unstructured.NestedFieldNoCopy(obj, fields...)
+	if !found || err != nil {
+		return nil, 0, err
+	}
+
+	var node AppNodeV2
+	err = runtime.DefaultUnstructuredConverter.FromUnstructured(val.(map[string]interface{}), &node)
+	if err != nil {
+		return nil, 0, fmt.Errorf("failed to parse node %#v: %w", node, err)
+	}
+
+	if node.Replicas == nil {
+		node.Replicas = pointer.Int64P(1)
+	}
+
+	dbContainer := GetContainerByName(node.PodTemplate.Spec.Containers, containerName)
+	if dbContainer == nil {
+		return nil, 0, fmt.Errorf("failed to find container %s in pod template", containerName)
+	}
+	rr := fn(dbContainer.Resources)
+	sr := fn(ToResourceRequirements(node.Storage.Resources))
+	rr[core.ResourceStorage] = *sr.Storage()
+
+	return rr, *node.Replicas, nil
+}
+
+func ToResourceRequirements(vrr core.VolumeResourceRequirements) core.ResourceRequirements {
+	return core.ResourceRequirements{
+		Limits:   vrr.Limits,
+		Requests: vrr.Requests,
+	}
+}
+
+func GetContainerByName(containers []core.Container, name string) *core.Container {
+	for i := range containers {
+		if containers[i].Name == name {
+			return &containers[i]
+		}
+	}
+	return nil
 }

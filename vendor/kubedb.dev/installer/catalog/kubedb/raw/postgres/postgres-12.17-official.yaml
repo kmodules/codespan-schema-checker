@@ -8,23 +8,23 @@ spec:
       name: postgres-addon
       tasks:
         manifestBackup:
-          name: ManifestBackup
+          name: manifest-backup
         manifestRestore:
-          name: ManifestRestore
+          name: manifest-restore
         volumeSnapshot:
-          name: VolumeSnapshot
+          name: volume-snapshot
     walg:
-      image: ghcr.io/kubedb/postgres-archiver:(v0.1.0)_12.17-alpine
+      image: ghcr.io/kubedb/postgres-archiver:(v0.6.0)_12.17-alpine
   coordinator:
-    image: ghcr.io/kubedb/pg-coordinator:v0.24.0
+    image: ghcr.io/kubedb/pg-coordinator:v0.29.0
   db:
     baseOS: alpine
     image: ghcr.io/appscode-images/postgres:12.17-alpine
   distribution: Official
   exporter:
-    image: prometheuscommunity/postgres-exporter:v0.9.0
+    image: prometheuscommunity/postgres-exporter:v0.15.0
   initContainer:
-    image: ghcr.io/kubedb/postgres-init:0.11.0
+    image: ghcr.io/kubedb/postgres-init:0.12.0
   podSecurityPolicies:
     databasePolicyName: postgres-db
   securityContext:
@@ -53,23 +53,23 @@ spec:
       name: postgres-addon
       tasks:
         manifestBackup:
-          name: ManifestBackup
+          name: manifest-backup
         manifestRestore:
-          name: ManifestRestore
+          name: manifest-restore
         volumeSnapshot:
-          name: VolumeSnapshot
+          name: volume-snapshot
     walg:
-      image: ghcr.io/kubedb/postgres-archiver:(v0.1.0)_12.17-bookworm
+      image: ghcr.io/kubedb/postgres-archiver:(v0.6.0)_12.17-bookworm
   coordinator:
-    image: ghcr.io/kubedb/pg-coordinator:v0.24.0
+    image: ghcr.io/kubedb/pg-coordinator:v0.29.0
   db:
     baseOS: bookworm
     image: ghcr.io/appscode-images/postgres:12.17-bookworm
   distribution: Official
   exporter:
-    image: prometheuscommunity/postgres-exporter:v0.9.0
+    image: prometheuscommunity/postgres-exporter:v0.15.0
   initContainer:
-    image: ghcr.io/kubedb/postgres-init:0.11.0
+    image: ghcr.io/kubedb/postgres-init:0.12.0
   podSecurityPolicies:
     databasePolicyName: postgres-db
   securityContext:

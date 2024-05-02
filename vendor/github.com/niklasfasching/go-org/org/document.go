@@ -20,6 +20,7 @@ import (
 	"log"
 	"os"
 	"strings"
+	"sync"
 )
 
 type Configuration struct {
@@ -72,10 +73,12 @@ var lexFns = []lexFn{
 	lexKeywordOrComment,
 	lexFootnoteDefinition,
 	lexExample,
+	lexLatexBlock,
 	lexText,
 }
 
 var nilToken = token{"nil", -1, "", nil}
+var orgWriterMutex = sync.Mutex{}
 var orgWriter = NewOrgWriter()
 
 // New returns a new Configuration with (hopefully) sane defaults.
@@ -94,7 +97,11 @@ func New() *Configuration {
 }
 
 // String returns the pretty printed Org mode string for the given nodes (see OrgWriter).
-func String(nodes []Node) string { return orgWriter.WriteNodesAsString(nodes...) }
+func String(nodes ...Node) string {
+	orgWriterMutex.Lock()
+	defer orgWriterMutex.Unlock()
+	return orgWriter.WriteNodesAsString(nodes...)
+}
 
 // Write is called after with an instance of the Writer interface to export a parsed Document into another format.
 func (d *Document) Write(w Writer) (out string, err error) {
@@ -180,7 +187,7 @@ func (d *Document) Get(key string) string {
 // - pri (export headline priority)
 // - tags (export headline tags)
 // - ealb (non-standard) (export with east asian line breaks / ignore line breaks between multi-byte characters)
-// see https://orgmode.org/manual/Export-settings.html for more information
+// see https://orgmode.org/manual/Export-Settings.html for more information
 func (d *Document) GetOption(key string) string {
 	get := func(settings map[string]string) string {
 		for _, field := range strings.Fields(settings["OPTIONS"]) {
@@ -209,6 +216,8 @@ func (d *Document) parseOne(i int, stop stopFn) (consumed int, node Node) {
 		consumed, node = d.parseTable(i, stop)
 	case "beginBlock":
 		consumed, node = d.parseBlock(i, stop)
+	case "beginLatexBlock":
+		consumed, node = d.parseLatexBlock(i, stop)
 	case "result":
 		consumed, node = d.parseResult(i, stop)
 	case "beginDrawer":

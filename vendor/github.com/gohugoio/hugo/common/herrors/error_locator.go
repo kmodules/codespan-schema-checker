@@ -1,4 +1,4 @@
-// Copyright 2022 The Hugo Authors. All rights reserved.
+// Copyright 2024 The Hugo Authors. All rights reserved.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -16,7 +16,6 @@ package herrors
 
 import (
 	"io"
-	"io/ioutil"
 	"path/filepath"
 	"strings"
 
@@ -34,7 +33,7 @@ type LineMatcher struct {
 }
 
 // LineMatcherFn is used to match a line with an error.
-// It returns the column number or 0 if the line was found, but column could not be determinde. Returns -1 if no line match.
+// It returns the column number or 0 if the line was found, but column could not be determined. Returns -1 if no line match.
 type LineMatcherFn func(m LineMatcher) int
 
 // SimpleLineMatcher simply matches by line number.
@@ -62,10 +61,19 @@ var OffsetMatcher = func(m LineMatcher) int {
 	return -1
 }
 
+// ContainsMatcher is a line matcher that matches by line content.
+func ContainsMatcher(text string) func(m LineMatcher) int {
+	return func(m LineMatcher) int {
+		if idx := strings.Index(m.Line, text); idx != -1 {
+			return idx + 1
+		}
+		return -1
+	}
+}
+
 // ErrorContext contains contextual information about an error. This will
 // typically be the lines surrounding some problem in a file.
 type ErrorContext struct {
-
 	// If a match will contain the matched line and up to 2 lines before and after.
 	// Will be empty if no match.
 	Lines []string
@@ -114,7 +122,7 @@ func locateError(r io.Reader, le FileError, matches LineMatcherFn) *ErrorContext
 
 	ectx := &ErrorContext{LinesPos: -1, Position: text.Position{Offset: -1}}
 
-	b, err := ioutil.ReadAll(r)
+	b, err := io.ReadAll(r)
 	if err != nil {
 		return ectx
 	}

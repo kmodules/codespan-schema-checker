@@ -4,7 +4,6 @@ import (
 	"fmt"
 	"html"
 	"log"
-	"reflect"
 	"regexp"
 	"strconv"
 	"strings"
@@ -19,8 +18,23 @@ import (
 // HTMLWriter exports an org document into a html document.
 type HTMLWriter struct {
 	ExtendingWriter     Writer
-	HighlightCodeBlock  func(source, lang string, inline bool) string
+	HighlightCodeBlock  func(source, lang string, inline bool, params map[string]string) string
 	PrettyRelativeLinks bool
+	// TopLevelHLevel determines what HTML heading to use for a
+	// level-1 Org headline, and by extension further headings.
+	//
+	// For example, a value of 1 means a top-level Org headline will be
+	// rendered as an <h1> element, a level-2 Org headline will be
+	// rendered as an <h2> element, and so on.
+	//
+	// A value of 2 (default) means a top-level Org headline will be
+	// rendered as an <h2> element, a level-2 Org headline will be
+	// rendered as an <h3> element, and so on.
+	//
+	// This setting and its default behavior match Org's
+	// :html-toplevel-hlevel export property and the associated
+	// org-html-toplevel-hlevel variable.
+	TopLevelHLevel int
 
 	strings.Builder
 	document   *Document
@@ -35,20 +49,20 @@ type footnotes struct {
 }
 
 var emphasisTags = map[string][]string{
-	"/":   []string{"<em>", "</em>"},
-	"*":   []string{"<strong>", "</strong>"},
-	"+":   []string{"<del>", "</del>"},
-	"~":   []string{"<code>", "</code>"},
-	"=":   []string{`<code class="verbatim">`, "</code>"},
-	"_":   []string{`<span style="text-decoration: underline;">`, "</span>"},
-	"_{}": []string{"<sub>", "</sub>"},
-	"^{}": []string{"<sup>", "</sup>"},
+	"/":   {"<em>", "</em>"},
+	"*":   {"<strong>", "</strong>"},
+	"+":   {"<del>", "</del>"},
+	"~":   {"<code>", "</code>"},
+	"=":   {`<code class="verbatim">`, "</code>"},
+	"_":   {`<span style="text-decoration: underline;">`, "</span>"},
+	"_{}": {"<sub>", "</sub>"},
+	"^{}": {"<sup>", "</sup>"},
 }
 
 var listTags = map[string][]string{
-	"unordered":   []string{"<ul>", "</ul>"},
-	"ordered":     []string{"<ol>", "</ol>"},
-	"descriptive": []string{"<dl>", "</dl>"},
+	"unordered":   {"<ul>", "</ul>"},
+	"ordered":     {"<ol>", "</ol>"},
+	"descriptive": {"<dl>", "</dl>"},
 }
 
 var listItemStatuses = map[string]string{
@@ -66,12 +80,13 @@ func NewHTMLWriter() *HTMLWriter {
 		document:   &Document{Configuration: defaultConfig},
 		log:        defaultConfig.Log,
 		htmlEscape: true,
-		HighlightCodeBlock: func(source, lang string, inline bool) string {
+		HighlightCodeBlock: func(source, lang string, inline bool, params map[string]string) string {
 			if inline {
 				return fmt.Sprintf("<div class=\"highlight-inline\">\n<pre>\n%s\n</pre>\n</div>", html.EscapeString(source))
 			}
 			return fmt.Sprintf("<div class=\"highlight\">\n<pre>\n%s\n</pre>\n</div>", html.EscapeString(source))
 		},
+		TopLevelHLevel: 2,
 		footnotes: &footnotes{
 			mapping: map[string]int{},
 		},
@@ -100,7 +115,17 @@ func (w *HTMLWriter) Before(d *Document) {
 	if title := d.Get("TITLE"); title != "" && w.document.GetOption("title") != "nil" {
 		titleDocument := d.Parse(strings.NewReader(title), d.Path)
 		if titleDocument.Error == nil {
-			title = w.WriteNodesAsString(titleDocument.Nodes...)
+			simpleTitle := false
+			if len(titleDocument.Nodes) == 1 {
+				switch p := titleDocument.Nodes[0].(type) {
+				case Paragraph:
+					simpleTitle = true
+					title = w.WriteNodesAsString(p.Children...)
+				}
+			}
+			if !simpleTitle {
+				title = w.WriteNodesAsString(titleDocument.Nodes...)
+			}
 		}
 		w.WriteString(fmt.Sprintf(`<h1 class="title">%s</h1>`+"\n", title))
 	}
@@ -129,7 +154,7 @@ func (w *HTMLWriter) WriteBlock(b Block) {
 		if len(b.Parameters) >= 1 {
 			lang = strings.ToLower(b.Parameters[0])
 		}
-		content = w.HighlightCodeBlock(content, lang, false)
+		content = w.HighlightCodeBlock(content, lang, false, params)
 		w.WriteString(fmt.Sprintf("<div class=\"src src-%s\">\n%s\n</div>\n", lang, content))
 	case "EXAMPLE":
 		w.WriteString(`<pre class="example">` + "\n" + html.EscapeString(content) + "\n</pre>\n")
@@ -152,6 +177,11 @@ func (w *HTMLWriter) WriteBlock(b Block) {
 	}
 }
 
+func (w *HTMLWriter) WriteLatexBlock(b LatexBlock) {
+	WriteNodes(w, b.Content...)
+	w.WriteString("\n")
+}
+
 func (w *HTMLWriter) WriteResult(r Result) { WriteNodes(w, r.Node) }
 
 func (w *HTMLWriter) WriteInlineBlock(b InlineBlock) {
@@ -159,7 +189,7 @@ func (w *HTMLWriter) WriteInlineBlock(b InlineBlock) {
 	switch b.Name {
 	case "src":
 		lang := strings.ToLower(b.Parameters[0])
-		content = w.HighlightCodeBlock(content, lang, true)
+		content = w.HighlightCodeBlock(content, lang, true, nil)
 		w.WriteString(fmt.Sprintf("<div class=\"src src-inline src-%s\">\n%s\n</div>", lang, content))
 	case "export":
 		if strings.ToLower(b.Parameters[0]) == "html" {
@@ -257,27 +287,29 @@ func (w *HTMLWriter) WriteHeadline(h Headline) {
 		return
 	}
 
-	w.WriteString(fmt.Sprintf(`<div id="outline-container-%s" class="outline-%d">`, h.ID(), h.Lvl+1) + "\n")
-	w.WriteString(fmt.Sprintf(`<h%d id="%s">`, h.Lvl+1, h.ID()) + "\n")
+	level := (h.Lvl - 1) + w.TopLevelHLevel
+
+	w.WriteString(fmt.Sprintf(`<div id="outline-container-%s" class="outline-%d">`, h.ID(), level) + "\n")
+	w.WriteString(fmt.Sprintf(`<h%d id="%s">`, level, h.ID()) + "\n")
 	if w.document.GetOption("todo") != "nil" && h.Status != "" {
-		w.WriteString(fmt.Sprintf(`<span class="todo">%s</span>`, h.Status) + "\n")
+		w.WriteString(fmt.Sprintf(`<span class="todo status-%s">%s</span>`, strings.ToLower(h.Status), h.Status) + "\n")
 	}
 	if w.document.GetOption("pri") != "nil" && h.Priority != "" {
-		w.WriteString(fmt.Sprintf(`<span class="priority">[%s]</span>`, h.Priority) + "\n")
+		w.WriteString(fmt.Sprintf(`<span class="priority priority-%s">[%s]</span>`, strings.ToLower(h.Priority), h.Priority) + "\n")
 	}
 
 	WriteNodes(w, h.Title...)
 	if w.document.GetOption("tags") != "nil" && len(h.Tags) != 0 {
 		tags := make([]string, len(h.Tags))
 		for i, tag := range h.Tags {
-			tags[i] = fmt.Sprintf(`<span>%s</span>`, tag)
+			tags[i] = fmt.Sprintf(`<span class="tag-%s">%s</span>`, strings.ToLower(tag), tag)
 		}
 		w.WriteString("&#xa0;&#xa0;&#xa0;")
 		w.WriteString(fmt.Sprintf(`<span class="tags">%s</span>`, strings.Join(tags, "&#xa0;")))
 	}
-	w.WriteString(fmt.Sprintf("\n</h%d>\n", h.Lvl+1))
+	w.WriteString(fmt.Sprintf("\n</h%d>\n", level))
 	if content := w.WriteNodesAsString(h.Children...); content != "" {
-		w.WriteString(fmt.Sprintf(`<div id="outline-text-%s" class="outline-text-%d">`, h.ID(), h.Lvl+1) + "\n" + content + "</div>\n")
+		w.WriteString(fmt.Sprintf(`<div id="outline-text-%s" class="outline-text-%d">`, h.ID(), level) + "\n" + content + "</div>\n")
 	}
 	w.WriteString("</div>\n")
 }
@@ -376,14 +408,14 @@ func (w *HTMLWriter) WriteRegularLink(l RegularLink) {
 		if l.Description == nil {
 			w.WriteString(fmt.Sprintf(`<img src="%s" alt="%s" title="%s" />`, url, url, url))
 		} else {
-			description := strings.TrimPrefix(String(l.Description), "file:")
+			description := strings.TrimPrefix(String(l.Description...), "file:")
 			w.WriteString(fmt.Sprintf(`<a href="%s"><img src="%s" alt="%s" /></a>`, url, description, description))
 		}
 	case "video":
 		if l.Description == nil {
 			w.WriteString(fmt.Sprintf(`<video src="%s" title="%s">%s</video>`, url, url, url))
 		} else {
-			description := strings.TrimPrefix(String(l.Description), "file:")
+			description := strings.TrimPrefix(String(l.Description...), "file:")
 			w.WriteString(fmt.Sprintf(`<a href="%s"><video src="%s" title="%s"></video></a>`, url, description, description))
 		}
 	default:
@@ -590,7 +622,8 @@ func (w *HTMLWriter) blockContent(name string, children []Node) string {
 		WriteNodes(w, children...)
 		out := w.String()
 		w.Builder, w.htmlEscape = builder, htmlEscape
-		return strings.TrimRightFunc(out, unicode.IsSpace)
+
+		return strings.TrimRightFunc(strings.TrimLeftFunc(out, IsNewLineChar), unicode.IsSpace)
 	} else {
 		return w.WriteNodesAsString(children...)
 	}
@@ -613,7 +646,7 @@ func setHTMLAttribute(attributes []h.Attribute, k, v string) []h.Attribute {
 
 func isParagraphNodeSlice(ns []Node) bool {
 	for _, n := range ns {
-		if reflect.TypeOf(n).Name() != "Paragraph" {
+		if _, ok := n.(Paragraph); !ok {
 			return false
 		}
 	}

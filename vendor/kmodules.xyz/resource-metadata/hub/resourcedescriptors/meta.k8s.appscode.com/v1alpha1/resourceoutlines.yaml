@@ -19,28 +19,46 @@ spec:
     openAPIV3Schema:
       properties:
         apiVersion:
-          description: 'APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources'
+          description: 'APIVersion defines the versioned schema of this representation
+            of an object. Servers should convert recognized schemas to the latest
+            internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources'
           type: string
         kind:
-          description: 'Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds'
+          description: 'Kind is a string value representing the REST resource this
+            object represents. Servers may infer this from the endpoint the client
+            submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds'
           type: string
         metadata:
           properties:
             name:
-              description: 'Name must be unique within a namespace. Is required when creating resources, although some resources may allow a client to request the generation of an appropriate name automatically. Name is primarily intended for creation idempotence and configuration definition. Cannot be updated. More info: http://kubernetes.io/docs/user-guide/identifiers#names'
+              description: 'Name must be unique within a namespace. Is required when
+                creating resources, although some resources may allow a client to
+                request the generation of an appropriate name automatically. Name
+                is primarily intended for creation idempotence and configuration definition.
+                Cannot be updated. More info: http://kubernetes.io/docs/user-guide/identifiers#names'
               type: string
             namespace:
-              description: "Namespace defines the space within which each name must be unique. An empty namespace is equivalent to the \"default\" namespace, but \"default\" is the canonical representation. Not all objects are required to be scoped to a namespace - the value of this field for those objects will be empty. \n Must be a DNS_LABEL. Cannot be updated. More info: http://kubernetes.io/docs/user-guide/namespaces"
+              description: "Namespace defines the space within which each name must
+                be unique. An empty namespace is equivalent to the \"default\" namespace,
+                but \"default\" is the canonical representation. Not all objects are
+                required to be scoped to a namespace - the value of this field for
+                those objects will be empty. \n Must be a DNS_LABEL. Cannot be updated.
+                More info: http://kubernetes.io/docs/user-guide/namespaces"
               type: string
             labels:
               additionalProperties:
                 type: string
-              description: 'Map of string keys and values that can be used to organize and categorize (scope and select) objects. May match selectors of replication controllers and services. More info: http://kubernetes.io/docs/user-guide/labels'
+              description: 'Map of string keys and values that can be used to organize
+                and categorize (scope and select) objects. May match selectors of
+                replication controllers and services. More info: http://kubernetes.io/docs/user-guide/labels'
               type: object
             annotations:
               additionalProperties:
                 type: string
-              description: 'Annotations is an unstructured key value map stored with a resource that may be set by external tools to store and retrieve arbitrary metadata. They are not queryable and should be preserved when modifying objects. More info: http://kubernetes.io/docs/user-guide/annotations'
+              description: 'Annotations is an unstructured key value map stored with
+                a resource that may be set by external tools to store and retrieve
+                arbitrary metadata. They are not queryable and should be preserved
+                when modifying objects. More info: http://kubernetes.io/docs/user-guide/annotations'
               type: object
           type: object
         spec:
@@ -58,12 +76,14 @@ spec:
                         disabledTemplate:
                           type: string
                         editor:
-                          description: ChartSourceRef references to a single version of a Chart
+                          description: ChartSourceRef references to a single version
+                            of a Chart
                           properties:
                             name:
                               type: string
                             sourceRef:
-                              description: TypedObjectReference represents an typed namespaced object.
+                              description: TypedObjectReference represents an typed
+                                namespaced object.
                               properties:
                                 apiGroup:
                                   type: string
@@ -73,7 +93,8 @@ spec:
                                   description: 'Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names'
                                   type: string
                                 namespace:
-                                  description: 'Namespace of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/'
+                                  description: 'Namespace of the referent. More info:
+                                    https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/'
                                   type: string
                               required:
                               - name
@@ -85,20 +106,27 @@ spec:
                           - sourceRef
                           - version
                           type: object
+                        enforceQuota:
+                          type: boolean
                         flow:
                           type: string
                         icons:
                           items:
-                            description: ImageSpec contains information about an image used as an icon.
+                            description: ImageSpec contains information about an image
+                              used as an icon.
                             properties:
                               size:
-                                description: (optional) The size of the image in pixels (e.g., 25x25).
+                                description: (optional) The size of the image in pixels
+                                  (e.g., 25x25).
                                 type: string
                               src:
-                                description: The source for image represented as either an absolute URL to the image or a Data URL containing the image. Data URLs are defined in RFC 2397.
+                                description: The source for image represented as either
+                                  an absolute URL to the image or a Data URL containing
+                                  the image. Data URLs are defined in RFC 2397.
                                 type: string
                               type:
-                                description: (optional) The mine type of the image (e.g., "image/png").
+                                description: (optional) The mine type of the image
+                                  (e.g., "image/png").
                                 type: string
                             required:
                             - src
@@ -109,6 +137,7 @@ spec:
                         operationId:
                           type: string
                       required:
+                      - enforceQuota
                       - flow
                       - operationId
                       type: object
@@ -139,16 +168,21 @@ spec:
                   type: string
                 icons:
                   items:
-                    description: ImageSpec contains information about an image used as an icon.
+                    description: ImageSpec contains information about an image used
+                      as an icon.
                     properties:
                       size:
-                        description: (optional) The size of the image in pixels (e.g., 25x25).
+                        description: (optional) The size of the image in pixels (e.g.,
+                          25x25).
                         type: string
                       src:
-                        description: The source for image represented as either an absolute URL to the image or a Data URL containing the image. Data URLs are defined in RFC 2397.
+                        description: The source for image represented as either an
+                          absolute URL to the image or a Data URL containing the image.
+                          Data URLs are defined in RFC 2397.
                         type: string
                       type:
-                        description: (optional) The mine type of the image (e.g., "image/png").
+                        description: (optional) The mine type of the image (e.g.,
+                          "image/png").
                         type: string
                     required:
                     - src
@@ -167,7 +201,7 @@ spec:
                 query:
                   properties:
                     byLabel:
-                      description: ENUM(authn,authz,auth_secret,backup_via,catalog,cert_issuer,config,connect_via,exposed_by,event,located_on,monitored_by,ocm_bind,offshoot,ops,placed_into,policy,recommended_for,restore_into,scaled_by,storage,view)
+                      description: ENUM(authn,authz,auth_secret,backup_via,catalog,cert_issuer,config,connect_via,exposed_by,event,located_on,monitored_by,ocm_bind,offshoot,ops,placed_into,policy,recommended_for,restore_into,scaled_by,source,storage,view)
                       enum:
                       - authn
                       - authz
@@ -189,6 +223,7 @@ spec:
                       - recommended_for
                       - restore_into
                       - scaled_by
+                      - source
                       - storage
                       - view
                       type: string
@@ -203,7 +238,9 @@ spec:
                   - type
                   type: object
                 ref:
-                  description: GroupKind specifies a Group and a Kind, but does not force a version.  This is useful for identifying concepts during lookup stages without having partially valid types
+                  description: GroupKind specifies a Group and a Kind, but does not
+                    force a version.  This is useful for identifying concepts during
+                    lookup stages without having partially valid types
                   properties:
                     group:
                       type: string
@@ -213,16 +250,24 @@ spec:
                   - group
                   - kind
                   type: object
+                requiredFeatureSets:
+                  additionalProperties:
+                    items:
+                      type: string
+                    type: array
+                  type: object
                 view:
                   properties:
                     columns:
                       items:
-                        description: ResourceColumnDefinition specifies a column for server side printing.
+                        description: ResourceColumnDefinition specifies a column for
+                          server side printing.
                         properties:
                           color:
                             properties:
                               template:
-                                description: 'Available color codes: success,danger,warning,info, link, white, light, dark, black see https://bulma.io/documentation/elements/tag/#colors'
+                                description: 'Available color codes: success,danger,warning,info,
+                                  link, white, light, dark, black see https://bulma.io/documentation/elements/tag/#colors'
                                 type: string
                             type: object
                           dashboard:
@@ -231,7 +276,8 @@ spec:
                                 type: string
                             type: object
                           description:
-                            description: description is a human readable description of this column.
+                            description: description is a human readable description
+                              of this column.
                             type: string
                           exec:
                             properties:
@@ -249,7 +295,11 @@ spec:
                                 type: string
                             type: object
                           format:
-                            description: format is an optional OpenAPI type definition for this column. The 'name' format is applied to the primary identifier column to assist in clients identifying column is the resource name. See https://github.com/OAI/OpenAPI-Specification/blob/master/versions/2.0.md#data-types for more.
+                            description: format is an optional OpenAPI type definition
+                              for this column. The 'name' format is applied to the
+                              primary identifier column to assist in clients identifying
+                              column is the resource name. See https://github.com/OAI/OpenAPI-Specification/blob/master/versions/2.0.md#data-types
+                              for more.
                             type: string
                           icon:
                             properties:
@@ -265,10 +315,20 @@ spec:
                             description: name is a human readable name for the column.
                             type: string
                           pathTemplate:
-                            description: 'PathTemplate is a Go text template that will be evaluated to determine cell value. Users can use JSONPath expression to extract nested fields and apply template functions from Masterminds/sprig library. The template function for JSON path is called `jp`. Example: {{ jp "{.a.b}" . }} or {{ jp "{.a.b}" true }}, if json output is desired from JSONPath parser'
+                            description: 'PathTemplate is a Go text template that
+                              will be evaluated to determine cell value. Users can
+                              use JSONPath expression to extract nested fields and
+                              apply template functions from Masterminds/sprig library.
+                              The template function for JSON path is called `jp`.
+                              Example: {{ jp "{.a.b}" . }} or {{ jp "{.a.b}" true
+                              }}, if json output is desired from JSONPath parser'
                             type: string
                           priority:
-                            description: priority is an integer defining the relative importance of this column compared to others. Lower numbers are considered higher priority. Columns that may be omitted in limited space scenarios should be given a higher priority.
+                            description: priority is an integer defining the relative
+                              importance of this column compared to others. Lower
+                              numbers are considered higher priority. Columns that
+                              may be omitted in limited space scenarios should be
+                              given a higher priority.
                             format: int32
                             type: integer
                           shape:
@@ -281,12 +341,18 @@ spec:
                               enable:
                                 type: boolean
                               format:
-                                description: format is an optional OpenAPI type definition for this column. The 'name' format is applied to the primary identifier column to assist in clients identifying column is the resource name. See https://github.com/OAI/OpenAPI-Specification/blob/master/versions/2.0.md#data-types for more.
+                                description: format is an optional OpenAPI type definition
+                                  for this column. The 'name' format is applied to
+                                  the primary identifier column to assist in clients
+                                  identifying column is the resource name. See https://github.com/OAI/OpenAPI-Specification/blob/master/versions/2.0.md#data-types
+                                  for more.
                                 type: string
                               template:
                                 type: string
                               type:
-                                description: type is an OpenAPI type definition for this column. See https://github.com/OAI/OpenAPI-Specification/blob/master/versions/2.0.md#data-types for more.
+                                description: type is an OpenAPI type definition for
+                                  this column. See https://github.com/OAI/OpenAPI-Specification/blob/master/versions/2.0.md#data-types
+                                  for more.
                                 type: string
                             required:
                             - type
@@ -299,7 +365,9 @@ spec:
                                 type: string
                             type: object
                           type:
-                            description: type is an OpenAPI type definition for this column. See https://github.com/OAI/OpenAPI-Specification/blob/master/versions/2.0.md#data-types for more.
+                            description: type is an OpenAPI type definition for this
+                              column. See https://github.com/OAI/OpenAPI-Specification/blob/master/versions/2.0.md#data-types
+                              for more.
                             type: string
                         required:
                         - name
@@ -322,6 +390,12 @@ spec:
                 properties:
                   name:
                     type: string
+                  requiredFeatureSets:
+                    additionalProperties:
+                      items:
+                        type: string
+                      type: array
+                    type: object
                   sections:
                     items:
                       properties:
@@ -344,16 +418,22 @@ spec:
                                 type: string
                               icons:
                                 items:
-                                  description: ImageSpec contains information about an image used as an icon.
+                                  description: ImageSpec contains information about
+                                    an image used as an icon.
                                   properties:
                                     size:
-                                      description: (optional) The size of the image in pixels (e.g., 25x25).
+                                      description: (optional) The size of the image
+                                        in pixels (e.g., 25x25).
                                       type: string
                                     src:
-                                      description: The source for image represented as either an absolute URL to the image or a Data URL containing the image. Data URLs are defined in RFC 2397.
+                                      description: The source for image represented
+                                        as either an absolute URL to the image or
+                                        a Data URL containing the image. Data URLs
+                                        are defined in RFC 2397.
                                       type: string
                                     type:
-                                      description: (optional) The mine type of the image (e.g., "image/png").
+                                      description: (optional) The mine type of the
+                                        image (e.g., "image/png").
                                       type: string
                                   required:
                                   - src
@@ -372,7 +452,7 @@ spec:
                               query:
                                 properties:
                                   byLabel:
-                                    description: ENUM(authn,authz,auth_secret,backup_via,catalog,cert_issuer,config,connect_via,exposed_by,event,located_on,monitored_by,ocm_bind,offshoot,ops,placed_into,policy,recommended_for,restore_into,scaled_by,storage,view)
+                                    description: ENUM(authn,authz,auth_secret,backup_via,catalog,cert_issuer,config,connect_via,exposed_by,event,located_on,monitored_by,ocm_bind,offshoot,ops,placed_into,policy,recommended_for,restore_into,scaled_by,source,storage,view)
                                     enum:
                                     - authn
                                     - authz
@@ -394,6 +474,7 @@ spec:
                                     - recommended_for
                                     - restore_into
                                     - scaled_by
+                                    - source
                                     - storage
                                     - view
                                     type: string
@@ -408,7 +489,10 @@ spec:
                                 - type
                                 type: object
                               ref:
-                                description: GroupKind specifies a Group and a Kind, but does not force a version.  This is useful for identifying concepts during lookup stages without having partially valid types
+                                description: GroupKind specifies a Group and a Kind,
+                                  but does not force a version.  This is useful for
+                                  identifying concepts during lookup stages without
+                                  having partially valid types
                                 properties:
                                   group:
                                     type: string
@@ -418,16 +502,25 @@ spec:
                                 - group
                                 - kind
                                 type: object
+                              requiredFeatureSets:
+                                additionalProperties:
+                                  items:
+                                    type: string
+                                  type: array
+                                type: object
                               view:
                                 properties:
                                   columns:
                                     items:
-                                      description: ResourceColumnDefinition specifies a column for server side printing.
+                                      description: ResourceColumnDefinition specifies
+                                        a column for server side printing.
                                       properties:
                                         color:
                                           properties:
                                             template:
-                                              description: 'Available color codes: success,danger,warning,info, link, white, light, dark, black see https://bulma.io/documentation/elements/tag/#colors'
+                                              description: 'Available color codes:
+                                                success,danger,warning,info, link,
+                                                white, light, dark, black see https://bulma.io/documentation/elements/tag/#colors'
                                               type: string
                                           type: object
                                         dashboard:
@@ -436,7 +529,8 @@ spec:
                                               type: string
                                           type: object
                                         description:
-                                          description: description is a human readable description of this column.
+                                          description: description is a human readable
+                                            description of this column.
                                           type: string
                                         exec:
                                           properties:
@@ -454,7 +548,12 @@ spec:
                                               type: string
                                           type: object
                                         format:
-                                          description: format is an optional OpenAPI type definition for this column. The 'name' format is applied to the primary identifier column to assist in clients identifying column is the resource name. See https://github.com/OAI/OpenAPI-Specification/blob/master/versions/2.0.md#data-types for more.
+                                          description: format is an optional OpenAPI
+                                            type definition for this column. The 'name'
+                                            format is applied to the primary identifier
+                                            column to assist in clients identifying
+                                            column is the resource name. See https://github.com/OAI/OpenAPI-Specification/blob/master/versions/2.0.md#data-types
+                                            for more.
                                           type: string
                                         icon:
                                           properties:
@@ -467,13 +566,27 @@ spec:
                                               type: string
                                           type: object
                                         name:
-                                          description: name is a human readable name for the column.
+                                          description: name is a human readable name
+                                            for the column.
                                           type: string
                                         pathTemplate:
-                                          description: 'PathTemplate is a Go text template that will be evaluated to determine cell value. Users can use JSONPath expression to extract nested fields and apply template functions from Masterminds/sprig library. The template function for JSON path is called `jp`. Example: {{ jp "{.a.b}" . }} or {{ jp "{.a.b}" true }}, if json output is desired from JSONPath parser'
+                                          description: 'PathTemplate is a Go text
+                                            template that will be evaluated to determine
+                                            cell value. Users can use JSONPath expression
+                                            to extract nested fields and apply template
+                                            functions from Masterminds/sprig library.
+                                            The template function for JSON path is
+                                            called `jp`. Example: {{ jp "{.a.b}" .
+                                            }} or {{ jp "{.a.b}" true }}, if json
+                                            output is desired from JSONPath parser'
                                           type: string
                                         priority:
-                                          description: priority is an integer defining the relative importance of this column compared to others. Lower numbers are considered higher priority. Columns that may be omitted in limited space scenarios should be given a higher priority.
+                                          description: priority is an integer defining
+                                            the relative importance of this column
+                                            compared to others. Lower numbers are
+                                            considered higher priority. Columns that
+                                            may be omitted in limited space scenarios
+                                            should be given a higher priority.
                                           format: int32
                                           type: integer
                                         shape:
@@ -486,12 +599,20 @@ spec:
                                             enable:
                                               type: boolean
                                             format:
-                                              description: format is an optional OpenAPI type definition for this column. The 'name' format is applied to the primary identifier column to assist in clients identifying column is the resource name. See https://github.com/OAI/OpenAPI-Specification/blob/master/versions/2.0.md#data-types for more.
+                                              description: format is an optional OpenAPI
+                                                type definition for this column. The
+                                                'name' format is applied to the primary
+                                                identifier column to assist in clients
+                                                identifying column is the resource
+                                                name. See https://github.com/OAI/OpenAPI-Specification/blob/master/versions/2.0.md#data-types
+                                                for more.
                                               type: string
                                             template:
                                               type: string
                                             type:
-                                              description: type is an OpenAPI type definition for this column. See https://github.com/OAI/OpenAPI-Specification/blob/master/versions/2.0.md#data-types for more.
+                                              description: type is an OpenAPI type
+                                                definition for this column. See https://github.com/OAI/OpenAPI-Specification/blob/master/versions/2.0.md#data-types
+                                                for more.
                                               type: string
                                           required:
                                           - type
@@ -504,7 +625,9 @@ spec:
                                               type: string
                                           type: object
                                         type:
-                                          description: type is an OpenAPI type definition for this column. See https://github.com/OAI/OpenAPI-Specification/blob/master/versions/2.0.md#data-types for more.
+                                          description: type is an OpenAPI type definition
+                                            for this column. See https://github.com/OAI/OpenAPI-Specification/blob/master/versions/2.0.md#data-types
+                                            for more.
                                           type: string
                                       required:
                                       - name
@@ -525,16 +648,21 @@ spec:
                           type: array
                         icons:
                           items:
-                            description: ImageSpec contains information about an image used as an icon.
+                            description: ImageSpec contains information about an image
+                              used as an icon.
                             properties:
                               size:
-                                description: (optional) The size of the image in pixels (e.g., 25x25).
+                                description: (optional) The size of the image in pixels
+                                  (e.g., 25x25).
                                 type: string
                               src:
-                                description: The source for image represented as either an absolute URL to the image or a Data URL containing the image. Data URLs are defined in RFC 2397.
+                                description: The source for image represented as either
+                                  an absolute URL to the image or a Data URL containing
+                                  the image. Data URLs are defined in RFC 2397.
                                 type: string
                               type:
-                                description: (optional) The mine type of the image (e.g., "image/png").
+                                description: (optional) The mine type of the image
+                                  (e.g., "image/png").
                                 type: string
                             required:
                             - src
@@ -558,16 +686,22 @@ spec:
                               type: string
                             icons:
                               items:
-                                description: ImageSpec contains information about an image used as an icon.
+                                description: ImageSpec contains information about
+                                  an image used as an icon.
                                 properties:
                                   size:
-                                    description: (optional) The size of the image in pixels (e.g., 25x25).
+                                    description: (optional) The size of the image
+                                      in pixels (e.g., 25x25).
                                     type: string
                                   src:
-                                    description: The source for image represented as either an absolute URL to the image or a Data URL containing the image. Data URLs are defined in RFC 2397.
+                                    description: The source for image represented
+                                      as either an absolute URL to the image or a
+                                      Data URL containing the image. Data URLs are
+                                      defined in RFC 2397.
                                     type: string
                                   type:
-                                    description: (optional) The mine type of the image (e.g., "image/png").
+                                    description: (optional) The mine type of the image
+                                      (e.g., "image/png").
                                     type: string
                                 required:
                                 - src
@@ -586,7 +720,7 @@ spec:
                             query:
                               properties:
                                 byLabel:
-                                  description: ENUM(authn,authz,auth_secret,backup_via,catalog,cert_issuer,config,connect_via,exposed_by,event,located_on,monitored_by,ocm_bind,offshoot,ops,placed_into,policy,recommended_for,restore_into,scaled_by,storage,view)
+                                  description: ENUM(authn,authz,auth_secret,backup_via,catalog,cert_issuer,config,connect_via,exposed_by,event,located_on,monitored_by,ocm_bind,offshoot,ops,placed_into,policy,recommended_for,restore_into,scaled_by,source,storage,view)
                                   enum:
                                   - authn
                                   - authz
@@ -608,6 +742,7 @@ spec:
                                   - recommended_for
                                   - restore_into
                                   - scaled_by
+                                  - source
                                   - storage
                                   - view
                                   type: string
@@ -622,7 +757,10 @@ spec:
                               - type
                               type: object
                             ref:
-                              description: GroupKind specifies a Group and a Kind, but does not force a version.  This is useful for identifying concepts during lookup stages without having partially valid types
+                              description: GroupKind specifies a Group and a Kind,
+                                but does not force a version.  This is useful for
+                                identifying concepts during lookup stages without
+                                having partially valid types
                               properties:
                                 group:
                                   type: string
@@ -632,16 +770,25 @@ spec:
                               - group
                               - kind
                               type: object
+                            requiredFeatureSets:
+                              additionalProperties:
+                                items:
+                                  type: string
+                                type: array
+                              type: object
                             view:
                               properties:
                                 columns:
                                   items:
-                                    description: ResourceColumnDefinition specifies a column for server side printing.
+                                    description: ResourceColumnDefinition specifies
+                                      a column for server side printing.
                                     properties:
                                       color:
                                         properties:
                                           template:
-                                            description: 'Available color codes: success,danger,warning,info, link, white, light, dark, black see https://bulma.io/documentation/elements/tag/#colors'
+                                            description: 'Available color codes: success,danger,warning,info,
+                                              link, white, light, dark, black see
+                                              https://bulma.io/documentation/elements/tag/#colors'
                                             type: string
                                         type: object
                                       dashboard:
@@ -650,7 +797,8 @@ spec:
                                             type: string
                                         type: object
                                       description:
-                                        description: description is a human readable description of this column.
+                                        description: description is a human readable
+                                          description of this column.
                                         type: string
                                       exec:
                                         properties:
@@ -668,7 +816,12 @@ spec:
                                             type: string
                                         type: object
                                       format:
-                                        description: format is an optional OpenAPI type definition for this column. The 'name' format is applied to the primary identifier column to assist in clients identifying column is the resource name. See https://github.com/OAI/OpenAPI-Specification/blob/master/versions/2.0.md#data-types for more.
+                                        description: format is an optional OpenAPI
+                                          type definition for this column. The 'name'
+                                          format is applied to the primary identifier
+                                          column to assist in clients identifying
+                                          column is the resource name. See https://github.com/OAI/OpenAPI-Specification/blob/master/versions/2.0.md#data-types
+                                          for more.
                                         type: string
                                       icon:
                                         properties:
@@ -681,13 +834,27 @@ spec:
                                             type: string
                                         type: object
                                       name:
-                                        description: name is a human readable name for the column.
+                                        description: name is a human readable name
+                                          for the column.
                                         type: string
                                       pathTemplate:
-                                        description: 'PathTemplate is a Go text template that will be evaluated to determine cell value. Users can use JSONPath expression to extract nested fields and apply template functions from Masterminds/sprig library. The template function for JSON path is called `jp`. Example: {{ jp "{.a.b}" . }} or {{ jp "{.a.b}" true }}, if json output is desired from JSONPath parser'
+                                        description: 'PathTemplate is a Go text template
+                                          that will be evaluated to determine cell
+                                          value. Users can use JSONPath expression
+                                          to extract nested fields and apply template
+                                          functions from Masterminds/sprig library.
+                                          The template function for JSON path is called
+                                          `jp`. Example: {{ jp "{.a.b}" . }} or {{
+                                          jp "{.a.b}" true }}, if json output is desired
+                                          from JSONPath parser'
                                         type: string
                                       priority:
-                                        description: priority is an integer defining the relative importance of this column compared to others. Lower numbers are considered higher priority. Columns that may be omitted in limited space scenarios should be given a higher priority.
+                                        description: priority is an integer defining
+                                          the relative importance of this column compared
+                                          to others. Lower numbers are considered
+                                          higher priority. Columns that may be omitted
+                                          in limited space scenarios should be given
+                                          a higher priority.
                                         format: int32
                                         type: integer
                                       shape:
@@ -700,12 +867,20 @@ spec:
                                           enable:
                                             type: boolean
                                           format:
-                                            description: format is an optional OpenAPI type definition for this column. The 'name' format is applied to the primary identifier column to assist in clients identifying column is the resource name. See https://github.com/OAI/OpenAPI-Specification/blob/master/versions/2.0.md#data-types for more.
+                                            description: format is an optional OpenAPI
+                                              type definition for this column. The
+                                              'name' format is applied to the primary
+                                              identifier column to assist in clients
+                                              identifying column is the resource name.
+                                              See https://github.com/OAI/OpenAPI-Specification/blob/master/versions/2.0.md#data-types
+                                              for more.
                                             type: string
                                           template:
                                             type: string
                                           type:
-                                            description: type is an OpenAPI type definition for this column. See https://github.com/OAI/OpenAPI-Specification/blob/master/versions/2.0.md#data-types for more.
+                                            description: type is an OpenAPI type definition
+                                              for this column. See https://github.com/OAI/OpenAPI-Specification/blob/master/versions/2.0.md#data-types
+                                              for more.
                                             type: string
                                         required:
                                         - type
@@ -718,7 +893,9 @@ spec:
                                             type: string
                                         type: object
                                       type:
-                                        description: type is an OpenAPI type definition for this column. See https://github.com/OAI/OpenAPI-Specification/blob/master/versions/2.0.md#data-types for more.
+                                        description: type is an OpenAPI type definition
+                                          for this column. See https://github.com/OAI/OpenAPI-Specification/blob/master/versions/2.0.md#data-types
+                                          for more.
                                         type: string
                                     required:
                                     - name
@@ -754,16 +931,22 @@ spec:
                               type: string
                             icons:
                               items:
-                                description: ImageSpec contains information about an image used as an icon.
+                                description: ImageSpec contains information about
+                                  an image used as an icon.
                                 properties:
                                   size:
-                                    description: (optional) The size of the image in pixels (e.g., 25x25).
+                                    description: (optional) The size of the image
+                                      in pixels (e.g., 25x25).
                                     type: string
                                   src:
-                                    description: The source for image represented as either an absolute URL to the image or a Data URL containing the image. Data URLs are defined in RFC 2397.
+                                    description: The source for image represented
+                                      as either an absolute URL to the image or a
+                                      Data URL containing the image. Data URLs are
+                                      defined in RFC 2397.
                                     type: string
                                   type:
-                                    description: (optional) The mine type of the image (e.g., "image/png").
+                                    description: (optional) The mine type of the image
+                                      (e.g., "image/png").
                                     type: string
                                 required:
                                 - src
@@ -782,7 +965,7 @@ spec:
                             query:
                               properties:
                                 byLabel:
-                                  description: ENUM(authn,authz,auth_secret,backup_via,catalog,cert_issuer,config,connect_via,exposed_by,event,located_on,monitored_by,ocm_bind,offshoot,ops,placed_into,policy,recommended_for,restore_into,scaled_by,storage,view)
+                                  description: ENUM(authn,authz,auth_secret,backup_via,catalog,cert_issuer,config,connect_via,exposed_by,event,located_on,monitored_by,ocm_bind,offshoot,ops,placed_into,policy,recommended_for,restore_into,scaled_by,source,storage,view)
                                   enum:
                                   - authn
                                   - authz
@@ -804,6 +987,7 @@ spec:
                                   - recommended_for
                                   - restore_into
                                   - scaled_by
+                                  - source
                                   - storage
                                   - view
                                   type: string
@@ -818,7 +1002,10 @@ spec:
                               - type
                               type: object
                             ref:
-                              description: GroupKind specifies a Group and a Kind, but does not force a version.  This is useful for identifying concepts during lookup stages without having partially valid types
+                              description: GroupKind specifies a Group and a Kind,
+                                but does not force a version.  This is useful for
+                                identifying concepts during lookup stages without
+                                having partially valid types
                               properties:
                                 group:
                                   type: string
@@ -828,16 +1015,25 @@ spec:
                               - group
                               - kind
                               type: object
+                            requiredFeatureSets:
+                              additionalProperties:
+                                items:
+                                  type: string
+                                type: array
+                              type: object
                             view:
                               properties:
                                 columns:
                                   items:
-                                    description: ResourceColumnDefinition specifies a column for server side printing.
+                                    description: ResourceColumnDefinition specifies
+                                      a column for server side printing.
                                     properties:
                                       color:
                                         properties:
                                           template:
-                                            description: 'Available color codes: success,danger,warning,info, link, white, light, dark, black see https://bulma.io/documentation/elements/tag/#colors'
+                                            description: 'Available color codes: success,danger,warning,info,
+                                              link, white, light, dark, black see
+                                              https://bulma.io/documentation/elements/tag/#colors'
                                             type: string
                                         type: object
                                       dashboard:
@@ -846,7 +1042,8 @@ spec:
                                             type: string
                                         type: object
                                       description:
-                                        description: description is a human readable description of this column.
+                                        description: description is a human readable
+                                          description of this column.
                                         type: string
                                       exec:
                                         properties:
@@ -864,7 +1061,12 @@ spec:
                                             type: string
                                         type: object
                                       format:
-                                        description: format is an optional OpenAPI type definition for this column. The 'name' format is applied to the primary identifier column to assist in clients identifying column is the resource name. See https://github.com/OAI/OpenAPI-Specification/blob/master/versions/2.0.md#data-types for more.
+                                        description: format is an optional OpenAPI
+                                          type definition for this column. The 'name'
+                                          format is applied to the primary identifier
+                                          column to assist in clients identifying
+                                          column is the resource name. See https://github.com/OAI/OpenAPI-Specification/blob/master/versions/2.0.md#data-types
+                                          for more.
                                         type: string
                                       icon:
                                         properties:
@@ -877,13 +1079,27 @@ spec:
                                             type: string
                                         type: object
                                       name:
-                                        description: name is a human readable name for the column.
+                                        description: name is a human readable name
+                                          for the column.
                                         type: string
                                       pathTemplate:
-                                        description: 'PathTemplate is a Go text template that will be evaluated to determine cell value. Users can use JSONPath expression to extract nested fields and apply template functions from Masterminds/sprig library. The template function for JSON path is called `jp`. Example: {{ jp "{.a.b}" . }} or {{ jp "{.a.b}" true }}, if json output is desired from JSONPath parser'
+                                        description: 'PathTemplate is a Go text template
+                                          that will be evaluated to determine cell
+                                          value. Users can use JSONPath expression
+                                          to extract nested fields and apply template
+                                          functions from Masterminds/sprig library.
+                                          The template function for JSON path is called
+                                          `jp`. Example: {{ jp "{.a.b}" . }} or {{
+                                          jp "{.a.b}" true }}, if json output is desired
+                                          from JSONPath parser'
                                         type: string
                                       priority:
-                                        description: priority is an integer defining the relative importance of this column compared to others. Lower numbers are considered higher priority. Columns that may be omitted in limited space scenarios should be given a higher priority.
+                                        description: priority is an integer defining
+                                          the relative importance of this column compared
+                                          to others. Lower numbers are considered
+                                          higher priority. Columns that may be omitted
+                                          in limited space scenarios should be given
+                                          a higher priority.
                                         format: int32
                                         type: integer
                                       shape:
@@ -896,12 +1112,20 @@ spec:
                                           enable:
                                             type: boolean
                                           format:
-                                            description: format is an optional OpenAPI type definition for this column. The 'name' format is applied to the primary identifier column to assist in clients identifying column is the resource name. See https://github.com/OAI/OpenAPI-Specification/blob/master/versions/2.0.md#data-types for more.
+                                            description: format is an optional OpenAPI
+                                              type definition for this column. The
+                                              'name' format is applied to the primary
+                                              identifier column to assist in clients
+                                              identifying column is the resource name.
+                                              See https://github.com/OAI/OpenAPI-Specification/blob/master/versions/2.0.md#data-types
+                                              for more.
                                             type: string
                                           template:
                                             type: string
                                           type:
-                                            description: type is an OpenAPI type definition for this column. See https://github.com/OAI/OpenAPI-Specification/blob/master/versions/2.0.md#data-types for more.
+                                            description: type is an OpenAPI type definition
+                                              for this column. See https://github.com/OAI/OpenAPI-Specification/blob/master/versions/2.0.md#data-types
+                                              for more.
                                             type: string
                                         required:
                                         - type
@@ -914,7 +1138,9 @@ spec:
                                             type: string
                                         type: object
                                       type:
-                                        description: type is an OpenAPI type definition for this column. See https://github.com/OAI/OpenAPI-Specification/blob/master/versions/2.0.md#data-types for more.
+                                        description: type is an OpenAPI type definition
+                                          for this column. See https://github.com/OAI/OpenAPI-Specification/blob/master/versions/2.0.md#data-types
+                                          for more.
                                         type: string
                                     required:
                                     - name
@@ -934,6 +1160,12 @@ spec:
                           type: object
                         name:
                           type: string
+                        requiredFeatureSets:
+                          additionalProperties:
+                            items:
+                              type: string
+                            type: array
+                          type: object
                       type: object
                     type: array
                 required:
@@ -946,13 +1178,17 @@ spec:
                 group:
                   type: string
                 kind:
-                  description: Kind is the serialized kind of the resource.  It is normally CamelCase and singular.
+                  description: Kind is the serialized kind of the resource.  It is
+                    normally CamelCase and singular.
                   type: string
                 name:
-                  description: 'Name is the plural name of the resource to serve.  It must match the name of the CustomResourceDefinition-registration too: plural.group and it must be all lowercase.'
+                  description: 'Name is the plural name of the resource to serve.  It
+                    must match the name of the CustomResourceDefinition-registration
+                    too: plural.group and it must be all lowercase.'
                   type: string
                 scope:
-                  description: ResourceScope is an enum defining the different scopes available to a custom resource
+                  description: ResourceScope is an enum defining the different scopes
+                    available to a custom resource
                   type: string
                 version:
                   type: string
@@ -977,16 +1213,21 @@ spec:
                   type: string
                 icons:
                   items:
-                    description: ImageSpec contains information about an image used as an icon.
+                    description: ImageSpec contains information about an image used
+                      as an icon.
                     properties:
                       size:
-                        description: (optional) The size of the image in pixels (e.g., 25x25).
+                        description: (optional) The size of the image in pixels (e.g.,
+                          25x25).
                         type: string
                       src:
-                        description: The source for image represented as either an absolute URL to the image or a Data URL containing the image. Data URLs are defined in RFC 2397.
+                        description: The source for image represented as either an
+                          absolute URL to the image or a Data URL containing the image.
+                          Data URLs are defined in RFC 2397.
                         type: string
                       type:
-                        description: (optional) The mine type of the image (e.g., "image/png").
+                        description: (optional) The mine type of the image (e.g.,
+                          "image/png").
                         type: string
                     required:
                     - src
@@ -1005,7 +1246,7 @@ spec:
                 query:
                   properties:
                     byLabel:
-                      description: ENUM(authn,authz,auth_secret,backup_via,catalog,cert_issuer,config,connect_via,exposed_by,event,located_on,monitored_by,ocm_bind,offshoot,ops,placed_into,policy,recommended_for,restore_into,scaled_by,storage,view)
+                      description: ENUM(authn,authz,auth_secret,backup_via,catalog,cert_issuer,config,connect_via,exposed_by,event,located_on,monitored_by,ocm_bind,offshoot,ops,placed_into,policy,recommended_for,restore_into,scaled_by,source,storage,view)
                       enum:
                       - authn
                       - authz
@@ -1027,6 +1268,7 @@ spec:
                       - recommended_for
                       - restore_into
                       - scaled_by
+                      - source
                       - storage
                       - view
                       type: string
@@ -1041,7 +1283,9 @@ spec:
                   - type
                   type: object
                 ref:
-                  description: GroupKind specifies a Group and a Kind, but does not force a version.  This is useful for identifying concepts during lookup stages without having partially valid types
+                  description: GroupKind specifies a Group and a Kind, but does not
+                    force a version.  This is useful for identifying concepts during
+                    lookup stages without having partially valid types
                   properties:
                     group:
                       type: string
@@ -1051,16 +1295,24 @@ spec:
                   - group
                   - kind
                   type: object
+                requiredFeatureSets:
+                  additionalProperties:
+                    items:
+                      type: string
+                    type: array
+                  type: object
                 view:
                   properties:
                     columns:
                       items:
-                        description: ResourceColumnDefinition specifies a column for server side printing.
+                        description: ResourceColumnDefinition specifies a column for
+                          server side printing.
                         properties:
                           color:
                             properties:
                               template:
-                                description: 'Available color codes: success,danger,warning,info, link, white, light, dark, black see https://bulma.io/documentation/elements/tag/#colors'
+                                description: 'Available color codes: success,danger,warning,info,
+                                  link, white, light, dark, black see https://bulma.io/documentation/elements/tag/#colors'
                                 type: string
                             type: object
                           dashboard:
@@ -1069,7 +1321,8 @@ spec:
                                 type: string
                             type: object
                           description:
-                            description: description is a human readable description of this column.
+                            description: description is a human readable description
+                              of this column.
                             type: string
                           exec:
                             properties:
@@ -1087,7 +1340,11 @@ spec:
                                 type: string
                             type: object
                           format:
-                            description: format is an optional OpenAPI type definition for this column. The 'name' format is applied to the primary identifier column to assist in clients identifying column is the resource name. See https://github.com/OAI/OpenAPI-Specification/blob/master/versions/2.0.md#data-types for more.
+                            description: format is an optional OpenAPI type definition
+                              for this column. The 'name' format is applied to the
+                              primary identifier column to assist in clients identifying
+                              column is the resource name. See https://github.com/OAI/OpenAPI-Specification/blob/master/versions/2.0.md#data-types
+                              for more.
                             type: string
                           icon:
                             properties:
@@ -1103,10 +1360,20 @@ spec:
                             description: name is a human readable name for the column.
                             type: string
                           pathTemplate:
-                            description: 'PathTemplate is a Go text template that will be evaluated to determine cell value. Users can use JSONPath expression to extract nested fields and apply template functions from Masterminds/sprig library. The template function for JSON path is called `jp`. Example: {{ jp "{.a.b}" . }} or {{ jp "{.a.b}" true }}, if json output is desired from JSONPath parser'
+                            description: 'PathTemplate is a Go text template that
+                              will be evaluated to determine cell value. Users can
+                              use JSONPath expression to extract nested fields and
+                              apply template functions from Masterminds/sprig library.
+                              The template function for JSON path is called `jp`.
+                              Example: {{ jp "{.a.b}" . }} or {{ jp "{.a.b}" true
+                              }}, if json output is desired from JSONPath parser'
                             type: string
                           priority:
-                            description: priority is an integer defining the relative importance of this column compared to others. Lower numbers are considered higher priority. Columns that may be omitted in limited space scenarios should be given a higher priority.
+                            description: priority is an integer defining the relative
+                              importance of this column compared to others. Lower
+                              numbers are considered higher priority. Columns that
+                              may be omitted in limited space scenarios should be
+                              given a higher priority.
                             format: int32
                             type: integer
                           shape:
@@ -1119,12 +1386,18 @@ spec:
                               enable:
                                 type: boolean
                               format:
-                                description: format is an optional OpenAPI type definition for this column. The 'name' format is applied to the primary identifier column to assist in clients identifying column is the resource name. See https://github.com/OAI/OpenAPI-Specification/blob/master/versions/2.0.md#data-types for more.
+                                description: format is an optional OpenAPI type definition
+                                  for this column. The 'name' format is applied to
+                                  the primary identifier column to assist in clients
+                                  identifying column is the resource name. See https://github.com/OAI/OpenAPI-Specification/blob/master/versions/2.0.md#data-types
+                                  for more.
                                 type: string
                               template:
                                 type: string
                               type:
-                                description: type is an OpenAPI type definition for this column. See https://github.com/OAI/OpenAPI-Specification/blob/master/versions/2.0.md#data-types for more.
+                                description: type is an OpenAPI type definition for
+                                  this column. See https://github.com/OAI/OpenAPI-Specification/blob/master/versions/2.0.md#data-types
+                                  for more.
                                 type: string
                             required:
                             - type
@@ -1137,7 +1410,9 @@ spec:
                                 type: string
                             type: object
                           type:
-                            description: type is an OpenAPI type definition for this column. See https://github.com/OAI/OpenAPI-Specification/blob/master/versions/2.0.md#data-types for more.
+                            description: type is an OpenAPI type definition for this
+                              column. See https://github.com/OAI/OpenAPI-Specification/blob/master/versions/2.0.md#data-types
+                              for more.
                             type: string
                         required:
                         - name

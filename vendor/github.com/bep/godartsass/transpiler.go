@@ -11,17 +11,16 @@ import (
 	"fmt"
 	"io"
 	"net/url"
-	"path"
-	"strings"
-	"time"
-
 	"os"
 	"os/exec"
+	"path"
+	"strings"
 	"sync"
+	"time"
 
 	"github.com/cli/safeexec"
 
-	"github.com/bep/godartsass/internal/embeddedsass"
+	"github.com/bep/godartsass/internal/embeddedsassv1"
 	"google.golang.org/protobuf/proto"
 )
 
@@ -73,6 +72,39 @@ func Start(opts Options) (*Transpiler, error) {
 	return t, nil
 }
 
+// Version returns version information about the Dart Sass frameworks used
+// in dartSassEmbeddedFilename.
+func Version(dartSassEmbeddedFilename string) (DartSassVersion, error) {
+	var v DartSassVersion
+	bin, err := safeexec.LookPath(dartSassEmbeddedFilename)
+	if err != nil {
+		return v, err
+	}
+
+	cmd := exec.Command(bin, "--version")
+	cmd.Stderr = os.Stderr
+
+	out, err := cmd.Output()
+	if err != nil {
+		return v, err
+	}
+
+	if err := json.Unmarshal(out, &v); err != nil {
+		return v, err
+	}
+
+	return v, nil
+
+}
+
+type DartSassVersion struct {
+	ProtocolVersion       string `json:"protocolVersion"`
+	CompilerVersion       string `json:"compilerVersion"`
+	ImplementationVersion string `json:"implementationVersion"`
+	ImplementationName    string `json:"implementationName"`
+	ID                    int    `json:"id"`
+}
+
 // Transpiler controls transpiling of SCSS into CSS.
 type Transpiler struct {
 	opts Options
@@ -91,6 +123,17 @@ type Transpiler struct {
 	mu      sync.Mutex // Protects all below.
 	seq     uint32
 	pending map[uint32]*call
+}
+
+// IsShutDown checks if all pending calls have been shut down.
+// Used in tests.
+func (t *Transpiler) IsShutDown() bool {
+	for _, p := range t.pending {
+		if p.Error != ErrShutdown {
+			return false
+		}
+	}
+	return true
 }
 
 // Result holds the result returned from Execute.
@@ -147,27 +190,28 @@ func (t *Transpiler) Close() error {
 func (t *Transpiler) Execute(args Args) (Result, error) {
 	var result Result
 
-	createInboundMessage := func(seq uint32) (*embeddedsass.InboundMessage, error) {
+	createInboundMessage := func(seq uint32) (*embeddedsassv1.InboundMessage, error) {
 		if err := args.init(seq, t.opts); err != nil {
 			return nil, err
 		}
 
-		message := &embeddedsass.InboundMessage_CompileRequest_{
-			CompileRequest: &embeddedsass.InboundMessage_CompileRequest{
+		message := &embeddedsassv1.InboundMessage_CompileRequest_{
+			CompileRequest: &embeddedsassv1.InboundMessage_CompileRequest{
 				Importers: args.sassImporters,
 				Style:     args.sassOutputStyle,
-				Input: &embeddedsass.InboundMessage_CompileRequest_String_{
-					String_: &embeddedsass.InboundMessage_CompileRequest_StringInput{
+				Input: &embeddedsassv1.InboundMessage_CompileRequest_String_{
+					String_: &embeddedsassv1.InboundMessage_CompileRequest_StringInput{
 						Syntax: args.sassSourceSyntax,
 						Source: args.Source,
 						Url:    args.URL,
 					},
 				},
-				SourceMap: args.EnableSourceMap,
+				SourceMap:               args.EnableSourceMap,
+				SourceMapIncludeSources: args.SourceMapIncludeSources,
 			},
 		}
 
-		return &embeddedsass.InboundMessage{
+		return &embeddedsassv1.InboundMessage{
 			Message: message,
 		}, nil
 	}
@@ -188,13 +232,13 @@ func (t *Transpiler) Execute(args Args) (Result, error) {
 	}
 
 	response := call.Response
-	csp := response.Message.(*embeddedsass.OutboundMessage_CompileResponse_)
+	csp := response.Message.(*embeddedsassv1.OutboundMessage_CompileResponse_)
 
 	switch resp := csp.CompileResponse.Result.(type) {
-	case *embeddedsass.OutboundMessage_CompileResponse_Success:
+	case *embeddedsassv1.OutboundMessage_CompileResponse_Success:
 		result.CSS = resp.Success.Css
 		result.SourceMap = resp.Success.SourceMap
-	case *embeddedsass.OutboundMessage_CompileResponse_Failure:
+	case *embeddedsassv1.OutboundMessage_CompileResponse_Failure:
 		asJson, err := json.Marshal(resp.Failure)
 		if err != nil {
 			return result, err
@@ -245,14 +289,14 @@ func (t *Transpiler) input() {
 			break
 		}
 
-		var msg embeddedsass.OutboundMessage
+		var msg embeddedsassv1.OutboundMessage
 
 		if err = proto.Unmarshal(buf, &msg); err != nil {
 			break
 		}
 
 		switch c := msg.Message.(type) {
-		case *embeddedsass.OutboundMessage_CompileResponse_:
+		case *embeddedsassv1.OutboundMessage_CompileResponse_:
 			id := c.CompileResponse.Id
 			// Attach it to the correct pending call.
 			t.mu.Lock()
@@ -265,44 +309,45 @@ func (t *Transpiler) input() {
 			}
 			call.Response = &msg
 			call.done()
-		case *embeddedsass.OutboundMessage_CanonicalizeRequest_:
+		case *embeddedsassv1.OutboundMessage_CanonicalizeRequest_:
 			call := t.getCall(c.CanonicalizeRequest.CompilationId)
 			resolved, resolveErr := call.importResolver.CanonicalizeURL(c.CanonicalizeRequest.GetUrl())
 
-			var response *embeddedsass.InboundMessage_CanonicalizeResponse
+			var response *embeddedsassv1.InboundMessage_CanonicalizeResponse
 			if resolveErr != nil {
-				response = &embeddedsass.InboundMessage_CanonicalizeResponse{
+				response = &embeddedsassv1.InboundMessage_CanonicalizeResponse{
 					Id: c.CanonicalizeRequest.GetId(),
-					Result: &embeddedsass.InboundMessage_CanonicalizeResponse_Error{
+					Result: &embeddedsassv1.InboundMessage_CanonicalizeResponse_Error{
 						Error: resolveErr.Error(),
 					},
 				}
 			} else {
-				var url *embeddedsass.InboundMessage_CanonicalizeResponse_Url
+				var url *embeddedsassv1.InboundMessage_CanonicalizeResponse_Url
 				if resolved != "" {
-					url = &embeddedsass.InboundMessage_CanonicalizeResponse_Url{
+					url = &embeddedsassv1.InboundMessage_CanonicalizeResponse_Url{
 						Url: resolved,
 					}
 				}
-				response = &embeddedsass.InboundMessage_CanonicalizeResponse{
+				response = &embeddedsassv1.InboundMessage_CanonicalizeResponse{
 					Id:     c.CanonicalizeRequest.GetId(),
 					Result: url,
 				}
 			}
 
 			err = t.sendInboundMessage(
-				&embeddedsass.InboundMessage{
-					Message: &embeddedsass.InboundMessage_CanonicalizeResponse_{
+				&embeddedsassv1.InboundMessage{
+					Message: &embeddedsassv1.InboundMessage_CanonicalizeResponse_{
 						CanonicalizeResponse: response,
 					},
 				},
 			)
-		case *embeddedsass.OutboundMessage_ImportRequest_:
+		case *embeddedsassv1.OutboundMessage_ImportRequest_:
 			call := t.getCall(c.ImportRequest.CompilationId)
 			url := c.ImportRequest.GetUrl()
-			contents, loadErr := call.importResolver.Load(url)
+			imp, loadErr := call.importResolver.Load(url)
+			sourceSyntax := embeddedsassv1.Syntax_value[string(imp.SourceSyntax)]
 
-			var response *embeddedsass.InboundMessage_ImportResponse
+			var response *embeddedsassv1.InboundMessage_ImportResponse
 			var sourceMapURL string
 
 			// Dart Sass expect a browser-accessible URL or an empty string.
@@ -313,32 +358,33 @@ func (t *Transpiler) input() {
 			}
 
 			if loadErr != nil {
-				response = &embeddedsass.InboundMessage_ImportResponse{
+				response = &embeddedsassv1.InboundMessage_ImportResponse{
 					Id: c.ImportRequest.GetId(),
-					Result: &embeddedsass.InboundMessage_ImportResponse_Error{
+					Result: &embeddedsassv1.InboundMessage_ImportResponse_Error{
 						Error: loadErr.Error(),
 					},
 				}
 			} else {
-				response = &embeddedsass.InboundMessage_ImportResponse{
+				response = &embeddedsassv1.InboundMessage_ImportResponse{
 					Id: c.ImportRequest.GetId(),
-					Result: &embeddedsass.InboundMessage_ImportResponse_Success{
-						Success: &embeddedsass.InboundMessage_ImportResponse_ImportSuccess{
-							Contents:     contents,
+					Result: &embeddedsassv1.InboundMessage_ImportResponse_Success{
+						Success: &embeddedsassv1.InboundMessage_ImportResponse_ImportSuccess{
+							Contents:     imp.Content,
 							SourceMapUrl: sourceMapURL,
+							Syntax:       embeddedsassv1.Syntax(sourceSyntax),
 						},
 					},
 				}
 			}
 
 			err = t.sendInboundMessage(
-				&embeddedsass.InboundMessage{
-					Message: &embeddedsass.InboundMessage_ImportResponse_{
+				&embeddedsassv1.InboundMessage{
+					Message: &embeddedsassv1.InboundMessage_ImportResponse_{
 						ImportResponse: response,
 					},
 				},
 			)
-		case *embeddedsass.OutboundMessage_LogEvent_:
+		case *embeddedsassv1.OutboundMessage_LogEvent_:
 			if t.opts.LogEventHandler != nil {
 				var logEvent LogEvent
 				e := c.LogEvent
@@ -363,7 +409,7 @@ func (t *Transpiler) input() {
 
 			}
 
-		case *embeddedsass.OutboundMessage_Error:
+		case *embeddedsassv1.OutboundMessage_Error:
 			err = fmt.Errorf("SASS error: %s", c.Error.GetMessage())
 		default:
 			err = fmt.Errorf("unsupported response message type. %T", msg.Message)
@@ -393,7 +439,7 @@ func (t *Transpiler) input() {
 	}
 }
 
-func (t *Transpiler) newCall(createInbound func(seq uint32) (*embeddedsass.InboundMessage, error), args Args) (*call, error) {
+func (t *Transpiler) newCall(createInbound func(seq uint32) (*embeddedsassv1.InboundMessage, error), args Args) (*call, error) {
 	t.mu.Lock()
 	id := t.seq
 	req, err := createInbound(id)
@@ -421,7 +467,7 @@ func (t *Transpiler) newCall(createInbound func(seq uint32) (*embeddedsass.Inbou
 	t.mu.Unlock()
 
 	switch c := call.Request.Message.(type) {
-	case *embeddedsass.InboundMessage_CompileRequest_:
+	case *embeddedsassv1.InboundMessage_CompileRequest_:
 		c.CompileRequest.Id = id
 	default:
 		return nil, fmt.Errorf("unsupported request message type. %T", call.Request.Message)
@@ -430,7 +476,7 @@ func (t *Transpiler) newCall(createInbound func(seq uint32) (*embeddedsass.Inbou
 	return call, t.sendInboundMessage(call.Request)
 }
 
-func (t *Transpiler) sendInboundMessage(message *embeddedsass.InboundMessage) error {
+func (t *Transpiler) sendInboundMessage(message *embeddedsassv1.InboundMessage) error {
 	t.sendMu.Lock()
 	defer t.sendMu.Unlock()
 	t.mu.Lock()
@@ -463,8 +509,8 @@ func (t *Transpiler) sendInboundMessage(message *embeddedsass.InboundMessage) er
 }
 
 type call struct {
-	Request        *embeddedsass.InboundMessage
-	Response       *embeddedsass.OutboundMessage
+	Request        *embeddedsassv1.InboundMessage
+	Response       *embeddedsassv1.OutboundMessage
 	importResolver ImportResolver
 
 	Error error

@@ -6,7 +6,7 @@ import (
 	"strings"
 	"time"
 
-	"github.com/bep/godartsass/internal/embeddedsass"
+	"github.com/bep/godartsass/internal/embeddedsassv1"
 )
 
 // Options configures a Transpiler.
@@ -71,7 +71,8 @@ func (opts *Options) init() error {
 //
 // A canonicalized URL should include a scheme, e.g. 'file:///foo/bar.scss',
 // if applicable, see:
-//     https://en.wikipedia.org/wiki/File_URI_scheme
+//
+//	https://en.wikipedia.org/wiki/File_URI_scheme
 //
 // Importers   must ensure that the same canonical URL
 // always refers to the same stylesheet.
@@ -79,7 +80,15 @@ func (opts *Options) init() error {
 // Load loads the canonicalized URL's content.
 type ImportResolver interface {
 	CanonicalizeURL(url string) (string, error)
-	Load(canonicalizedURL string) (string, error)
+	Load(canonicalizedURL string) (Import, error)
+}
+
+type Import struct {
+	// The content of the imported file.
+	Content string
+
+	// The syntax of the imported file.
+	SourceSyntax SourceSyntax
 }
 
 // Args holds the arguments to Execute.
@@ -105,6 +114,9 @@ type Args struct {
 	// If enabled, a sourcemap will be generated and returned in Result.
 	EnableSourceMap bool
 
+	// If enabled, sources will be embedded in the generated source map.
+	SourceMapIncludeSources bool
+
 	// Custom resolver to use to resolve imports.
 	// If set, this will be the first in the resolver chain.
 	ImportResolver ImportResolver
@@ -112,11 +124,11 @@ type Args struct {
 	// Additional file paths to uses to resolve imports.
 	IncludePaths []string
 
-	sassOutputStyle  embeddedsass.InboundMessage_CompileRequest_OutputStyle
-	sassSourceSyntax embeddedsass.InboundMessage_Syntax
+	sassOutputStyle  embeddedsassv1.OutputStyle
+	sassSourceSyntax embeddedsassv1.Syntax
 
 	// Ordered list starting with options.ImportResolver, then IncludePaths.
-	sassImporters []*embeddedsass.InboundMessage_CompileRequest_Importer
+	sassImporters []*embeddedsassv1.InboundMessage_CompileRequest_Importer
 }
 
 func (args *Args) init(seq uint32, opts Options) error {
@@ -127,23 +139,23 @@ func (args *Args) init(seq uint32, opts Options) error {
 		args.SourceSyntax = SourceSyntaxSCSS
 	}
 
-	v, ok := embeddedsass.InboundMessage_CompileRequest_OutputStyle_value[string(args.OutputStyle)]
+	v, ok := embeddedsassv1.OutputStyle_value[string(args.OutputStyle)]
 	if !ok {
 		return fmt.Errorf("invalid OutputStyle %q", args.OutputStyle)
 	}
-	args.sassOutputStyle = embeddedsass.InboundMessage_CompileRequest_OutputStyle(v)
+	args.sassOutputStyle = embeddedsassv1.OutputStyle(v)
 
-	v, ok = embeddedsass.InboundMessage_Syntax_value[string(args.SourceSyntax)]
+	v, ok = embeddedsassv1.Syntax_value[string(args.SourceSyntax)]
 	if !ok {
 		return fmt.Errorf("invalid SourceSyntax %q", args.SourceSyntax)
 	}
 
-	args.sassSourceSyntax = embeddedsass.InboundMessage_Syntax(v)
+	args.sassSourceSyntax = embeddedsassv1.Syntax(v)
 
 	if args.ImportResolver != nil {
-		args.sassImporters = []*embeddedsass.InboundMessage_CompileRequest_Importer{
+		args.sassImporters = []*embeddedsassv1.InboundMessage_CompileRequest_Importer{
 			{
-				Importer: &embeddedsass.InboundMessage_CompileRequest_Importer_ImporterId{
+				Importer: &embeddedsassv1.InboundMessage_CompileRequest_Importer_ImporterId{
 					ImporterId: seq,
 				},
 			},
@@ -152,7 +164,7 @@ func (args *Args) init(seq uint32, opts Options) error {
 
 	if args.IncludePaths != nil {
 		for _, p := range args.IncludePaths {
-			args.sassImporters = append(args.sassImporters, &embeddedsass.InboundMessage_CompileRequest_Importer{Importer: &embeddedsass.InboundMessage_CompileRequest_Importer_Path{
+			args.sassImporters = append(args.sassImporters, &embeddedsassv1.InboundMessage_CompileRequest_Importer{Importer: &embeddedsassv1.InboundMessage_CompileRequest_Importer_Path{
 				Path: filepath.Clean(p),
 			}})
 		}
