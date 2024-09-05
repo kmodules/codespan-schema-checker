@@ -1,8 +1,8 @@
 module kmodules.xyz/codespan-schema-checker
 
-go 1.22.0
+go 1.22.1
 
-toolchain go1.22.2
+toolchain go1.22.5
 
 require (
 	github.com/gohugoio/hugo v0.125.5
@@ -10,20 +10,20 @@ require (
 	github.com/spf13/cobra v1.8.0
 	github.com/yuin/goldmark v1.7.1
 	gomodules.xyz/logs v0.0.7
-	k8s.io/apiextensions-apiserver v0.30.1
-	k8s.io/apimachinery v0.30.1
+	k8s.io/apiextensions-apiserver v0.30.2
+	k8s.io/apimachinery v0.30.2
 	k8s.io/cli-runtime v0.30.1
-	k8s.io/client-go v0.30.1
-	k8s.io/component-base v0.30.1
-	k8s.io/klog/v2 v2.120.1
+	k8s.io/client-go v0.30.2
+	k8s.io/component-base v0.30.2
+	k8s.io/klog/v2 v2.130.1
 	k8s.io/kubectl v0.29.2
-	kmodules.xyz/client-go v0.30.1
-	kmodules.xyz/resource-metadata v0.18.3
+	kmodules.xyz/client-go v0.30.13-0.20240820121523-30dbfd82b4c6
+	kmodules.xyz/resource-metadata v0.18.13-0.20240904102543-ace8c94cfd3d
 	kmodules.xyz/resource-validator v0.29.1
 	kubedb.dev/installer v0.17.2-0.20240904174754-5625eecfbec1
-	kubevault.dev/installer v0.4.0-beta.0.0.20240314200505-0a38e60a2b06
-	sigs.k8s.io/controller-runtime v0.18.3
-	stash.appscode.dev/installer v0.12.2-0.20240420190034-95f958de0f1e
+	kubevault.dev/installer v0.4.0-beta.0.0.20240817084138-1a8a998fe922
+	sigs.k8s.io/controller-runtime v0.18.4
+	stash.appscode.dev/installer v0.12.2-0.20240828045754-7f7b18f1fe7d
 )
 
 require (
@@ -54,12 +54,12 @@ require (
 	github.com/evanphx/json-patch/v5 v5.9.0 // indirect
 	github.com/exponent-io/jsonpath v0.0.0-20151013193312-d6023ce2651d // indirect
 	github.com/fatih/structs v1.1.0 // indirect
-	github.com/fluxcd/pkg/apis/acl v0.1.0 // indirect
-	github.com/fluxcd/pkg/apis/meta v0.18.0 // indirect
-	github.com/fluxcd/source-controller/api v0.33.0 // indirect
+	github.com/fluxcd/pkg/apis/acl v0.3.0 // indirect
+	github.com/fluxcd/pkg/apis/meta v1.5.0 // indirect
+	github.com/fluxcd/source-controller/api v1.3.0 // indirect
 	github.com/fsnotify/fsnotify v1.7.0 // indirect
 	github.com/go-errors/errors v1.4.2 // indirect
-	github.com/go-logr/logr v1.4.1 // indirect
+	github.com/go-logr/logr v1.4.2 // indirect
 	github.com/go-openapi/jsonpointer v0.21.0 // indirect
 	github.com/go-openapi/jsonreference v0.21.0 // indirect
 	github.com/go-openapi/swag v0.23.0 // indirect
@@ -128,14 +128,14 @@ require (
 	github.com/yudai/golcs v0.0.0-20170316035057-ecda9a501e82 // indirect
 	github.com/zeebo/xxh3 v1.0.2 // indirect
 	go.starlark.net v0.0.0-20230525235612-a134d8f9ddca // indirect
-	golang.org/x/crypto v0.23.0 // indirect
+	golang.org/x/crypto v0.24.0 // indirect
 	golang.org/x/exp v0.0.0-20231226003508-02704c960a9b // indirect
-	golang.org/x/net v0.25.0 // indirect
+	golang.org/x/net v0.26.0 // indirect
 	golang.org/x/oauth2 v0.18.0 // indirect
 	golang.org/x/sync v0.7.0 // indirect
-	golang.org/x/sys v0.20.0 // indirect
-	golang.org/x/term v0.20.0 // indirect
-	golang.org/x/text v0.15.0 // indirect
+	golang.org/x/sys v0.21.0 // indirect
+	golang.org/x/term v0.21.0 // indirect
+	golang.org/x/text v0.16.0 // indirect
 	golang.org/x/time v0.5.0 // indirect
 	gomodules.xyz/clock v0.0.0-20200817085942-06523dba733f // indirect
 	gomodules.xyz/flags v0.1.3 // indirect
@@ -152,14 +152,14 @@ require (
 	gopkg.in/inf.v0 v0.9.1 // indirect
 	gopkg.in/yaml.v2 v2.4.0 // indirect
 	gopkg.in/yaml.v3 v3.0.1 // indirect
-	k8s.io/api v0.30.1 // indirect
-	k8s.io/apiserver v0.30.1 // indirect
-	k8s.io/kube-openapi v0.0.0-20240430033511-f0e62f92d13f // indirect
+	k8s.io/api v0.30.2 // indirect
+	k8s.io/apiserver v0.30.2 // indirect
+	k8s.io/kube-openapi v0.0.0-20240703190633-0aa61b46e8c2 // indirect
 	k8s.io/utils v0.0.0-20240502163921-fe8a2dddb1d0 // indirect
 	kmodules.xyz/apiversion v0.2.0 // indirect
 	kmodules.xyz/go-containerregistry v0.0.12 // indirect
-	kmodules.xyz/offshoot-api v0.29.0 // indirect
-	kmodules.xyz/resource-metrics v0.29.5 // indirect
+	kmodules.xyz/offshoot-api v0.30.0 // indirect
+	kmodules.xyz/resource-metrics v0.30.4 // indirect
 	sigs.k8s.io/json v0.0.0-20221116044647-bc3834ca7abd // indirect
 	sigs.k8s.io/kustomize/api v0.13.5-0.20230601165947-6ce0bf390ce3 // indirect
 	sigs.k8s.io/kustomize/kyaml v0.14.3-0.20230601165947-6ce0bf390ce3 // indirect
