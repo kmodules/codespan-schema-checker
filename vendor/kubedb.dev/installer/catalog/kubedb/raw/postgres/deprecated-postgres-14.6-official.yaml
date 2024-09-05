@@ -7,6 +7,10 @@ spec:
     addon:
       name: postgres-addon
       tasks:
+        fullBackup:
+          name: logical-backup
+        fullBackupRestore:
+          name: logical-backup-restore
         manifestBackup:
           name: manifest-backup
         manifestRestore:
@@ -14,9 +18,9 @@ spec:
         volumeSnapshot:
           name: volume-snapshot
     walg:
-      image: v0.6.0
+      image: v0.8.0
   coordinator:
-    image: ghcr.io/kubedb/pg-coordinator:v0.29.0
+    image: ghcr.io/kubedb/pg-coordinator:v0.31.0
   db:
     baseOS: alpine
     image: postgres:14.6-alpine
@@ -25,7 +29,7 @@ spec:
   exporter:
     image: prometheuscommunity/postgres-exporter:v0.15.0
   initContainer:
-    image: ghcr.io/kubedb/postgres-init:0.12.0
+    image: ghcr.io/kubedb/postgres-init:0.14.0
   podSecurityPolicies:
     databasePolicyName: postgres-db
   securityContext:
@@ -49,6 +53,10 @@ spec:
     addon:
       name: postgres-addon
       tasks:
+        fullBackup:
+          name: logical-backup
+        fullBackupRestore:
+          name: logical-backup-restore
         manifestBackup:
           name: manifest-backup
         manifestRestore:
@@ -56,9 +64,9 @@ spec:
         volumeSnapshot:
           name: volume-snapshot
     walg:
-      image: v0.6.0
+      image: v0.8.0
   coordinator:
-    image: ghcr.io/kubedb/pg-coordinator:v0.29.0
+    image: ghcr.io/kubedb/pg-coordinator:v0.31.0
   db:
     baseOS: bullseye
     image: postgres:14.6-bullseye
@@ -67,7 +75,7 @@ spec:
   exporter:
     image: prometheuscommunity/postgres-exporter:v0.15.0
   initContainer:
-    image: ghcr.io/kubedb/postgres-init:0.12.0
+    image: ghcr.io/kubedb/postgres-init:0.14.0
   podSecurityPolicies:
     databasePolicyName: postgres-db
   securityContext:

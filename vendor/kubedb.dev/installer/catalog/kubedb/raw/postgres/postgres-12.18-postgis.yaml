@@ -7,6 +7,10 @@ spec:
     addon:
       name: postgres-addon
       tasks:
+        fullBackup:
+          name: logical-backup
+        fullBackupRestore:
+          name: logical-backup-restore
         manifestBackup:
           name: manifest-backup
         manifestRestore:
@@ -14,16 +18,16 @@ spec:
         volumeSnapshot:
           name: volume-snapshot
     walg:
-      image: ghcr.io/kubedb/postgres-archiver:(v0.6.0)_12.17-bookworm
+      image: ghcr.io/kubedb/postgres-archiver:(v0.8.0)_12.17-bookworm
   coordinator:
-    image: ghcr.io/kubedb/pg-coordinator:v0.29.0
+    image: ghcr.io/kubedb/pg-coordinator:v0.31.0
   db:
     image: postgis/postgis:12-3.4
   distribution: PostGIS
   exporter:
     image: prometheuscommunity/postgres-exporter:v0.15.0
   initContainer:
-    image: ghcr.io/kubedb/postgres-init:0.12.0
+    image: ghcr.io/kubedb/postgres-init:0.14.0
   podSecurityPolicies:
     databasePolicyName: postgres-db
   securityContext:
@@ -35,4 +39,9 @@ spec:
         name: postgres-backup-12.4
       restoreTask:
         name: postgres-restore-12.4
+  ui:
+  - name: pgadmin
+    version: v2024.4.27
+  - name: dbgate
+    version: v2024.4.27
   version: "12.18"
