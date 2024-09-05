@@ -7,6 +7,10 @@ spec:
     addon:
       name: mongodb-addon
       tasks:
+        fullBackup:
+          name: logical-backup
+        fullBackupRestore:
+          name: logical-backup-restore
         manifestBackup:
           name: manifest-backup
         manifestRestore:
@@ -14,7 +18,7 @@ spec:
         volumeSnapshot:
           name: volume-snapshot
     walg:
-      image: ghcr.io/kubedb/wal-g:v2023.11.30_mongo
+      image: ghcr.io/kubedb/wal-g:v2024.5.24_mongo
   db:
     image: percona/percona-server-mongodb:7.0.4
   distribution: Percona
@@ -27,7 +31,7 @@ spec:
   podSecurityPolicies:
     databasePolicyName: mongodb-db
   replicationModeDetector:
-    image: ghcr.io/kubedb/replication-mode-detector:v0.32.0
+    image: ghcr.io/kubedb/replication-mode-detector:v0.34.0
   securityContext:
     runAsGroup: 0
     runAsUser: 1001
@@ -37,4 +41,10 @@ spec:
         name: mongodb-backup-6.0.5
       restoreTask:
         name: mongodb-restore-6.0.5
+  ui:
+  - name: mongo-ui
+    version: v2024.4.27
+  updateConstraints:
+    allowlist:
+    - '> 7.0.4, <= 7.0.8'
   version: 7.0.4

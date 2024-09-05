@@ -7,6 +7,10 @@ spec:
     addon:
       name: mysql-addon
       tasks:
+        fullBackup:
+          name: logical-backup
+        fullBackupRestore:
+          name: logical-backup-restore
         manifestBackup:
           name: manifest-backup
         manifestRestore:
@@ -14,9 +18,9 @@ spec:
         volumeSnapshot:
           name: volume-snapshot
     walg:
-      image: ghcr.io/kubedb/mysql-archiver:(v0.6.0)_8.0.35
+      image: ghcr.io/kubedb/mysql-archiver:(v0.8.0)_8.0.35
   coordinator:
-    image: ghcr.io/kubedb/mysql-coordinator:v0.23.0
+    image: ghcr.io/kubedb/mysql-coordinator:v0.25.0
   db:
     image: ghcr.io/appscode-images/mysql:8.0.31-oracle
   distribution: MySQL
@@ -29,11 +33,11 @@ spec:
   podSecurityPolicies:
     databasePolicyName: mysql-db
   replicationModeDetector:
-    image: ghcr.io/kubedb/replication-mode-detector:v0.32.0
+    image: ghcr.io/kubedb/replication-mode-detector:v0.34.0
   router:
     image: mysql/mysql-router:8.0.31
   routerInitContainer:
-    image: ghcr.io/kubedb/mysql-router-init:v0.23.0
+    image: ghcr.io/kubedb/mysql-router-init:v0.25.0
   securityContext:
     runAsUser: 999
   stash:
@@ -42,7 +46,15 @@ spec:
         name: mysql-backup-8.0.21
       restoreTask:
         name: mysql-restore-8.0.21
+  ui:
+  - name: phpmyadmin
+    version: v2024.4.27
   updateConstraints:
+    allowlist:
+      groupReplication:
+      - '> 8.0.31-innodb, <= 8.0.31-innodb'
+      standalone:
+      - '> 8.0.31-innodb, <= 8.0.31-innodb'
     denylist:
       groupReplication:
       - < 8.0.31
