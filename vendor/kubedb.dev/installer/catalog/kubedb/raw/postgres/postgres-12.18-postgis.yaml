@@ -8,9 +8,9 @@ spec:
       name: postgres-addon
       tasks:
         fullBackup:
-          name: logical-backup
+          name: physical-backup
         fullBackupRestore:
-          name: logical-backup-restore
+          name: physical-backup-restore
         manifestBackup:
           name: manifest-backup
         manifestRestore:
@@ -18,16 +18,16 @@ spec:
         volumeSnapshot:
           name: volume-snapshot
     walg:
-      image: ghcr.io/kubedb/postgres-archiver:(v0.8.0)_12.17-bookworm
+      image: ghcr.io/kubedb/postgres-archiver:(v0.9.0)_12.17-bookworm
   coordinator:
-    image: ghcr.io/kubedb/pg-coordinator:v0.31.0
+    image: ghcr.io/kubedb/pg-coordinator:v0.32.0
   db:
     image: postgis/postgis:12-3.4
   distribution: PostGIS
   exporter:
     image: prometheuscommunity/postgres-exporter:v0.15.0
   initContainer:
-    image: ghcr.io/kubedb/postgres-init:0.14.0
+    image: ghcr.io/kubedb/postgres-init:0.15.0
   podSecurityPolicies:
     databasePolicyName: postgres-db
   securityContext:
