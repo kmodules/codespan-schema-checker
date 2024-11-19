@@ -17,13 +17,13 @@ require (
 	k8s.io/component-base v0.30.2
 	k8s.io/klog/v2 v2.130.1
 	k8s.io/kubectl v0.29.2
-	kmodules.xyz/client-go v0.30.27
-	kmodules.xyz/resource-metadata v0.19.1-0.20241009104424-86c39a298ab6
+	kmodules.xyz/client-go v0.30.38
+	kmodules.xyz/resource-metadata v0.22.5
 	kmodules.xyz/resource-validator v0.29.1
-	kubedb.dev/installer v0.17.2-0.20241014174710-ddc00b4d0fdf
-	kubevault.dev/installer v0.4.0-beta.0.0.20241002084208-1e49aedb85b9
+	kubedb.dev/installer v0.17.2-0.20241119062442-e3fea6f97f0e
+	kubevault.dev/installer v0.4.0-beta.0.0.20241117095311-d79a72493a1b
 	sigs.k8s.io/controller-runtime v0.18.4
-	stash.appscode.dev/installer v0.12.2-0.20241010064320-ce53bf98d567
+	stash.appscode.dev/installer v0.12.2-0.20241117094914-bed81bf8a090
 )
 
 require (
@@ -45,9 +45,8 @@ require (
 	github.com/cli/safeexec v1.0.1 // indirect
 	github.com/containerd/stargz-snapshotter/estargz v0.14.3 // indirect
 	github.com/davecgh/go-spew v1.1.2-0.20180830191138-d8f796af33cc // indirect
-	github.com/docker/cli v24.0.9+incompatible // indirect
+	github.com/docker/cli v27.1.1+incompatible // indirect
 	github.com/docker/distribution v2.8.2+incompatible // indirect
-	github.com/docker/docker v25.0.6+incompatible // indirect
 	github.com/docker/docker-credential-helpers v0.7.0 // indirect
 	github.com/emicklei/go-restful/v3 v3.12.1 // indirect
 	github.com/evanphx/json-patch v5.9.0+incompatible // indirect
@@ -153,11 +152,11 @@ require (
 	k8s.io/api v0.30.2 // indirect
 	k8s.io/apiserver v0.30.2 // indirect
 	k8s.io/kube-openapi v0.0.0-20240703190633-0aa61b46e8c2 // indirect
-	k8s.io/utils v0.0.0-20240502163921-fe8a2dddb1d0 // indirect
+	k8s.io/utils v0.0.0-20240711033017-18e509b52bc8 // indirect
 	kmodules.xyz/apiversion v0.2.0 // indirect
 	kmodules.xyz/go-containerregistry v0.0.12 // indirect
 	kmodules.xyz/offshoot-api v0.30.1 // indirect
-	kmodules.xyz/resource-metrics v0.30.4 // indirect
+	kmodules.xyz/resource-metrics v0.30.5 // indirect
 	sigs.k8s.io/json v0.0.0-20221116044647-bc3834ca7abd // indirect
 	sigs.k8s.io/kustomize/api v0.13.5-0.20230601165947-6ce0bf390ce3 // indirect
 	sigs.k8s.io/kustomize/kyaml v0.14.3-0.20230601165947-6ce0bf390ce3 // indirect
