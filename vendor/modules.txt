@@ -59,7 +59,7 @@ github.com/containerd/stargz-snapshotter/estargz/errorutil
 # github.com/davecgh/go-spew v1.1.2-0.20180830191138-d8f796af33cc
 ## explicit
 github.com/davecgh/go-spew/spew
-# github.com/docker/cli v24.0.9+incompatible
+# github.com/docker/cli v27.1.1+incompatible
 ## explicit
 github.com/docker/cli/cli/config
 github.com/docker/cli/cli/config/configfile
@@ -68,9 +68,6 @@ github.com/docker/cli/cli/config/types
 # github.com/docker/distribution v2.8.2+incompatible
 ## explicit
 github.com/docker/distribution/registry/client/auth/challenge
-# github.com/docker/docker v25.0.6+incompatible
-## explicit
-github.com/docker/docker/pkg/homedir
 # github.com/docker/docker-credential-helpers v0.7.0
 ## explicit; go 1.18
 github.com/docker/docker-credential-helpers/client
@@ -932,7 +929,7 @@ k8s.io/kubectl/pkg/util/openapi
 k8s.io/kubectl/pkg/util/templates
 k8s.io/kubectl/pkg/util/term
 k8s.io/kubectl/pkg/validation
-# k8s.io/utils v0.0.0-20240502163921-fe8a2dddb1d0
+# k8s.io/utils v0.0.0-20240711033017-18e509b52bc8
 ## explicit; go 1.18
 k8s.io/utils/buffer
 k8s.io/utils/clock
@@ -947,7 +944,7 @@ k8s.io/utils/trace
 # kmodules.xyz/apiversion v0.2.0
 ## explicit; go 1.14
 kmodules.xyz/apiversion
-# kmodules.xyz/client-go v0.30.27
+# kmodules.xyz/client-go v0.30.38
 ## explicit; go 1.22.0
 kmodules.xyz/client-go
 kmodules.xyz/client-go/api/v1
@@ -963,7 +960,7 @@ kmodules.xyz/go-containerregistry/name
 ## explicit; go 1.22.0
 kmodules.xyz/offshoot-api/api/v1
 kmodules.xyz/offshoot-api/api/v2
-# kmodules.xyz/resource-metadata v0.19.1-0.20241009104424-86c39a298ab6
+# kmodules.xyz/resource-metadata v0.22.5
 ## explicit; go 1.22.1
 kmodules.xyz/resource-metadata/apis/meta
 kmodules.xyz/resource-metadata/apis/meta/v1alpha1
@@ -973,17 +970,17 @@ kmodules.xyz/resource-metadata/apis/ui/v1alpha1
 kmodules.xyz/resource-metadata/crds
 kmodules.xyz/resource-metadata/hub
 kmodules.xyz/resource-metadata/hub/resourcedescriptors
-# kmodules.xyz/resource-metrics v0.30.4
+# kmodules.xyz/resource-metrics v0.30.5
 ## explicit; go 1.22.1
 kmodules.xyz/resource-metrics/api
 # kmodules.xyz/resource-validator v0.29.1
 ## explicit; go 1.21
 kmodules.xyz/resource-validator
-# kubedb.dev/installer v0.17.2-0.20241014174710-ddc00b4d0fdf
+# kubedb.dev/installer v0.17.2-0.20241119062442-e3fea6f97f0e
 ## explicit; go 1.22.1
 kubedb.dev/installer/catalog/kubedb
-# kubevault.dev/installer v0.4.0-beta.0.0.20241002084208-1e49aedb85b9
-## explicit; go 1.21.5
+# kubevault.dev/installer v0.4.0-beta.0.0.20241117095311-d79a72493a1b
+## explicit; go 1.22.0
 kubevault.dev/installer/catalog
 # sigs.k8s.io/controller-runtime v0.18.4
 ## explicit; go 1.22.0
@@ -1126,7 +1123,7 @@ sigs.k8s.io/structured-merge-diff/v4/value
 ## explicit; go 1.12
 sigs.k8s.io/yaml
 sigs.k8s.io/yaml/goyaml.v2
-# stash.appscode.dev/installer v0.12.2-0.20241010064320-ce53bf98d567
+# stash.appscode.dev/installer v0.12.2-0.20241117094914-bed81bf8a090
 ## explicit; go 1.22.0
 stash.appscode.dev/installer/catalog
 # x-helm.dev/apimachinery v0.0.16
