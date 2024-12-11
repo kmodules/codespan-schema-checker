@@ -4,12 +4,12 @@ metadata:
   name: "5.0"
 spec:
   coordinator:
-    image: ghcr.io/kubedb/redis-coordinator:v0.27.0
+    image: ghcr.io/kubedb/redis-coordinator:v0.28.0
   db:
     image: ghcr.io/kubedb/redis:5.0
   deprecated: true
   exporter:
-    image: ghcr.io/kubedb/redis_exporter:v0.21.1
+    image: ghcr.io/kubedb/redis_exporter:1.66.0
   initContainer:
     image: ghcr.io/kubedb/redis-init:0.7.0
   podSecurityPolicies:
@@ -29,12 +29,12 @@ metadata:
   name: 5.0-v1
 spec:
   coordinator:
-    image: ghcr.io/kubedb/redis-coordinator:v0.27.0
+    image: ghcr.io/kubedb/redis-coordinator:v0.28.0
   db:
     image: ghcr.io/kubedb/redis:5.0-v1
   deprecated: true
   exporter:
-    image: ghcr.io/kubedb/redis_exporter:v0.21.1
+    image: ghcr.io/kubedb/redis_exporter:1.66.0
   initContainer:
     image: ghcr.io/kubedb/redis-init:0.7.0
   podSecurityPolicies:
