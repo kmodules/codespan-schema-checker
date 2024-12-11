@@ -16,7 +16,7 @@ spec:
   podSecurityPolicies:
     databasePolicyName: mysql-db
   replicationModeDetector:
-    image: ghcr.io/kubedb/replication-mode-detector:v0.35.0
+    image: ghcr.io/kubedb/replication-mode-detector:v0.36.0
   updateConstraints:
     denylist:
       groupReplication:
@@ -42,7 +42,7 @@ spec:
   podSecurityPolicies:
     databasePolicyName: mysql-db
   replicationModeDetector:
-    image: ghcr.io/kubedb/replication-mode-detector:v0.35.0
+    image: ghcr.io/kubedb/replication-mode-detector:v0.36.0
   updateConstraints:
     denylist:
       groupReplication:
@@ -68,7 +68,7 @@ spec:
   podSecurityPolicies:
     databasePolicyName: mysql-db
   replicationModeDetector:
-    image: ghcr.io/kubedb/replication-mode-detector:v0.35.0
+    image: ghcr.io/kubedb/replication-mode-detector:v0.36.0
   updateConstraints:
     denylist:
       groupReplication:
@@ -94,7 +94,7 @@ spec:
   podSecurityPolicies:
     databasePolicyName: mysql-db
   replicationModeDetector:
-    image: ghcr.io/kubedb/replication-mode-detector:v0.35.0
+    image: ghcr.io/kubedb/replication-mode-detector:v0.36.0
   updateConstraints:
     denylist:
       groupReplication:
@@ -116,11 +116,11 @@ spec:
   exporter:
     image: ghcr.io/kubedb/mysqld-exporter:v0.11.0
   initContainer:
-    image: ghcr.io/kubedb/toybox:0.8.4
+    image: tianon/toybox:0.8.11
   podSecurityPolicies:
     databasePolicyName: mysql-db
   replicationModeDetector:
-    image: ghcr.io/kubedb/replication-mode-detector:v0.35.0
+    image: ghcr.io/kubedb/replication-mode-detector:v0.36.0
   stash:
     addon:
       backupTask:
@@ -152,7 +152,7 @@ spec:
   podSecurityPolicies:
     databasePolicyName: mysql-db
   replicationModeDetector:
-    image: ghcr.io/kubedb/replication-mode-detector:v0.35.0
+    image: ghcr.io/kubedb/replication-mode-detector:v0.36.0
   stash:
     addon:
       backupTask:
