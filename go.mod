@@ -15,13 +15,13 @@ require (
 	k8s.io/component-base v0.30.2
 	k8s.io/klog/v2 v2.130.1
 	k8s.io/kubectl v0.29.2
-	kmodules.xyz/client-go v0.30.40
-	kmodules.xyz/resource-metadata v0.23.1-0.20241211072838-2c167223c93e
+	kmodules.xyz/client-go v0.30.42
+	kmodules.xyz/resource-metadata v0.23.2-0.20241218133649-44f2be7cd065
 	kmodules.xyz/resource-validator v0.29.1
-	kubedb.dev/installer v0.17.2-0.20241211095920-519d3e3cd3b1
+	kubedb.dev/installer v0.17.2-0.20241220113755-eccf976226d4
 	kubevault.dev/installer v0.4.0-beta.0.0.20241208172051-bcf43d566ec0
 	sigs.k8s.io/controller-runtime v0.18.4
-	stash.appscode.dev/installer v0.12.2-0.20241022221807-4ad4af690ae5
+	stash.appscode.dev/installer v0.12.2-0.20241219171447-03984626ae8c
 )
 
 require (
@@ -124,14 +124,14 @@ require (
 	github.com/yudai/golcs v0.0.0-20170316035057-ecda9a501e82 // indirect
 	github.com/zeebo/xxh3 v1.0.2 // indirect
 	go.starlark.net v0.0.0-20230525235612-a134d8f9ddca // indirect
-	golang.org/x/crypto v0.27.0 // indirect
+	golang.org/x/crypto v0.31.0 // indirect
 	golang.org/x/exp v0.0.0-20240506185415-9bf2ced13842 // indirect
 	golang.org/x/net v0.29.0 // indirect
 	golang.org/x/oauth2 v0.22.0 // indirect
-	golang.org/x/sync v0.8.0 // indirect
-	golang.org/x/sys v0.25.0 // indirect
-	golang.org/x/term v0.24.0 // indirect
-	golang.org/x/text v0.18.0 // indirect
+	golang.org/x/sync v0.10.0 // indirect
+	golang.org/x/sys v0.28.0 // indirect
+	golang.org/x/term v0.27.0 // indirect
+	golang.org/x/text v0.21.0 // indirect
 	golang.org/x/time v0.5.0 // indirect
 	gomodules.xyz/clock v0.0.0-20200817085942-06523dba733f // indirect
 	gomodules.xyz/flags v0.1.3 // indirect
