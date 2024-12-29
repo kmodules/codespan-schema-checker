@@ -1,6 +1,8 @@
 module kmodules.xyz/codespan-schema-checker
 
-go 1.23.4
+go 1.22.7
+
+toolchain go1.23.4
 
 require (
 	github.com/gohugoio/hugo v0.125.5
