@@ -17,8 +17,8 @@ require (
 	k8s.io/component-base v0.30.2
 	k8s.io/klog/v2 v2.130.1
 	k8s.io/kubectl v0.29.2
-	kmodules.xyz/client-go v0.30.43
-	kmodules.xyz/resource-metadata v0.24.0
+	kmodules.xyz/client-go v0.30.46
+	kmodules.xyz/resource-metadata v0.26.0
 	kmodules.xyz/resource-validator v0.29.1
 	kubedb.dev/installer v0.17.2-0.20241228225401-1002bec22967
 	kubevault.dev/installer v0.4.0-beta.0.0.20241229051949-0d75cf2b9431
@@ -172,7 +172,7 @@ require (
 	sigs.k8s.io/kustomize/kyaml v0.14.3-0.20230601165947-6ce0bf390ce3 // indirect
 	sigs.k8s.io/structured-merge-diff/v4 v4.4.1 // indirect
 	sigs.k8s.io/yaml v1.4.0 // indirect
-	x-helm.dev/apimachinery v0.0.16 // indirect
+	x-helm.dev/apimachinery v0.0.17 // indirect
 )
 
 replace github.com/imdario/mergo => github.com/imdario/mergo v0.3.6
