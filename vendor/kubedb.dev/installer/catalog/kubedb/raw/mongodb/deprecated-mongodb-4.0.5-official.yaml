@@ -16,7 +16,10 @@ spec:
   podSecurityPolicies:
     databasePolicyName: mongodb-db
   replicationModeDetector:
-    image: ghcr.io/kubedb/replication-mode-detector:v0.37.0
+    image: ghcr.io/kubedb/replication-mode-detector:v0.40.0
+  securityContext:
+    runAsGroup: 999
+    runAsUser: 999
   version: 4.0.5
 
 ---
@@ -38,7 +41,10 @@ spec:
   podSecurityPolicies:
     databasePolicyName: mongodb-db
   replicationModeDetector:
-    image: ghcr.io/kubedb/replication-mode-detector:v0.37.0
+    image: ghcr.io/kubedb/replication-mode-detector:v0.40.0
+  securityContext:
+    runAsGroup: 999
+    runAsUser: 999
   version: 4.0.5
 
 ---
@@ -60,7 +66,10 @@ spec:
   podSecurityPolicies:
     databasePolicyName: mongodb-db
   replicationModeDetector:
-    image: ghcr.io/kubedb/replication-mode-detector:v0.37.0
+    image: ghcr.io/kubedb/replication-mode-detector:v0.40.0
+  securityContext:
+    runAsGroup: 999
+    runAsUser: 999
   version: 4.0.5
 
 ---
@@ -82,7 +91,10 @@ spec:
   podSecurityPolicies:
     databasePolicyName: mongodb-db
   replicationModeDetector:
-    image: ghcr.io/kubedb/replication-mode-detector:v0.37.0
+    image: ghcr.io/kubedb/replication-mode-detector:v0.40.0
+  securityContext:
+    runAsGroup: 999
+    runAsUser: 999
   version: 4.0.5
 
 ---
@@ -104,7 +116,10 @@ spec:
   podSecurityPolicies:
     databasePolicyName: mongodb-db
   replicationModeDetector:
-    image: ghcr.io/kubedb/replication-mode-detector:v0.37.0
+    image: ghcr.io/kubedb/replication-mode-detector:v0.40.0
+  securityContext:
+    runAsGroup: 999
+    runAsUser: 999
   version: 4.0.5
 
 ---
@@ -142,7 +157,7 @@ spec:
   podSecurityPolicies:
     databasePolicyName: mongodb-db
   replicationModeDetector:
-    image: ghcr.io/kubedb/replication-mode-detector:v0.37.0
+    image: ghcr.io/kubedb/replication-mode-detector:v0.40.0
   securityContext:
     runAsGroup: 999
     runAsUser: 999

@@ -7,6 +7,7 @@
     "xpack-7.17.23",
     "xpack-7.17.15",
     "xpack-7.16.3",
+    "opensearch-2.19.0",
     "opensearch-2.18.0",
     "opensearch-2.17.1",
     "opensearch-2.16.0",
@@ -27,6 +28,8 @@
     "searchguard-7.9.3"
   ],
   "elasticsearch-restore-8.2.0": [
+    "xpack-8.17.2",
+    "xpack-8.16.4",
     "xpack-8.16.0",
     "xpack-8.15.4",
     "xpack-8.15.0",
@@ -38,7 +41,8 @@
     "xpack-8.8.2",
     "xpack-8.6.2",
     "xpack-8.5.3",
-    "xpack-8.2.3"
+    "xpack-8.2.3",
+    "xpack-7.17.27"
   ],
   "mariadb-restore-10.5.8": [
     "11.6.2",
@@ -70,6 +74,7 @@
     "percona-7.0.4",
     "percona-6.0.12",
     "percona-5.0.23",
+    "7.0.16",
     "7.0.8",
     "7.0.5",
     "6.0.12"
@@ -90,9 +95,13 @@
     "8.0.31-innodb"
   ],
   "perconaxtradb-restore-5.7": [
-    "8.0.31",
-    "8.0.28",
-    "8.0.26"
+    "5.7.44"
+  ],
+  "perconaxtradb-restore-8.0": [
+    "8.0.40"
+  ],
+  "perconaxtradb-restore-8.4": [
+    "8.4.3"
   ],
   "postgres-restore-10.14": [
     "10.23-bullseye",
@@ -104,18 +113,28 @@
     "11-bullseye-postgis"
   ],
   "postgres-restore-12.4": [
+    "12.22-bookworm",
+    "12.22",
     "12.17-bookworm",
     "12.17",
     "12-bullseye-postgis"
   ],
   "postgres-restore-13.1": [
     "timescaledb-2.14.2-pg13",
+    "13.20-bookworm",
+    "13.20",
+    "13.18-bookworm",
+    "13.18",
     "13.13-bookworm",
     "13.13",
     "13-bullseye-postgis"
   ],
   "postgres-restore-14.0": [
     "timescaledb-2.14.2-pg14",
+    "14.17-bookworm",
+    "14.17",
+    "14.15-bookworm",
+    "14.15",
     "14.13-bookworm",
     "14.13",
     "14.10-bookworm",
@@ -124,6 +143,11 @@
   ],
   "postgres-restore-15.1": [
     "timescaledb-2.14.2-pg15",
+    "15.12-documentdb",
+    "15.12-bookworm",
+    "15.12",
+    "15.10-bookworm",
+    "15.10",
     "15.8-bookworm",
     "15.8",
     "15.5-bookworm",
@@ -132,11 +156,23 @@
   ],
   "postgres-restore-16.1": [
     "timescaledb-2.14.2-pg16",
+    "16.8-documentdb",
+    "16.8-bookworm",
+    "16.8",
+    "16.6-bookworm",
+    "16.6",
     "16.4-bookworm",
     "16.4",
     "16.2-bullseye-postgis",
     "16.1-bookworm",
     "16.1"
+  ],
+  "postgres-restore-17.2": [
+    "17.4-documentdb",
+    "17.4-bookworm",
+    "17.4",
+    "17.2-bookworm",
+    "17.2"
   ],
   "redis-restore-5.0.13": [
     "5.0.14"
