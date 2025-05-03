@@ -17,12 +17,12 @@ require (
 	k8s.io/component-base v0.32.3
 	k8s.io/klog/v2 v2.130.1
 	k8s.io/kubectl v0.29.2
-	kmodules.xyz/client-go v0.32.1
-	kmodules.xyz/resource-metadata v0.28.0
+	kmodules.xyz/client-go v0.32.3
+	kmodules.xyz/resource-metadata v0.29.0
 	kmodules.xyz/resource-validator v0.29.1
 	kubedb.dev/installer v0.17.2-0.20250404180423-25f2a6d34fe8
 	kubevault.dev/installer v0.4.0-beta.0.0.20241229051949-0d75cf2b9431
-	sigs.k8s.io/controller-runtime v0.20.3
+	sigs.k8s.io/controller-runtime v0.20.4
 	stash.appscode.dev/installer v0.12.2-0.20250317171548-c1064c4022f2
 )
 
@@ -134,7 +134,7 @@ require (
 	go.opentelemetry.io/otel/trace v1.33.0 // indirect
 	golang.org/x/crypto v0.36.0 // indirect
 	golang.org/x/exp v0.0.0-20240719175910-8a7402abbf56 // indirect
-	golang.org/x/net v0.37.0 // indirect
+	golang.org/x/net v0.38.0 // indirect
 	golang.org/x/oauth2 v0.27.0 // indirect
 	golang.org/x/sync v0.12.0 // indirect
 	golang.org/x/sys v0.31.0 // indirect
