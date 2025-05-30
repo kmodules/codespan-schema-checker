@@ -263,12 +263,13 @@ github.com/josharian/intern
 # github.com/json-iterator/go v1.1.12
 ## explicit; go 1.12
 github.com/json-iterator/go
-# github.com/klauspost/compress v1.17.11
-## explicit; go 1.21
+# github.com/klauspost/compress v1.18.0
+## explicit; go 1.22
 github.com/klauspost/compress
 github.com/klauspost/compress/fse
 github.com/klauspost/compress/huff0
 github.com/klauspost/compress/internal/cpuinfo
+github.com/klauspost/compress/internal/le
 github.com/klauspost/compress/internal/snapref
 github.com/klauspost/compress/zstd
 github.com/klauspost/compress/zstd/internal/xxhash
@@ -453,7 +454,7 @@ go.opentelemetry.io/otel/internal/attribute
 ## explicit; go 1.22.0
 go.opentelemetry.io/otel/trace
 go.opentelemetry.io/otel/trace/embedded
-# golang.org/x/crypto v0.36.0
+# golang.org/x/crypto v0.37.0
 ## explicit; go 1.23.0
 golang.org/x/crypto/bcrypt
 golang.org/x/crypto/blowfish
@@ -479,18 +480,18 @@ golang.org/x/net/websocket
 ## explicit; go 1.23.0
 golang.org/x/oauth2
 golang.org/x/oauth2/internal
-# golang.org/x/sync v0.12.0
+# golang.org/x/sync v0.13.0
 ## explicit; go 1.23.0
 golang.org/x/sync/errgroup
-# golang.org/x/sys v0.31.0
+# golang.org/x/sys v0.32.0
 ## explicit; go 1.23.0
 golang.org/x/sys/plan9
 golang.org/x/sys/unix
 golang.org/x/sys/windows
-# golang.org/x/term v0.30.0
+# golang.org/x/term v0.31.0
 ## explicit; go 1.23.0
 golang.org/x/term
-# golang.org/x/text v0.23.0
+# golang.org/x/text v0.24.0
 ## explicit; go 1.23.0
 golang.org/x/text/encoding
 golang.org/x/text/encoding/internal
@@ -1100,7 +1101,7 @@ k8s.io/utils/trace
 # kmodules.xyz/apiversion v0.2.0
 ## explicit; go 1.14
 kmodules.xyz/apiversion
-# kmodules.xyz/client-go v0.32.4-0.20250513070944-c75b17fe7c82
+# kmodules.xyz/client-go v0.32.4
 ## explicit; go 1.23.0
 kmodules.xyz/client-go
 kmodules.xyz/client-go/api/v1
@@ -1132,11 +1133,11 @@ kmodules.xyz/resource-metrics/api
 # kmodules.xyz/resource-validator v0.29.1
 ## explicit; go 1.21
 kmodules.xyz/resource-validator
-# kubedb.dev/installer v0.17.2-0.20250404180423-25f2a6d34fe8
-## explicit; go 1.23.0
+# kubedb.dev/installer v0.17.2-0.20250530150558-79bfb53aedca
+## explicit; go 1.23.3
 kubedb.dev/installer/catalog/kubedb
-# kubevault.dev/installer v0.4.0-beta.0.0.20241229051949-0d75cf2b9431
-## explicit; go 1.22.7
+# kubevault.dev/installer v0.4.0-beta.0.0.20250529080847-ba60e56b3524
+## explicit; go 1.23.3
 kubevault.dev/installer/catalog
 # sigs.k8s.io/controller-runtime v0.20.4
 ## explicit; go 1.23.0
@@ -1281,7 +1282,7 @@ sigs.k8s.io/structured-merge-diff/v4/value
 sigs.k8s.io/yaml
 sigs.k8s.io/yaml/goyaml.v2
 sigs.k8s.io/yaml/goyaml.v3
-# stash.appscode.dev/installer v0.12.2-0.20250317171548-c1064c4022f2
+# stash.appscode.dev/installer v0.12.2-0.20250529171718-1dc8d0e5f0fb
 ## explicit; go 1.22.7
 stash.appscode.dev/installer/catalog
 # x-helm.dev/apimachinery v0.0.17

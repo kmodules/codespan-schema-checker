@@ -1,7 +1,7 @@
 {
   "Cassandra": [
-    "5.0.0",
-    "4.1.6"
+    "5.0.3",
+    "4.1.8"
   ],
   "ClickHouse": [
     "24.4.1"
@@ -55,6 +55,12 @@
     "1.24.0",
     "1.23.0",
     "1.18.0"
+  ],
+  "Hazelcast": [
+    "5.5.2"
+  ],
+  "Ignite": [
+    "2.17.0"
   ],
   "Kafka": [
     "3.9.0",
@@ -130,6 +136,9 @@
     "5.7.44",
     "5.7.42-debian"
   ],
+  "Oracle": [
+    "oracle-21.3.0"
+  ],
   "PerconaXtraDB": [
     "8.4.3",
     "8.0.40",
@@ -149,11 +158,15 @@
     "4.4.5"
   ],
   "Postgres": [
+    "17.5-bookworm",
+    "17.5",
     "17.4-documentdb",
     "17.4-bookworm",
     "17.4",
     "17.2-bookworm",
     "17.2",
+    "16.9-bookworm",
+    "16.9",
     "16.8-documentdb",
     "16.8-bookworm",
     "16.8",
@@ -165,6 +178,8 @@
     "16.2-bullseye-postgis",
     "16.1-bookworm",
     "16.1",
+    "15.13-bookworm",
+    "15.13",
     "15.12-documentdb",
     "15.12-bookworm",
     "15.12",
@@ -176,6 +191,8 @@
     "15-bullseye-postgis",
     "15.5-bookworm",
     "15.5",
+    "14.18-bookworm",
+    "14.18",
     "14.17-bookworm",
     "14.17",
     "14.15-bookworm",
@@ -186,6 +203,8 @@
     "14-bullseye-postgis",
     "14.10-bookworm",
     "14.10",
+    "13.21-bookworm",
+    "13.21",
     "13.20-bookworm",
     "13.20",
     "13.18-bookworm",
@@ -206,6 +225,8 @@
     "10.23"
   ],
   "ProxySQL": [
+    "3.0.1-debian",
+    "2.7.3-debian",
     "2.6.3-debian",
     "2.4.4-debian",
     "2.4.4-centos",
@@ -218,9 +239,13 @@
     "3.12.12"
   ],
   "Redis": [
+    "valkey-8.1.1",
+    "valkey-8.0.3",
     "7.4.1",
     "7.4.0",
+    "valkey-7.2.9",
     "7.2.6",
+    "valkey-7.2.5",
     "7.2.4",
     "7.2.3",
     "7.0.15",
