@@ -5,6 +5,8 @@ metadata:
 spec:
   exporter:
     image: ghcr.io/kubevault/vault-exporter:v0.1.1
+  initContainer:
+    image: busybox
   stash:
     addon:
       backupTask:
@@ -12,7 +14,7 @@ spec:
       restoreTask:
         name: vault-restore-1.10.3
   unsealer:
-    image: kubevault/vault-unsealer:v0.19.0
+    image: kubevault/vault-unsealer:v0.22.0
   vault:
-    image: vault:1.2.2
+    image: ghcr.io/appscode-images/vault:1.2.2
   version: 1.2.2

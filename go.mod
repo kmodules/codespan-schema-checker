@@ -1,8 +1,8 @@
 module kmodules.xyz/codespan-schema-checker
 
-go 1.23.0
+go 1.23.3
 
-toolchain go1.23.4
+toolchain go1.24.1
 
 require (
 	github.com/gohugoio/hugo v0.125.5
@@ -17,13 +17,13 @@ require (
 	k8s.io/component-base v0.32.3
 	k8s.io/klog/v2 v2.130.1
 	k8s.io/kubectl v0.29.2
-	kmodules.xyz/client-go v0.32.4-0.20250513070944-c75b17fe7c82
+	kmodules.xyz/client-go v0.32.4
 	kmodules.xyz/resource-metadata v0.30.0
 	kmodules.xyz/resource-validator v0.29.1
-	kubedb.dev/installer v0.17.2-0.20250404180423-25f2a6d34fe8
-	kubevault.dev/installer v0.4.0-beta.0.0.20241229051949-0d75cf2b9431
+	kubedb.dev/installer v0.17.2-0.20250530150558-79bfb53aedca
+	kubevault.dev/installer v0.4.0-beta.0.0.20250529080847-ba60e56b3524
 	sigs.k8s.io/controller-runtime v0.20.4
-	stash.appscode.dev/installer v0.12.2-0.20250317171548-c1064c4022f2
+	stash.appscode.dev/installer v0.12.2-0.20250529171718-1dc8d0e5f0fb
 )
 
 require (
@@ -84,7 +84,7 @@ require (
 	github.com/inconshreveable/mousetrap v1.1.0 // indirect
 	github.com/josharian/intern v1.0.0 // indirect
 	github.com/json-iterator/go v1.1.12 // indirect
-	github.com/klauspost/compress v1.17.11 // indirect
+	github.com/klauspost/compress v1.18.0 // indirect
 	github.com/klauspost/cpuid/v2 v2.2.7 // indirect
 	github.com/liggitt/tabwriter v0.0.0-20181228230101-89fcab3d43de // indirect
 	github.com/mailru/easyjson v0.9.0 // indirect
@@ -132,14 +132,14 @@ require (
 	github.com/zeebo/xxh3 v1.0.2 // indirect
 	go.opentelemetry.io/otel v1.33.0 // indirect
 	go.opentelemetry.io/otel/trace v1.33.0 // indirect
-	golang.org/x/crypto v0.36.0 // indirect
+	golang.org/x/crypto v0.37.0 // indirect
 	golang.org/x/exp v0.0.0-20240719175910-8a7402abbf56 // indirect
 	golang.org/x/net v0.38.0 // indirect
 	golang.org/x/oauth2 v0.27.0 // indirect
-	golang.org/x/sync v0.12.0 // indirect
-	golang.org/x/sys v0.31.0 // indirect
-	golang.org/x/term v0.30.0 // indirect
-	golang.org/x/text v0.23.0 // indirect
+	golang.org/x/sync v0.13.0 // indirect
+	golang.org/x/sys v0.32.0 // indirect
+	golang.org/x/term v0.31.0 // indirect
+	golang.org/x/text v0.24.0 // indirect
 	golang.org/x/time v0.10.0 // indirect
 	gomodules.xyz/clock v0.0.0-20200817085942-06523dba733f // indirect
 	gomodules.xyz/flags v0.1.3 // indirect
