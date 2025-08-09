@@ -1,8 +1,8 @@
 module kmodules.xyz/codespan-schema-checker
 
-go 1.23.3
+go 1.23.6
 
-toolchain go1.24.1
+toolchain go1.24.6
 
 require (
 	github.com/gohugoio/hugo v0.125.5
@@ -17,13 +17,13 @@ require (
 	k8s.io/component-base v0.32.3
 	k8s.io/klog/v2 v2.130.1
 	k8s.io/kubectl v0.29.2
-	kmodules.xyz/client-go v0.32.6
-	kmodules.xyz/resource-metadata v0.31.0
+	kmodules.xyz/client-go v0.32.7
+	kmodules.xyz/resource-metadata v0.33.1
 	kmodules.xyz/resource-validator v0.29.1
-	kubedb.dev/installer v0.17.2-0.20250619181222-875c81c361cd
-	kubevault.dev/installer v0.4.0-beta.0.0.20250529080847-ba60e56b3524
+	kubedb.dev/installer v0.17.2-0.20250808120953-42e41bb1d690
+	kubevault.dev/installer v0.4.0-beta.0.0.20250808172252-254497cdfd3a
 	sigs.k8s.io/controller-runtime v0.20.4
-	stash.appscode.dev/installer v0.12.2-0.20250619172021-770d1af7841a
+	stash.appscode.dev/installer v0.12.2-0.20250808171620-f5fddd812552
 )
 
 require (
@@ -132,14 +132,14 @@ require (
 	github.com/zeebo/xxh3 v1.0.2 // indirect
 	go.opentelemetry.io/otel v1.33.0 // indirect
 	go.opentelemetry.io/otel/trace v1.33.0 // indirect
-	golang.org/x/crypto v0.37.0 // indirect
+	golang.org/x/crypto v0.38.0 // indirect
 	golang.org/x/exp v0.0.0-20240719175910-8a7402abbf56 // indirect
 	golang.org/x/net v0.38.0 // indirect
-	golang.org/x/oauth2 v0.27.0 // indirect
-	golang.org/x/sync v0.13.0 // indirect
-	golang.org/x/sys v0.32.0 // indirect
-	golang.org/x/term v0.31.0 // indirect
-	golang.org/x/text v0.24.0 // indirect
+	golang.org/x/oauth2 v0.28.0 // indirect
+	golang.org/x/sync v0.14.0 // indirect
+	golang.org/x/sys v0.33.0 // indirect
+	golang.org/x/term v0.32.0 // indirect
+	golang.org/x/text v0.25.0 // indirect
 	golang.org/x/time v0.10.0 // indirect
 	gomodules.xyz/clock v0.0.0-20200817085942-06523dba733f // indirect
 	gomodules.xyz/flags v0.1.3 // indirect
@@ -164,7 +164,7 @@ require (
 	kmodules.xyz/apiversion v0.2.0 // indirect
 	kmodules.xyz/go-containerregistry v0.0.14 // indirect
 	kmodules.xyz/offshoot-api v0.32.0 // indirect
-	kmodules.xyz/resource-metrics v0.30.6 // indirect
+	kmodules.xyz/resource-metrics v0.30.11 // indirect
 	sigs.k8s.io/json v0.0.0-20241014173422-cfa47c3a1cc8 // indirect
 	sigs.k8s.io/kustomize/api v0.18.0 // indirect
 	sigs.k8s.io/kustomize/kyaml v0.18.1 // indirect

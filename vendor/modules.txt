@@ -454,7 +454,7 @@ go.opentelemetry.io/otel/internal/attribute
 ## explicit; go 1.22.0
 go.opentelemetry.io/otel/trace
 go.opentelemetry.io/otel/trace/embedded
-# golang.org/x/crypto v0.37.0
+# golang.org/x/crypto v0.38.0
 ## explicit; go 1.23.0
 golang.org/x/crypto/bcrypt
 golang.org/x/crypto/blowfish
@@ -476,22 +476,22 @@ golang.org/x/net/internal/httpcommon
 golang.org/x/net/internal/socks
 golang.org/x/net/proxy
 golang.org/x/net/websocket
-# golang.org/x/oauth2 v0.27.0
+# golang.org/x/oauth2 v0.28.0
 ## explicit; go 1.23.0
 golang.org/x/oauth2
 golang.org/x/oauth2/internal
-# golang.org/x/sync v0.13.0
+# golang.org/x/sync v0.14.0
 ## explicit; go 1.23.0
 golang.org/x/sync/errgroup
-# golang.org/x/sys v0.32.0
+# golang.org/x/sys v0.33.0
 ## explicit; go 1.23.0
 golang.org/x/sys/plan9
 golang.org/x/sys/unix
 golang.org/x/sys/windows
-# golang.org/x/term v0.31.0
+# golang.org/x/term v0.32.0
 ## explicit; go 1.23.0
 golang.org/x/term
-# golang.org/x/text v0.24.0
+# golang.org/x/text v0.25.0
 ## explicit; go 1.23.0
 golang.org/x/text/encoding
 golang.org/x/text/encoding/internal
@@ -1101,7 +1101,7 @@ k8s.io/utils/trace
 # kmodules.xyz/apiversion v0.2.0
 ## explicit; go 1.14
 kmodules.xyz/apiversion
-# kmodules.xyz/client-go v0.32.6
+# kmodules.xyz/client-go v0.32.7
 ## explicit; go 1.23.0
 kmodules.xyz/client-go
 kmodules.xyz/client-go/api/v1
@@ -1117,7 +1117,7 @@ kmodules.xyz/go-containerregistry/name
 ## explicit; go 1.23.0
 kmodules.xyz/offshoot-api/api/v1
 kmodules.xyz/offshoot-api/api/v2
-# kmodules.xyz/resource-metadata v0.31.0
+# kmodules.xyz/resource-metadata v0.33.1
 ## explicit; go 1.23.0
 kmodules.xyz/resource-metadata/apis/meta
 kmodules.xyz/resource-metadata/apis/meta/v1alpha1
@@ -1127,16 +1127,16 @@ kmodules.xyz/resource-metadata/apis/ui/v1alpha1
 kmodules.xyz/resource-metadata/crds
 kmodules.xyz/resource-metadata/hub
 kmodules.xyz/resource-metadata/hub/resourcedescriptors
-# kmodules.xyz/resource-metrics v0.30.6
+# kmodules.xyz/resource-metrics v0.30.11
 ## explicit; go 1.23.0
 kmodules.xyz/resource-metrics/api
 # kmodules.xyz/resource-validator v0.29.1
 ## explicit; go 1.21
 kmodules.xyz/resource-validator
-# kubedb.dev/installer v0.17.2-0.20250619181222-875c81c361cd
-## explicit; go 1.23.3
+# kubedb.dev/installer v0.17.2-0.20250808120953-42e41bb1d690
+## explicit; go 1.23.6
 kubedb.dev/installer/catalog/kubedb
-# kubevault.dev/installer v0.4.0-beta.0.0.20250529080847-ba60e56b3524
+# kubevault.dev/installer v0.4.0-beta.0.0.20250808172252-254497cdfd3a
 ## explicit; go 1.23.3
 kubevault.dev/installer/catalog
 # sigs.k8s.io/controller-runtime v0.20.4
@@ -1282,8 +1282,8 @@ sigs.k8s.io/structured-merge-diff/v4/value
 sigs.k8s.io/yaml
 sigs.k8s.io/yaml/goyaml.v2
 sigs.k8s.io/yaml/goyaml.v3
-# stash.appscode.dev/installer v0.12.2-0.20250619172021-770d1af7841a
-## explicit; go 1.22.7
+# stash.appscode.dev/installer v0.12.2-0.20250808171620-f5fddd812552
+## explicit; go 1.23.3
 stash.appscode.dev/installer/catalog
 # x-helm.dev/apimachinery v0.0.17
 ## explicit; go 1.21.5
