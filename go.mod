@@ -1,6 +1,6 @@
 module kmodules.xyz/codespan-schema-checker
 
-go 1.23.6
+go 1.24.0
 
 toolchain go1.24.6
 
@@ -17,11 +17,11 @@ require (
 	k8s.io/component-base v0.32.3
 	k8s.io/klog/v2 v2.130.1
 	k8s.io/kubectl v0.29.2
-	kmodules.xyz/client-go v0.32.7
-	kmodules.xyz/resource-metadata v0.37.0
+	kmodules.xyz/client-go v0.32.8
+	kmodules.xyz/resource-metadata v0.37.2-0.20251020063632-a09967e71597
 	kmodules.xyz/resource-validator v0.29.1
-	kubedb.dev/installer v0.17.2-0.20250808120953-42e41bb1d690
-	kubevault.dev/installer v0.4.0-beta.0.0.20250808172252-254497cdfd3a
+	kubedb.dev/installer v0.17.2-0.20251019181202-89069e1bc0af
+	kubevault.dev/installer v0.4.0-beta.0.0.20251015172606-30118eb2655f
 	sigs.k8s.io/controller-runtime v0.20.4
 	stash.appscode.dev/installer v0.12.2-0.20250808171620-f5fddd812552
 )

@@ -1101,7 +1101,7 @@ k8s.io/utils/trace
 # kmodules.xyz/apiversion v0.2.0
 ## explicit; go 1.14
 kmodules.xyz/apiversion
-# kmodules.xyz/client-go v0.32.7
+# kmodules.xyz/client-go v0.32.8
 ## explicit; go 1.23.0
 kmodules.xyz/client-go
 kmodules.xyz/client-go/api/v1
@@ -1117,7 +1117,7 @@ kmodules.xyz/go-containerregistry/name
 ## explicit; go 1.23.0
 kmodules.xyz/offshoot-api/api/v1
 kmodules.xyz/offshoot-api/api/v2
-# kmodules.xyz/resource-metadata v0.37.0
+# kmodules.xyz/resource-metadata v0.37.2-0.20251020063632-a09967e71597
 ## explicit; go 1.23.0
 kmodules.xyz/resource-metadata/apis/meta
 kmodules.xyz/resource-metadata/apis/meta/v1alpha1
@@ -1133,10 +1133,10 @@ kmodules.xyz/resource-metrics/api
 # kmodules.xyz/resource-validator v0.29.1
 ## explicit; go 1.21
 kmodules.xyz/resource-validator
-# kubedb.dev/installer v0.17.2-0.20250808120953-42e41bb1d690
-## explicit; go 1.23.6
+# kubedb.dev/installer v0.17.2-0.20251019181202-89069e1bc0af
+## explicit; go 1.24.0
 kubedb.dev/installer/catalog/kubedb
-# kubevault.dev/installer v0.4.0-beta.0.0.20250808172252-254497cdfd3a
+# kubevault.dev/installer v0.4.0-beta.0.0.20251015172606-30118eb2655f
 ## explicit; go 1.23.3
 kubevault.dev/installer/catalog
 # sigs.k8s.io/controller-runtime v0.20.4
