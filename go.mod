@@ -18,7 +18,7 @@ require (
 	k8s.io/klog/v2 v2.130.1
 	k8s.io/kubectl v0.29.2
 	kmodules.xyz/client-go v0.32.8
-	kmodules.xyz/resource-metadata v0.38.0
+	kmodules.xyz/resource-metadata v0.39.0
 	kmodules.xyz/resource-validator v0.29.1
 	kubedb.dev/installer v0.17.2-0.20251019181202-89069e1bc0af
 	kubevault.dev/installer v0.4.0-beta.0.0.20251015172606-30118eb2655f
