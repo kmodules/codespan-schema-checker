@@ -1,8 +1,6 @@
 module kmodules.xyz/codespan-schema-checker
 
-go 1.24.0
-
-toolchain go1.24.6
+go 1.25.5
 
 require (
 	github.com/gohugoio/hugo v0.125.5
@@ -10,20 +8,20 @@ require (
 	github.com/spf13/cobra v1.8.1
 	github.com/yuin/goldmark v1.7.1
 	gomodules.xyz/logs v0.0.7
-	k8s.io/apiextensions-apiserver v0.32.3
-	k8s.io/apimachinery v0.32.3
+	k8s.io/apiextensions-apiserver v0.32.8
+	k8s.io/apimachinery v0.32.8
 	k8s.io/cli-runtime v0.32.2
-	k8s.io/client-go v0.32.3
-	k8s.io/component-base v0.32.3
+	k8s.io/client-go v0.32.8
+	k8s.io/component-base v0.32.8
 	k8s.io/klog/v2 v2.130.1
 	k8s.io/kubectl v0.29.2
-	kmodules.xyz/client-go v0.32.8
+	kmodules.xyz/client-go v0.32.10
 	kmodules.xyz/resource-metadata v0.39.0
 	kmodules.xyz/resource-validator v0.29.1
-	kubedb.dev/installer v0.17.2-0.20251019181202-89069e1bc0af
+	kubedb.dev/installer v0.17.2-0.20251209111747-44a50f5c5b61
 	kubevault.dev/installer v0.4.0-beta.0.0.20251015172606-30118eb2655f
 	sigs.k8s.io/controller-runtime v0.20.4
-	stash.appscode.dev/installer v0.12.2-0.20250808171620-f5fddd812552
+	stash.appscode.dev/installer v0.12.2-0.20251204172259-c724502d3955
 )
 
 require (
@@ -132,15 +130,15 @@ require (
 	github.com/zeebo/xxh3 v1.0.2 // indirect
 	go.opentelemetry.io/otel v1.33.0 // indirect
 	go.opentelemetry.io/otel/trace v1.33.0 // indirect
-	golang.org/x/crypto v0.38.0 // indirect
+	golang.org/x/crypto v0.45.0 // indirect
 	golang.org/x/exp v0.0.0-20240719175910-8a7402abbf56 // indirect
-	golang.org/x/net v0.38.0 // indirect
+	golang.org/x/net v0.47.0 // indirect
 	golang.org/x/oauth2 v0.28.0 // indirect
-	golang.org/x/sync v0.14.0 // indirect
-	golang.org/x/sys v0.33.0 // indirect
-	golang.org/x/term v0.32.0 // indirect
-	golang.org/x/text v0.25.0 // indirect
-	golang.org/x/time v0.10.0 // indirect
+	golang.org/x/sync v0.18.0 // indirect
+	golang.org/x/sys v0.38.0 // indirect
+	golang.org/x/term v0.37.0 // indirect
+	golang.org/x/text v0.31.0 // indirect
+	golang.org/x/time v0.11.0 // indirect
 	gomodules.xyz/clock v0.0.0-20200817085942-06523dba733f // indirect
 	gomodules.xyz/flags v0.1.3 // indirect
 	gomodules.xyz/jsonpatch/v2 v2.5.0 // indirect
@@ -151,14 +149,14 @@ require (
 	gomodules.xyz/x v0.0.17 // indirect
 	google.golang.org/genproto/googleapis/api v0.0.0-20240826202546-f6391c0de4c7 // indirect
 	google.golang.org/genproto/googleapis/rpc v0.0.0-20240826202546-f6391c0de4c7 // indirect
-	google.golang.org/protobuf v1.36.3 // indirect
+	google.golang.org/protobuf v1.36.6 // indirect
 	gopkg.in/evanphx/json-patch.v4 v4.12.0 // indirect
 	gopkg.in/inf.v0 v0.9.1 // indirect
 	gopkg.in/yaml.v2 v2.4.0 // indirect
 	gopkg.in/yaml.v3 v3.0.1 // indirect
 	gotest.tools/v3 v3.5.0 // indirect
-	k8s.io/api v0.32.3 // indirect
-	k8s.io/apiserver v0.32.3 // indirect
+	k8s.io/api v0.32.8 // indirect
+	k8s.io/apiserver v0.32.8 // indirect
 	k8s.io/kube-openapi v0.0.0-20250318190949-c8a335a9a2ff // indirect
 	k8s.io/utils v0.0.0-20241210054802-24370beab758 // indirect
 	kmodules.xyz/apiversion v0.2.0 // indirect
