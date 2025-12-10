@@ -217,8 +217,7 @@ func (r *CodeExtractor) extractCode(_ util.BufWriter, source []byte, n gast.Node
 		}
 
 		err := p.ProcessResources(buf.Bytes(), checkObject)
-		if err != nil && !runtime.IsMissingKind(err) && !p.IsYAMLSyntaxError(err) {
-			// err
+		if err != nil && !runtime.IsMissingKind(err) {
 			logger.Log(err)
 		}
 	}
@@ -248,16 +247,19 @@ func check(path string, info os.FileInfo, err error) error {
 	}
 	ext := filepath.Ext(info.Name())
 	if ext == ".yaml" || ext == ".yml" || ext == ".json" {
+		fmt.Fprintf(os.Stderr, "Processing file: %s\n", path)
 		logger.Init(path)
 		content, err := os.ReadFile(path)
 		if err != nil {
 			return err
 		}
 		err = p.ProcessResources(content, checkObject)
-		if err != nil && !runtime.IsMissingKind(err) && !p.IsYAMLSyntaxError(err) {
-			return err
+		if err != nil && !runtime.IsMissingKind(err) {
+			fmt.Fprintf(os.Stderr, "ERROR in file %s: %v\n", path, err)
+			logger.Log(err)
 		}
 	} else if ext == ".md" && filepath.Base(path) != "_index.md" {
+		fmt.Fprintf(os.Stderr, "Processing markdown file: %s\n", path)
 		logger.Init(path)
 		content, err := os.ReadFile(path)
 		if err != nil {
@@ -266,10 +268,12 @@ func check(path string, info os.FileInfo, err error) error {
 		buf := bytes.NewBuffer(content)
 		page, err := hp.ParseFrontMatterAndContent(buf)
 		if err != nil {
+			fmt.Fprintf(os.Stderr, "ERROR parsing front matter in %s: %v\n", path, err)
 			return err
 		}
 		err = md.Convert(page.Content, io.Discard)
 		if err != nil {
+			fmt.Fprintf(os.Stderr, "ERROR converting markdown in %s: %v\n", path, err)
 			return err
 		}
 	}
