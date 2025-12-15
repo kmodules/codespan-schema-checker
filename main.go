@@ -35,7 +35,6 @@ import (
 	"github.com/spf13/cobra"
 	"github.com/yuin/goldmark"
 	"github.com/yuin/goldmark/ast"
-	gast "github.com/yuin/goldmark/ast"
 	"github.com/yuin/goldmark/extension"
 	"github.com/yuin/goldmark/parser"
 	"github.com/yuin/goldmark/renderer"
@@ -207,7 +206,7 @@ func (r *CodeExtractor) RegisterFuncs(reg renderer.NodeRendererFuncRegisterer) {
 	reg.Register(ast.KindFencedCodeBlock, r.extractCode)
 }
 
-func (r *CodeExtractor) extractCode(_ util.BufWriter, source []byte, n gast.Node, entering bool) (gast.WalkStatus, error) {
+func (r *CodeExtractor) extractCode(_ util.BufWriter, source []byte, n ast.Node, entering bool) (ast.WalkStatus, error) {
 	if entering {
 		var buf bytes.Buffer
 		l := n.Lines().Len()
@@ -332,7 +331,8 @@ func checkObject(ri p.ResourceInfo) error {
 		}
 	}
 
-	if gvr.Group == "kubedb.com" {
+	switch gvr.Group {
+	case "kubedb.com":
 		dbVersion, _, err := unstructured.NestedString(obj.Object, "spec", "version")
 		if err != nil {
 			logger.Log(err)
@@ -346,7 +346,7 @@ func checkObject(ri p.ResourceInfo) error {
 			logger.Log(fmt.Errorf("using unknown %s version %s", obj.GetKind(), dbVersion))
 			return nil
 		}
-	} else if gvr.Group == "catalog.kubedb.com" {
+	case "catalog.kubedb.com":
 		if !sets.NewString(kubedbcatalog.ActiveDBVersions()[strings.TrimSuffix(obj.GetKind(), "Version")]...).Has(obj.GetName()) {
 			logger.Log(fmt.Errorf("using unknown %s version %s", obj.GetKind(), obj.GetName()))
 			return nil
@@ -361,7 +361,7 @@ func checkObject(ri p.ResourceInfo) error {
 			logger.Log(err)
 			return nil
 		}
-	} else if gvr.Group == "stash.appscode.com" {
+	case "stash.appscode.com":
 		taskName, _, err := unstructured.NestedString(obj.Object, "spec", "task", "name")
 		if err != nil {
 			logger.Log(err)
@@ -371,7 +371,7 @@ func checkObject(ri p.ResourceInfo) error {
 			logger.Log(err)
 			return nil
 		}
-	} else if gvr.Group == "kubevault.com" {
+	case "kubevault.com":
 		appVersion, _, err := unstructured.NestedString(obj.Object, "spec", "version")
 		if err != nil {
 			logger.Log(err)
@@ -381,7 +381,7 @@ func checkObject(ri p.ResourceInfo) error {
 			logger.Log(fmt.Errorf("using unknown %s version %s", obj.GetKind(), appVersion))
 			return nil
 		}
-	} else if gvr.Group == "catalog.kubevault.com" {
+	case "catalog.kubevault.com":
 		if !sets.NewString(kubevaultcatalog.ActiveVersions()[strings.TrimSuffix(obj.GetKind(), "Version")]...).Has(obj.GetName()) {
 			logger.Log(fmt.Errorf("using unknown %s version %s", obj.GetKind(), obj.GetName()))
 			return nil

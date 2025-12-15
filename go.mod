@@ -15,10 +15,10 @@ require (
 	k8s.io/component-base v0.32.8
 	k8s.io/klog/v2 v2.130.1
 	k8s.io/kubectl v0.29.2
-	kmodules.xyz/client-go v0.32.10
-	kmodules.xyz/resource-metadata v0.39.0
+	kmodules.xyz/client-go v0.32.11
+	kmodules.xyz/resource-metadata v0.40.0
 	kmodules.xyz/resource-validator v0.29.1
-	kubedb.dev/installer v0.17.2-0.20251209111747-44a50f5c5b61
+	kubedb.dev/installer v0.17.2-0.20251214180945-b48a74dab69c
 	kubevault.dev/installer v0.4.0-beta.0.0.20251015172606-30118eb2655f
 	sigs.k8s.io/controller-runtime v0.20.4
 	stash.appscode.dev/installer v0.12.2-0.20251204172259-c724502d3955
@@ -173,5 +173,3 @@ require (
 )
 
 replace github.com/imdario/mergo => github.com/imdario/mergo v0.3.6
-
-replace k8s.io/kubernetes => github.com/kmodules/kubernetes v1.30.0-alpha.0.0.20231224075822-3bd9a13c86db

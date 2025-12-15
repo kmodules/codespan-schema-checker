@@ -1101,7 +1101,7 @@ k8s.io/utils/trace
 # kmodules.xyz/apiversion v0.2.0
 ## explicit; go 1.14
 kmodules.xyz/apiversion
-# kmodules.xyz/client-go v0.32.10
+# kmodules.xyz/client-go v0.32.11
 ## explicit; go 1.24.0
 kmodules.xyz/client-go
 kmodules.xyz/client-go/api/v1
@@ -1117,8 +1117,8 @@ kmodules.xyz/go-containerregistry/name
 ## explicit; go 1.23.0
 kmodules.xyz/offshoot-api/api/v1
 kmodules.xyz/offshoot-api/api/v2
-# kmodules.xyz/resource-metadata v0.39.0
-## explicit; go 1.23.0
+# kmodules.xyz/resource-metadata v0.40.0
+## explicit; go 1.24.0
 kmodules.xyz/resource-metadata/apis/meta
 kmodules.xyz/resource-metadata/apis/meta/v1alpha1
 kmodules.xyz/resource-metadata/apis/shared
@@ -1133,7 +1133,7 @@ kmodules.xyz/resource-metrics/api
 # kmodules.xyz/resource-validator v0.29.1
 ## explicit; go 1.21
 kmodules.xyz/resource-validator
-# kubedb.dev/installer v0.17.2-0.20251209111747-44a50f5c5b61
+# kubedb.dev/installer v0.17.2-0.20251214180945-b48a74dab69c
 ## explicit; go 1.25.5
 kubedb.dev/installer/catalog/kubedb
 # kubevault.dev/installer v0.4.0-beta.0.0.20251015172606-30118eb2655f
@@ -1292,4 +1292,3 @@ x-helm.dev/apimachinery/apis/releases/v1alpha1
 x-helm.dev/apimachinery/apis/shared
 x-helm.dev/apimachinery/crds
 # github.com/imdario/mergo => github.com/imdario/mergo v0.3.6
-# k8s.io/kubernetes => github.com/kmodules/kubernetes v1.30.0-alpha.0.0.20231224075822-3bd9a13c86db
