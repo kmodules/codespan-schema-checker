@@ -28,15 +28,12 @@ github.com/antlr4-go/antlr/v4
 # github.com/beorn7/perks v1.0.1
 ## explicit; go 1.11
 github.com/beorn7/perks/quantile
-# github.com/bep/godartsass v1.2.0
-## explicit; go 1.15
-github.com/bep/godartsass
-github.com/bep/godartsass/internal/embeddedsassv1
-# github.com/bep/godartsass/v2 v2.0.0
-## explicit; go 1.19
+# github.com/bep/godartsass/v2 v2.3.2
+## explicit; go 1.21
 github.com/bep/godartsass/v2
 github.com/bep/godartsass/v2/internal/embeddedsass
-# github.com/bep/golibsass v1.1.1
+github.com/bep/godartsass/v2/internal/godartsasstesting
+# github.com/bep/golibsass v1.2.0
 ## explicit; go 1.13
 github.com/bep/golibsass/libsass/libsasserrors
 # github.com/blang/semver/v4 v4.0.0
@@ -140,8 +137,8 @@ github.com/gobwas/glob/util/strings
 ## explicit; go 1.15
 github.com/gogo/protobuf/proto
 github.com/gogo/protobuf/sortkeys
-# github.com/gohugoio/hugo v0.125.5
-## explicit; go 1.20
+# github.com/gohugoio/hugo v0.139.4
+## explicit; go 1.22.6
 github.com/gohugoio/hugo/common/collections
 github.com/gohugoio/hugo/common/herrors
 github.com/gohugoio/hugo/common/maps
@@ -299,9 +296,6 @@ github.com/mitchellh/go-homedir
 # github.com/mitchellh/go-wordwrap v1.0.1
 ## explicit; go 1.14
 github.com/mitchellh/go-wordwrap
-# github.com/mitchellh/hashstructure v1.1.0
-## explicit; go 1.14
-github.com/mitchellh/hashstructure
 # github.com/mitchellh/mapstructure v1.5.1-0.20231216201459-8508981c8b6c
 ## explicit; go 1.14
 github.com/mitchellh/mapstructure
@@ -344,8 +338,8 @@ github.com/opencontainers/go-digest
 ## explicit; go 1.18
 github.com/opencontainers/image-spec/specs-go
 github.com/opencontainers/image-spec/specs-go/v1
-# github.com/pelletier/go-toml/v2 v2.2.1
-## explicit; go 1.16
+# github.com/pelletier/go-toml/v2 v2.2.3
+## explicit; go 1.21.0
 github.com/pelletier/go-toml/v2
 github.com/pelletier/go-toml/v2/internal/characters
 github.com/pelletier/go-toml/v2/internal/danger
@@ -409,7 +403,7 @@ github.com/spf13/pflag
 # github.com/stoewer/go-strcase v1.3.0
 ## explicit; go 1.11
 github.com/stoewer/go-strcase
-# github.com/tdewolff/parse/v2 v2.7.13
+# github.com/tdewolff/parse/v2 v2.7.15
 ## explicit; go 1.13
 github.com/tdewolff/parse/v2
 # github.com/tdewolff/test v1.0.11-0.20240106005702-7de5f7df4739
@@ -430,7 +424,7 @@ github.com/yudai/gojsondiff/formatter
 # github.com/yudai/golcs v0.0.0-20170316035057-ecda9a501e82
 ## explicit
 github.com/yudai/golcs
-# github.com/yuin/goldmark v1.7.1
+# github.com/yuin/goldmark v1.7.8
 ## explicit; go 1.19
 github.com/yuin/goldmark
 github.com/yuin/goldmark/ast
@@ -534,10 +528,10 @@ gomodules.xyz/wait
 ## explicit; go 1.22.0
 gomodules.xyz/x/ioutil
 gomodules.xyz/x/strings
-# google.golang.org/genproto/googleapis/api v0.0.0-20240826202546-f6391c0de4c7
+# google.golang.org/genproto/googleapis/api v0.0.0-20241104194629-dd2ea8efbc28
 ## explicit; go 1.21
 google.golang.org/genproto/googleapis/api/expr/v1alpha1
-# google.golang.org/genproto/googleapis/rpc v0.0.0-20240826202546-f6391c0de4c7
+# google.golang.org/genproto/googleapis/rpc v0.0.0-20241104194629-dd2ea8efbc28
 ## explicit; go 1.21
 google.golang.org/genproto/googleapis/rpc/status
 # google.golang.org/protobuf v1.36.6
