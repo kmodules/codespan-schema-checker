@@ -22,6 +22,7 @@ import (
 	"io"
 
 	"github.com/olekukonko/tablewriter"
+	"github.com/olekukonko/tablewriter/tw"
 )
 
 type Logger struct {
@@ -47,11 +48,13 @@ func (l *Logger) Log(err error) {
 		return
 	}
 	if l.count == 0 {
-		table := tablewriter.NewWriter(l.w)
-		table.SetHeader([]string{l.filename})
-		table.SetAutoFormatHeaders(false)
-		table.SetRowLine(true)
-		table.Render()
+		table := tablewriter.NewTable(l.w,
+			tablewriter.WithRendition(tw.Rendition{Settings: tw.Settings{Separators: tw.Separators{BetweenRows: tw.On}}}),
+			tablewriter.WithHeaderAutoFormat(tw.Fail),
+		)
+		defer table.Close() // nolint:errcheck
+		table.Header([]string{l.filename})
+		_ = table.Render()
 	}
 	_, _ = fmt.Fprintln(l.w, err)
 	l.count++
