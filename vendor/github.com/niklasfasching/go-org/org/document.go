@@ -29,6 +29,7 @@ type Configuration struct {
 	DefaultSettings     map[string]string                     // Default values for settings that are overriden by setting the same key in BufferSettings.
 	Log                 *log.Logger                           // Log is used to print warnings during parsing.
 	ReadFile            func(filename string) ([]byte, error) // ReadFile is used to read e.g. #+INCLUDE files.
+	ResolveLink         func(protocol string, description []Node, link string) Node
 }
 
 // Document contains the parsing results and a pointer to the Configuration.
@@ -93,6 +94,9 @@ func New() *Configuration {
 		},
 		Log:      log.New(os.Stderr, "go-org: ", 0),
 		ReadFile: ioutil.ReadFile,
+		ResolveLink: func(protocol string, description []Node, link string) Node {
+			return RegularLink{protocol, description, link, false}
+		},
 	}
 }
 
@@ -241,7 +245,7 @@ func (d *Document) parseOne(i int, stop stopFn) (consumed int, node Node) {
 	if consumed != 0 {
 		return consumed, node
 	}
-	d.Log.Printf("Could not parse token %#v: Falling back to treating it as plain text.", d.tokens[i])
+	d.Log.Printf("Could not parse token %#v in file %s: Falling back to treating it as plain text.", d.tokens[i], d.Path)
 	m := plainTextRegexp.FindStringSubmatch(d.tokens[i].matches[0])
 	d.tokens[i] = token{"text", len(m[1]), m[2], m}
 	return d.parseOne(i, stop)
@@ -260,7 +264,9 @@ func (d *Document) parseMany(i int, stop stopFn) (int, []Node) {
 func (d *Document) addHeadline(headline *Headline) int {
 	current := &Section{Headline: headline}
 	d.Outline.last.add(current)
-	d.Outline.count++
+	if !headline.IsExcluded(d) {
+		d.Outline.count++
+	}
 	d.Outline.last = current
 	return d.Outline.count
 }

@@ -317,9 +317,13 @@ func replaceEntities(b []byte, i int, entitiesMap map[string][]byte, revEntities
 		}
 	} else {
 		for ; j < len(b) && j-i-1 <= MaxEntityLength && b[j] != ';'; j++ {
+			if !(b[j] >= '0' && b[j] <= '9' || b[j] >= 'a' && b[j] <= 'z' || b[j] >= 'A' && b[j] <= 'Z') {
+				// invalid character reference character
+				break
+			}
 		}
-		if j <= i+1 || len(b) <= j {
-			return b, j - 1
+		if len(b) <= j || j == i+1 || b[j] != ';' {
+			return b, i
 		}
 
 		var ok bool
@@ -399,7 +403,7 @@ func ReplaceMultipleWhitespaceAndEntities(b []byte, entitiesMap map[string][]byt
 	if j == 0 {
 		return b
 	} else if j == 1 { // only if starts with whitespace
-		b[k-1] = b[0]
+		b[k-1] = b[0] // move newline to end of whitespace
 		return b[k-1:]
 	} else if k < len(b) {
 		j += copy(b[j:], b[k:])
@@ -530,13 +534,37 @@ func DecodeURL(b []byte) []byte {
 					c = c<<4 + int(b[j]-'a') + 10
 				}
 			}
-			if j == i+3 && c < 128 {
+			if j == i+3 {
 				b[i] = byte(c)
 				b = append(b[:i+1], b[i+3:]...)
 			}
 		} else if b[i] == '+' {
 			b[i] = ' '
 		}
+	}
+	return b
+}
+
+func AppendEscape(b, str, chars []byte, escape byte) []byte {
+	i := 0
+	for j := 0; j < len(str); j++ {
+		has := false
+		for _, c := range chars {
+			if c == str[j] {
+				has = true
+				break
+			}
+		}
+		if has || str[j] == escape {
+			if i < j {
+				b = append(b, str[i:j]...)
+			}
+			b = append(b, escape)
+			i = j
+		}
+	}
+	if i < len(str) {
+		b = append(b, str[i:]...)
 	}
 	return b
 }

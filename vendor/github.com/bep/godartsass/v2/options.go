@@ -1,20 +1,26 @@
+// Copyright 2024 Bjørn Erik Pedersen
+// SPDX-License-Identifier: MIT
+
 package godartsass
 
 import (
 	"fmt"
+	"io"
+	"os"
 	"path/filepath"
 	"strings"
 	"time"
 
 	"github.com/bep/godartsass/v2/internal/embeddedsass"
+	"github.com/bep/godartsass/v2/internal/godartsasstesting"
 )
 
 // Options configures a Transpiler.
 type Options struct {
 	// The path to the Dart Sass wrapper binary, an absolute filename
 	// if not in $PATH.
-	// If this is not set, we will try 'dart-sass'
-	// (or 'dart-sass.bat' on Windows) in the OS $PATH.
+	// If this is not set, we will try 'sass'
+	// (or 'sass.bat' on Windows) in the OS $PATH.
 	// There may be several ways to install this, one would be to
 	// download it from here: https://github.com/sass/dart-sass/releases
 	DartSassEmbeddedFilename string
@@ -28,6 +34,9 @@ type Options struct {
 	// LogEventHandler will, if set, receive log events from Dart Sass,
 	// e.g. @debug and @warn log statements.
 	LogEventHandler func(LogEvent)
+
+	// If not set, will default to os.Stderr.
+	Stderr io.Writer
 }
 
 // LogEvent is a type of log event from Dart Sass.
@@ -37,7 +46,7 @@ const (
 	// Usually triggered by the @warn directive.
 	LogEventTypeWarning LogEventType = iota
 
-	// Events trigered for usage of deprecated Sass features.
+	// Events triggered for usage of deprecated Sass features.
 	LogEventTypeDeprecated
 
 	// Triggered by the @debug directive.
@@ -47,6 +56,9 @@ const (
 type LogEvent struct {
 	// Type is the type of log event.
 	Type LogEventType
+
+	// DeprecationType is set if Type is LogEventTypeDeprecated.
+	DeprecationType string
 
 	// Message on the form url:line:col message.
 	Message string
@@ -59,6 +71,10 @@ func (opts *Options) init() error {
 
 	if opts.Timeout == 0 {
 		opts.Timeout = 30 * time.Second
+	}
+
+	if opts.Stderr == nil {
+		opts.Stderr = os.Stderr
 	}
 
 	return nil
@@ -124,11 +140,22 @@ type Args struct {
 	// Additional file paths to uses to resolve imports.
 	IncludePaths []string
 
+	// Deprecation IDs to silence, e.g. "import".
+	SilenceDeprecations []string
+
+	// Whether to silence deprecation warnings from dependencies, where a
+	// dependency is considered any file transitively imported through a load
+	// path. This does not apply to @warn or @debug rules.
+	SilenceDependencyDeprecations bool
+
 	sassOutputStyle  embeddedsass.OutputStyle
 	sassSourceSyntax embeddedsass.Syntax
 
 	// Ordered list starting with options.ImportResolver, then IncludePaths.
 	sassImporters []*embeddedsass.InboundMessage_CompileRequest_Importer
+
+	// Used in tests.
+	testingShouldPanicWhen godartsasstesting.PanicWhen
 }
 
 func (args *Args) init(seq uint32, opts Options) error {
@@ -228,4 +255,19 @@ func ParseSourceSyntax(s string) SourceSyntax {
 	default:
 		return SourceSyntaxSCSS
 	}
+}
+
+func stringPointerToString(s *string) string {
+	if s == nil {
+		return ""
+	}
+	return *s
+}
+
+// Should only be used in tests.
+func TestingApplyArgsSettings(args *Args, shouldPanicWhen godartsasstesting.PanicWhen) {
+	if !godartsasstesting.IsTest {
+		panic("TestingApplyArgsSettings should only be used in tests")
+	}
+	args.testingShouldPanicWhen = shouldPanicWhen
 }

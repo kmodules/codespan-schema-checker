@@ -65,15 +65,15 @@ type Macro struct {
 
 var validURLCharacters = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789-._~:/?#[]@!$&'()*+,;="
 var autolinkProtocols = regexp.MustCompile(`^(https?|ftp|file)$`)
-var imageExtensionRegexp = regexp.MustCompile(`^[.](png|gif|jpe?g|svg|tiff?)$`)
-var videoExtensionRegexp = regexp.MustCompile(`^[.](webm|mp4)$`)
+var imageExtensionRegexp = regexp.MustCompile(`(?i)^[.](png|gif|jpe?g|svg|tiff?|webp|x[bp]m|p[bgpn]m)$`)
+var videoExtensionRegexp = regexp.MustCompile(`(?i)^[.](webm|mp4)$`)
 
 var subScriptSuperScriptRegexp = regexp.MustCompile(`^([_^]){([^{}]+?)}`)
 var timestampRegexp = regexp.MustCompile(`^<(\d{4}-\d{2}-\d{2})( [A-Za-z]+)?( \d{2}:\d{2})?( \+\d+[dwmy])?>`)
 var footnoteRegexp = regexp.MustCompile(`^\[fn:([\w-]*?)(:(.*?))?\]`)
 var statisticsTokenRegexp = regexp.MustCompile(`^\[(\d+/\d+|\d+%)\]`)
 var latexFragmentRegexp = regexp.MustCompile(`(?s)^\\begin{(\w+)}(.*)\\end{(\w+)}`)
-var inlineBlockRegexp = regexp.MustCompile(`src_(\w+)(\[(.*)\])?{(.*)}`)
+var inlineBlockRegexp = regexp.MustCompile(`src_(\w+)(\[([^\]]*)\])?{([^}]*)}`)
 var inlineExportBlockRegexp = regexp.MustCompile(`@@(\w+):(.*?)@@`)
 var macroRegexp = regexp.MustCompile(`{{{(.*)\((.*)\)}}}`)
 
@@ -329,7 +329,7 @@ func (d *Document) parseRegularLink(input string, start int) (int, Node) {
 	if len(linkParts) == 2 {
 		protocol = linkParts[0]
 	}
-	return consumed, RegularLink{protocol, description, link, false}
+	return consumed, d.ResolveLink(protocol, description, link)
 }
 
 func (d *Document) parseTimestamp(input string, start int) (int, Node) {
