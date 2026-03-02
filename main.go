@@ -343,8 +343,7 @@ func checkObject(ri p.ResourceInfo) error {
 			kind = "Redis"
 		}
 		if dbVersion != "" && !sets.NewString(kubedbcatalog.ActiveDBVersions()[kind]...).Has(dbVersion) {
-			logger.Log(fmt.Errorf("using unknown %s version %s", obj.GetKind(), dbVersion))
-			return nil
+			return fmt.Errorf("using unknown %s version %s", obj.GetKind(), dbVersion)
 		}
 	case "catalog.kubedb.com":
 		if !sets.NewString(kubedbcatalog.ActiveDBVersions()[strings.TrimSuffix(obj.GetKind(), "Version")]...).Has(obj.GetName()) {
