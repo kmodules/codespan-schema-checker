@@ -1264,7 +1264,7 @@ kmodules.xyz/resource-metrics/api
 # kmodules.xyz/resource-validator v0.34.0
 ## explicit; go 1.24.0
 kmodules.xyz/resource-validator
-# kubedb.dev/installer v0.17.2-0.20260301181442-d8d190623d0a
+# kubedb.dev/installer v0.17.2-0.20260302120843-08b97a270a98
 ## explicit; go 1.25.5
 kubedb.dev/installer/catalog/kubedb
 # kubevault.dev/installer v0.4.0-beta.0.0.20260228173104-0e17739f4c4b

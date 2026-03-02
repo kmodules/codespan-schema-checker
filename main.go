@@ -138,6 +138,7 @@ func main() {
 	kc = MustClient(cfg)
 
 	flags.AddGoFlagSet(flag.CommandLine)
+	kubedbcatalog.AddFlags(flags)
 
 	flags.StringVar(&filename, "content", filename, "Path to directory where markdown files reside")
 
