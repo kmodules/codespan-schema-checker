@@ -4,7 +4,7 @@ metadata:
   name: 5.7-v2
 spec:
   coordinator:
-    image: ghcr.io/kubedb/mysql-coordinator:v0.41.0
+    image: ghcr.io/kubedb/mysql-coordinator:v0.42.0
   db:
     image: ghcr.io/kubedb/mysql:5.7-v2
   deprecated: true
@@ -18,7 +18,7 @@ spec:
   podSecurityPolicies:
     databasePolicyName: mysql-db
   replicationModeDetector:
-    image: ghcr.io/kubedb/replication-mode-detector:v0.50.0
+    image: ghcr.io/kubedb/replication-mode-detector:v0.51.0
   securityContext:
     runAsUser: 999
   updateConstraints:
@@ -36,7 +36,7 @@ metadata:
   name: 5.7-v3
 spec:
   coordinator:
-    image: ghcr.io/kubedb/mysql-coordinator:v0.41.0
+    image: ghcr.io/kubedb/mysql-coordinator:v0.42.0
   db:
     image: ghcr.io/kubedb/mysql:5.7.25
   deprecated: true
@@ -48,7 +48,7 @@ spec:
   podSecurityPolicies:
     databasePolicyName: mysql-db
   replicationModeDetector:
-    image: ghcr.io/kubedb/replication-mode-detector:v0.50.0
+    image: ghcr.io/kubedb/replication-mode-detector:v0.51.0
   securityContext:
     runAsUser: 999
   updateConstraints:
@@ -66,7 +66,7 @@ metadata:
   name: 5.7.25
 spec:
   coordinator:
-    image: ghcr.io/kubedb/mysql-coordinator:v0.41.0
+    image: ghcr.io/kubedb/mysql-coordinator:v0.42.0
   db:
     image: ghcr.io/kubedb/mysql:5.7.25
   deprecated: true
@@ -78,7 +78,7 @@ spec:
   podSecurityPolicies:
     databasePolicyName: mysql-db
   replicationModeDetector:
-    image: ghcr.io/kubedb/replication-mode-detector:v0.50.0
+    image: ghcr.io/kubedb/replication-mode-detector:v0.51.0
   securityContext:
     runAsUser: 999
   updateConstraints:
@@ -96,7 +96,7 @@ metadata:
   name: 5.7.25-v1
 spec:
   coordinator:
-    image: ghcr.io/kubedb/mysql-coordinator:v0.41.0
+    image: ghcr.io/kubedb/mysql-coordinator:v0.42.0
   db:
     image: ghcr.io/kubedb/mysql:5.7.25-v1
   deprecated: true
@@ -108,7 +108,7 @@ spec:
   podSecurityPolicies:
     databasePolicyName: mysql-db
   replicationModeDetector:
-    image: ghcr.io/kubedb/replication-mode-detector:v0.50.0
+    image: ghcr.io/kubedb/replication-mode-detector:v0.51.0
   securityContext:
     runAsUser: 999
   updateConstraints:
@@ -126,7 +126,7 @@ metadata:
   name: 5.7.25-v2
 spec:
   coordinator:
-    image: ghcr.io/kubedb/mysql-coordinator:v0.41.0
+    image: ghcr.io/kubedb/mysql-coordinator:v0.42.0
   db:
     image: ghcr.io/kubedb/mysql:5.7.25-v2
   deprecated: true
@@ -134,11 +134,11 @@ spec:
   exporter:
     image: ghcr.io/kubedb/mysqld-exporter:v0.11.0
   initContainer:
-    image: tianon/toybox:0.8.11
+    image: docker.io/tianon/toybox:0.8.11
   podSecurityPolicies:
     databasePolicyName: mysql-db
   replicationModeDetector:
-    image: ghcr.io/kubedb/replication-mode-detector:v0.50.0
+    image: ghcr.io/kubedb/replication-mode-detector:v0.51.0
   securityContext:
     runAsUser: 999
   stash:
@@ -162,19 +162,19 @@ metadata:
   name: 5.7.25-v3
 spec:
   coordinator:
-    image: ghcr.io/kubedb/mysql-coordinator:v0.41.0
+    image: ghcr.io/kubedb/mysql-coordinator:v0.42.0
   db:
-    image: mysql:5.7.25
+    image: docker.io/library/mysql:5.7.25
   deprecated: true
   distribution: Official
   exporter:
-    image: prom/mysqld-exporter:v0.13.0
+    image: docker.io/prom/mysqld-exporter:v0.13.0
   initContainer:
     image: ghcr.io/kubedb/mysql-init:5.7
   podSecurityPolicies:
     databasePolicyName: mysql-db
   replicationModeDetector:
-    image: ghcr.io/kubedb/replication-mode-detector:v0.50.0
+    image: ghcr.io/kubedb/replication-mode-detector:v0.51.0
   securityContext:
     runAsUser: 999
   stash:

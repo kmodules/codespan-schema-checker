@@ -4,7 +4,7 @@ metadata:
   name: percona-4.0.10
 spec:
   db:
-    image: percona/percona-server-mongodb:4.0.10
+    image: docker.io/percona/percona-server-mongodb:4.0.10
   deprecated: true
   distribution: Percona
   exporter:
@@ -16,7 +16,7 @@ spec:
   podSecurityPolicies:
     databasePolicyName: mongodb-db
   replicationModeDetector:
-    image: ghcr.io/kubedb/replication-mode-detector:v0.50.0
+    image: ghcr.io/kubedb/replication-mode-detector:v0.51.0
   securityContext:
     runAsGroup: 1001
     runAsUser: 0

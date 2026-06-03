@@ -17,7 +17,7 @@ spec:
   podSecurityPolicies:
     databasePolicyName: mongodb-db
   replicationModeDetector:
-    image: ghcr.io/kubedb/replication-mode-detector:v0.50.0
+    image: ghcr.io/kubedb/replication-mode-detector:v0.51.0
   securityContext:
     runAsGroup: 999
     runAsUser: 999
@@ -44,9 +44,9 @@ spec:
         volumeSnapshot:
           name: volume-snapshot
     walg:
-      image: ghcr.io/kubedb/wal-g:v2024.12.18_mongo
+      image: ghcr.io/kubedb/wal-g:v2026.3.30_mongo
   db:
-    image: mongo:4.1.4
+    image: docker.io/library/mongo:4.1.4
   deprecated: true
   distribution: Official
   endOfLife: true
@@ -59,7 +59,7 @@ spec:
   podSecurityPolicies:
     databasePolicyName: mongodb-db
   replicationModeDetector:
-    image: ghcr.io/kubedb/replication-mode-detector:v0.50.0
+    image: ghcr.io/kubedb/replication-mode-detector:v0.51.0
   securityContext:
     runAsGroup: 999
     runAsUser: 999
