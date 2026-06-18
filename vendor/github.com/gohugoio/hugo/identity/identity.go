@@ -33,15 +33,17 @@ const (
 
 	// GenghisKhan is an Identity everyone relates to.
 	GenghisKhan = StringIdentity("__genghiskhan")
+
+	StructuralChangeAdd    = StringIdentity("__structural_change_add")
+	StructuralChangeRemove = StringIdentity("__structural_change_remove")
 )
 
 var NopManager = new(nopManager)
 
 // NewIdentityManager creates a new Manager.
-func NewManager(name string, opts ...ManagerOption) Manager {
+func NewManager(opts ...ManagerOption) Manager {
 	idm := &identityManager{
 		Identity: Anonymous,
-		name:     name,
 		ids:      Identities{},
 	}
 
@@ -82,9 +84,8 @@ func FirstIdentity(v any) Identity {
 	var result Identity = Anonymous
 	WalkIdentitiesShallow(v, func(level int, id Identity) bool {
 		result = id
-		return true
+		return result != Anonymous
 	})
-
 	return result
 }
 
@@ -92,9 +93,6 @@ func FirstIdentity(v any) Identity {
 func PrintIdentityInfo(v any) {
 	WalkIdentitiesDeep(v, func(level int, id Identity) bool {
 		var s string
-		if idm, ok := id.(*identityManager); ok {
-			s = " " + idm.name
-		}
 		fmt.Printf("%s%s (%T)%s\n", strings.Repeat("  ", level), id.IdentifierBase(), id, s)
 		return false
 	})
@@ -146,13 +144,14 @@ func (d DependencyManagerProviderFunc) GetDependencyManager() Manager {
 // DependencyManagerScopedProvider provides a manager for dependencies with a given scope.
 type DependencyManagerScopedProvider interface {
 	GetDependencyManagerForScope(scope int) Manager
+	GetDependencyManagerForScopesAll() []Manager
 }
 
 // ForEeachIdentityProvider provides a way iterate over identities.
 type ForEeachIdentityProvider interface {
 	// ForEeachIdentityProvider calls cb for each Identity.
-	// If cb returns true, the iteration is terminated.
-	// The return value is whether the iteration was terminated.
+	// If cb returns false, the iteration is terminated.
+	// It returns false if the iteration was terminated early.
 	ForEeachIdentity(cb func(id Identity) bool) bool
 }
 
@@ -246,6 +245,11 @@ type SignalRebuilder interface {
 	SignalRebuild(ids ...Identity)
 }
 
+// IsRebuildProvider signals if we're in a rebuild or not.
+type IsRebuildProvider interface {
+	IsRebuild() bool
+}
+
 // IncrementByOne implements Incrementer adding 1 every time Incr is called.
 type IncrementByOne struct {
 	counter uint64
@@ -293,9 +297,6 @@ func (s StringIdentity) IdentifierBase() string {
 type identityManager struct {
 	Identity
 
-	// Only used for debugging.
-	name string
-
 	// mu protects _changes_ to this manager,
 	// reads currently assumes no concurrent writes.
 	mu         sync.RWMutex
@@ -308,11 +309,13 @@ type identityManager struct {
 
 func (im *identityManager) AddIdentity(ids ...Identity) {
 	im.mu.Lock()
+	defer im.mu.Unlock()
 
 	for _, id := range ids {
 		if id == nil || id == Anonymous {
 			continue
 		}
+
 		if _, found := im.ids[id]; !found {
 			if im.onAddIdentity != nil {
 				im.onAddIdentity(id)
@@ -320,7 +323,6 @@ func (im *identityManager) AddIdentity(ids ...Identity) {
 			im.ids[id] = true
 		}
 	}
-	im.mu.Unlock()
 }
 
 func (im *identityManager) AddIdentityForEach(ids ...ForEeachIdentityProvider) {
@@ -355,8 +357,8 @@ func (im *identityManager) GetDependencyManagerForScope(int) Manager {
 	return im
 }
 
-func (im *identityManager) String() string {
-	return fmt.Sprintf("IdentityManager(%s)", im.name)
+func (im *identityManager) GetDependencyManagerForScopesAll() []Manager {
+	return []Manager{im}
 }
 
 func (im *identityManager) forEeachIdentity(fn func(id Identity) bool) bool {
@@ -368,11 +370,11 @@ func (im *identityManager) forEeachIdentity(fn func(id Identity) bool) bool {
 		}
 	}
 	for _, fe := range im.forEachIds {
-		if fe.ForEeachIdentity(fn) {
-			return true
+		if !fe.ForEeachIdentity(fn) {
+			return false
 		}
 	}
-	return false
+	return true
 }
 
 type nopManager int
@@ -498,6 +500,10 @@ func probablyEq(a, b Identity) bool {
 	}
 
 	if a.IdentifierBase() == b.IdentifierBase() {
+		return true
+	}
+
+	if a2, ok := a.(compare.ProbablyEqer); ok && a2.ProbablyEq(b) {
 		return true
 	}
 

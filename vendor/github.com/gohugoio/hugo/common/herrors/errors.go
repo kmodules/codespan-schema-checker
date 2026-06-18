@@ -17,21 +17,12 @@ package herrors
 import (
 	"errors"
 	"fmt"
-	"io"
 	"os"
 	"regexp"
 	"runtime"
-	"runtime/debug"
 	"strings"
 	"time"
 )
-
-// PrintStackTrace prints the current stacktrace to w.
-func PrintStackTrace(w io.Writer) {
-	buf := make([]byte, 1<<16)
-	runtime.Stack(buf, true)
-	fmt.Fprintf(w, "%s", buf)
-}
 
 // ErrorSender is a, typically, non-blocking error handler.
 type ErrorSender interface {
@@ -45,7 +36,9 @@ type ErrorSender interface {
 func Recover(args ...any) {
 	if r := recover(); r != nil {
 		fmt.Println("ERR:", r)
-		args = append(args, "stacktrace from panic: \n"+string(debug.Stack()), "\n")
+		buf := make([]byte, 64<<10)
+		buf = buf[:runtime.Stack(buf, false)]
+		args = append(args, "stacktrace from panic: \n"+string(buf), "\n")
 		fmt.Println(args...)
 	}
 }
@@ -127,6 +120,21 @@ func IsNotExist(err error) bool {
 
 	// os.IsNotExist does not consider wrapped errors.
 	if os.IsNotExist(errors.Unwrap(err)) {
+		return true
+	}
+
+	return false
+}
+
+// IsExist returns true if the error is a file exists error.
+// Unlike os.IsExist, this also considers wrapped errors.
+func IsExist(err error) bool {
+	if os.IsExist(err) {
+		return true
+	}
+
+	// os.IsExist does not consider wrapped errors.
+	if os.IsExist(errors.Unwrap(err)) {
 		return true
 	}
 

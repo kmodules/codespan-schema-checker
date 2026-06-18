@@ -28,6 +28,16 @@ type RLocker interface {
 	RUnlock()
 }
 
+type Locker interface {
+	Lock()
+	Unlock()
+}
+
+type RWLocker interface {
+	RLocker
+	Locker
+}
+
 // KeyValue is a interface{} tuple.
 type KeyValue struct {
 	Key   any
@@ -59,7 +69,7 @@ func (k KeyValues) String() string {
 // KeyValues struct.
 func NewKeyValuesStrings(key string, values ...string) KeyValues {
 	iv := make([]any, len(values))
-	for i := 0; i < len(values); i++ {
+	for i := range values {
 		iv[i] = values[i]
 	}
 	return KeyValues{Key: key, Values: iv}
@@ -79,7 +89,7 @@ func IsNil(v any) bool {
 
 	value := reflect.ValueOf(v)
 	switch value.Kind() {
-	case reflect.Chan, reflect.Func, reflect.Interface, reflect.Map, reflect.Ptr, reflect.Slice:
+	case reflect.Chan, reflect.Func, reflect.Interface, reflect.Map, reflect.Pointer, reflect.Slice:
 		return value.IsNil()
 	}
 
@@ -129,26 +139,25 @@ func NewBool(b bool) *bool {
 	return &b
 }
 
+// WeightProvider provides a weight.
+type WeightProvider interface {
+	Weight() int
+}
+
+// Weight0Provider provides a weight that's considered before the WeightProvider in sorting.
+// This allows the weight set on a given term to win.
+type Weight0Provider interface {
+	Weight0() int
+}
+
 // PrintableValueProvider is implemented by types that can provide a printable value.
 type PrintableValueProvider interface {
 	PrintableValue() any
 }
 
-var _ PrintableValueProvider = Result[any]{}
-
-// Result is a generic result type.
-type Result[T any] struct {
-	// The result value.
-	Value T
-
-	// The error value.
-	Err error
-}
-
-// PrintableValue returns the value or panics if there is an error.
-func (r Result[T]) PrintableValue() any {
-	if r.Err != nil {
-		panic(r.Err)
-	}
-	return r.Value
-}
+type (
+	Strings2 [2]string
+	Strings3 [3]string
+	Ints2    [2]int
+	Ints3    [3]int
+)
