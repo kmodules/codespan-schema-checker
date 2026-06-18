@@ -16,7 +16,7 @@ require (
 	k8s.io/klog/v2 v2.130.1
 	k8s.io/kubectl v0.34.3
 	kmodules.xyz/client-go v0.34.3
-	kmodules.xyz/resource-metadata v0.46.0
+	kmodules.xyz/resource-metadata v0.46.2-0.20260618175704-776d5e8169b1
 	kmodules.xyz/resource-validator v0.34.0
 	kubedb.dev/installer v0.17.2-0.20260516084925-39a48b5f7aa4
 	kubevault.dev/installer v0.4.0-beta.0.0.20260228173104-0e17739f4c4b
@@ -166,15 +166,15 @@ require (
 	go.opentelemetry.io/proto/otlp v1.7.1 // indirect
 	go.yaml.in/yaml/v2 v2.4.3 // indirect
 	go.yaml.in/yaml/v3 v3.0.4 // indirect
-	golang.org/x/crypto v0.50.0 // indirect
+	golang.org/x/crypto v0.52.0 // indirect
 	golang.org/x/exp v0.0.0-20251219203646-944ab1f22d93 // indirect
 	golang.org/x/image v0.34.0 // indirect
-	golang.org/x/net v0.53.0 // indirect
+	golang.org/x/net v0.55.0 // indirect
 	golang.org/x/oauth2 v0.34.0 // indirect
 	golang.org/x/sync v0.20.0 // indirect
-	golang.org/x/sys v0.43.0 // indirect
-	golang.org/x/term v0.42.0 // indirect
-	golang.org/x/text v0.36.0 // indirect
+	golang.org/x/sys v0.45.0 // indirect
+	golang.org/x/term v0.43.0 // indirect
+	golang.org/x/text v0.37.0 // indirect
 	golang.org/x/time v0.14.0 // indirect
 	gomodules.xyz/clock v0.0.0-20200817085942-06523dba733f // indirect
 	gomodules.xyz/flags v0.1.3 // indirect
