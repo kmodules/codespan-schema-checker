@@ -851,8 +851,8 @@ kmodules.xyz/go-containerregistry v0.0.15 h1:PRY5FDOzb6u23KOulQ4SWNdeUkBKmezLyJX
 kmodules.xyz/go-containerregistry v0.0.15/go.mod h1:rO0DEbYYEu1BfVcZ1pXV+3RgzVXr/k5hXcO+BQYVVDI=
 kmodules.xyz/offshoot-api v0.34.0 h1:HnOOp8FrCjTWjtNApRDo6Ahe79tOlLrJmyye4xxO4Kk=
 kmodules.xyz/offshoot-api v0.34.0/go.mod h1:F+B59yYw4CZJ4uD4xu6C+mMLzIXUtuH7E+SbDICl9jE=
-kmodules.xyz/resource-metadata v0.46.2-0.20260618175704-776d5e8169b1 h1:8koy0rLv+8BvC1FiTPD+rxye9XLCSulC6a9tokbGvYE=
-kmodules.xyz/resource-metadata v0.46.2-0.20260618175704-776d5e8169b1/go.mod h1:ejz7IVjhqmj6VH8CVfprocJK/IM++OeunrfUp51ZrIw=
+kmodules.xyz/resource-metadata v0.47.0 h1:lBZrF+akK7xnwVtV5185W5HyhhFBx07ln4IzwzebFAI=
+kmodules.xyz/resource-metadata v0.47.0/go.mod h1:ejz7IVjhqmj6VH8CVfprocJK/IM++OeunrfUp51ZrIw=
 kmodules.xyz/resource-metrics v0.34.0 h1:cqscgTx3PONxHj6PIySK3sTlKKv8iKTGzRd+S6YSwXg=
 kmodules.xyz/resource-metrics v0.34.0/go.mod h1:R34IKtp5+NqcQz7AQJheBJK6Iem0LqrCbm/55Mn+ECQ=
 kmodules.xyz/resource-validator v0.34.0 h1:n47FJ99HtvB/0SZpbltCDfwCP2tVmksWhI6ThWZt24o=
