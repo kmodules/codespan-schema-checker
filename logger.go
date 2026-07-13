@@ -48,7 +48,8 @@ func (l *Logger) Log(err error) {
 		return
 	}
 	if l.count == 0 {
-		table := tablewriter.NewTable(l.w,
+		table := tablewriter.NewTable(
+			l.w,
 			tablewriter.WithRendition(tw.Rendition{Settings: tw.Settings{Separators: tw.Separators{BetweenRows: tw.On}}}),
 			tablewriter.WithHeaderAutoFormat(tw.Fail),
 		)
