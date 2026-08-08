@@ -1,13 +1,14 @@
 apiVersion: catalog.kubevault.com/v1alpha1
 kind: VaultServerVersion
 metadata:
-  name: 1.7.3
+  name: 1.6.5
 spec:
+  deprecated: true
   distribution: Vault
   exporter:
     image: ghcr.io/kubevault/vault-exporter:v0.1.1
   initContainer:
-    image: busybox
+    image: docker.io/library/busybox
   stash:
     addon:
       backupTask:
@@ -15,7 +16,7 @@ spec:
       restoreTask:
         name: vault-restore-1.10.3
   unsealer:
-    image: ghcr.io/kubevault/vault-unsealer:v0.24.0
+    image: ghcr.io/kubevault/vault-unsealer:v0.25.0
   vault:
-    image: ghcr.io/appscode-images/vault:1.7.3
-  version: 1.7.3
+    image: ghcr.io/appscode-images/vault:1.6.5
+  version: 1.6.5

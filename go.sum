@@ -859,8 +859,8 @@ kmodules.xyz/resource-validator v0.34.0 h1:n47FJ99HtvB/0SZpbltCDfwCP2tVmksWhI6Th
 kmodules.xyz/resource-validator v0.34.0/go.mod h1:4reHejGjVprHMdiz5NkgOz/q+nHsJoxxkHwC9blRM1M=
 kubedb.dev/installer v0.17.2-0.20260516084925-39a48b5f7aa4 h1:hjU6mWj8oSLE/27O2Z6fJVzB7Edd/bpfUNMZb6w/cPU=
 kubedb.dev/installer v0.17.2-0.20260516084925-39a48b5f7aa4/go.mod h1:KoBiV7MxVHAhJRvrfYH2NAzD4JU+aQt/4OdKJx8A3dc=
-kubevault.dev/installer v0.4.0-beta.0.0.20260228173104-0e17739f4c4b h1:SgOrsOfW5YLoOYcNxEJ+nQQ77Vx8xxS/b+j3n84MEOo=
-kubevault.dev/installer v0.4.0-beta.0.0.20260228173104-0e17739f4c4b/go.mod h1:oDw0GWBOIyMpNAU3D2lMB2KqePToQyytNzXNkYSR4ws=
+kubevault.dev/installer v0.4.0-beta.0.0.20260808060242-ccaf55ab6d80 h1:hUTDWnZjqR8cq30lXBKqKAEP91WA9rcfdkL/jjsdkJI=
+kubevault.dev/installer v0.4.0-beta.0.0.20260808060242-ccaf55ab6d80/go.mod h1:E4HAT+AqKWwG6TyDcbnfwhLXqYtoLxoObAjf0NZYpvg=
 rsc.io/binaryregexp v0.2.0/go.mod h1:qTv7/COck+e2FymRvadv62gMdZztPaShugOCi3I+8D8=
 rsc.io/qr v0.2.0 h1:6vBLea5/NRMVTz8V66gipeLycZMl/+UlFmk8DvqQ6WY=
 rsc.io/qr v0.2.0/go.mod h1:IF+uZjkb9fqyeF/4tlBoynqmQxUoPfWEKh921coOuXs=

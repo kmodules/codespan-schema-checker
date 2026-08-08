@@ -139,6 +139,7 @@ func main() {
 
 	flags.AddGoFlagSet(flag.CommandLine)
 	kubedbcatalog.AddFlags(flags)
+	kubevaultcatalog.AddFlags(flags)
 
 	flags.StringVar(&filename, "content", filename, "Path to directory where markdown files reside")
 

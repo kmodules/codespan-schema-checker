@@ -1247,8 +1247,8 @@ kmodules.xyz/resource-validator
 # kubedb.dev/installer v0.17.2-0.20260516084925-39a48b5f7aa4
 ## explicit; go 1.25.5
 kubedb.dev/installer/catalog/kubedb
-# kubevault.dev/installer v0.4.0-beta.0.0.20260228173104-0e17739f4c4b
-## explicit; go 1.24.0
+# kubevault.dev/installer v0.4.0-beta.0.0.20260808060242-ccaf55ab6d80
+## explicit; go 1.25.0
 kubevault.dev/installer/catalog
 # sigs.k8s.io/controller-runtime v0.22.4
 ## explicit; go 1.24.0
