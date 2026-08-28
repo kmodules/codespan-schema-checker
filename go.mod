@@ -16,7 +16,7 @@ require (
 	k8s.io/klog/v2 v2.130.1
 	k8s.io/kubectl v0.34.3
 	kmodules.xyz/client-go v0.34.3
-	kmodules.xyz/resource-metadata v0.48.0
+	kmodules.xyz/resource-metadata v0.49.0
 	kmodules.xyz/resource-validator v0.34.0
 	kubedb.dev/installer v0.17.2-0.20260516084925-39a48b5f7aa4
 	kubevault.dev/installer v0.4.0-beta.0.0.20260808060242-ccaf55ab6d80
@@ -168,7 +168,7 @@ require (
 	gomodules.xyz/semvers v0.0.3 // indirect
 	gomodules.xyz/sets v0.2.1 // indirect
 	gomodules.xyz/wait v0.2.0 // indirect
-	gomodules.xyz/x v0.0.17 // indirect
+	gomodules.xyz/x v0.0.18 // indirect
 	google.golang.org/genproto/googleapis/api v0.0.0-20260319201613-d00831a3d3e7 // indirect
 	google.golang.org/genproto/googleapis/rpc v0.0.0-20260401024825-9d38bb4040a9 // indirect
 	google.golang.org/protobuf v1.36.11 // indirect
